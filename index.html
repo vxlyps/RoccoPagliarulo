@@ -75,19 +75,15 @@
         header {
             display: flex;
             width: 100%;
-            /* min-height permette all'header di crescere se il testo va a capo */
             min-height: 70px; 
             border-bottom: var(--border-thick); 
             background-color: var(--bg-color);
             z-index: 1000;
-            
-            /* Sticky Logic */
             position: sticky;
             top: 0; 
             transition: transform 0.4s ease-in-out;
         }
         
-        /* Nasconde spostando in alto del 100% della sua altezza */
         header.hide {
             transform: translateY(-100%);
         }
@@ -295,13 +291,12 @@
         .slide-track { 
             animation: scroll 40s linear infinite; 
             display: flex; 
-            /* CALCOLO DINAMICO PER MOBILE: 16 slide * 50vw l'una = 800vw */
             width: calc(50vw * 16); 
         }
 
         .slide { 
             height: 100px; 
-            width: 50vw; /* 2 loghi visibili su mobile */
+            width: 50vw; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
@@ -309,15 +304,13 @@
             border-right: var(--border-thin); 
         }
 
-        /* Loghi a colori, cliccabili */
         .slide img { 
             max-width: 80%; 
             max-height: 70px; 
             object-fit: contain; 
-            /* Rimosso grayscale per avere i colori */
-            filter: none; 
+            filter: none; /* Colori */
             opacity: 1; 
-            transition: transform 0.2s;
+            /* Rimosso transform su hover */
         }
         
         .slide a {
@@ -328,11 +321,7 @@
             height: 100%;
         }
 
-        .slide img:hover {
-            transform: scale(1.1); /* Piccolo zoom hover */
-        }
-
-        /* Animazione Mobile: Scorri metà della track (8 slide) */
+        /* Animazione Mobile */
         @keyframes scroll { 
             0% { transform: translateX(0); } 
             100% { transform: translateX(calc(-50vw * 8)); } 
@@ -374,7 +363,7 @@
         .social-row a { color: var(--black); transition: transform 0.2s, color 0.3s; }
         .social-row a:hover { color: var(--accent-blue); transform: scale(1.1); }
 
-        /* --- FOOTER CREDITS --- */
+        /* --- FOOTER CREDITS (FIXED) --- */
         .footer-credits {
             border-top: var(--border-thick);
             background-color: var(--bg-color);
@@ -425,12 +414,9 @@
             .intro-text { font-size: 1.1rem; }
 
             /* SLIDER DESKTOP */
-            /* Larghezza track ricalcolata per desktop: 16 slide * 25vw = 400vw */
             .slide-track { width: calc(25vw * 16); }
-            
             .slide { width: 25vw; } 
             
-            /* Animazione Desktop: Scorri metà della track (8 slide * 25vw) */
             @keyframes scroll { 
                 0% { transform: translateX(0); } 
                 100% { transform: translateX(calc(-25vw * 8)); } 
@@ -612,9 +598,9 @@
         </section>
 
         <div class="footer-credits">
-            <span>&copy; <span id="year"></span> ROCCO PAGLIARULO</span>
+            <span>&copy;<span id="year"></span> ROCCO PAGLIARULO</span>
             <span class="separator">|</span>
-            <span>SITE CREATED BY <a href="https://instagram.com/vxly.ps" target="_blank">@VXLY.PS</a></span>
+            <span>SITE BY <a href="https://instagram.com/vxly.ps" target="_blank">@VXLY.PS</a></span>
         </div>
 
     </div>
