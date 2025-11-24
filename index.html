@@ -31,7 +31,7 @@
             padding: 0;
         }
 
-        /* EFFETTO INVECCHIATO BILANCIATO (BLUR RIDOTTO) */
+        /* EFFETTO INVECCHIATO */
         body::after {
             content: "";
             position: fixed;
@@ -42,7 +42,7 @@
             pointer-events: none;
             z-index: 9999;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E");
-            backdrop-filter: blur(0.3px);
+            backdrop-filter: blur(0.2px); 
             box-shadow: inset 0 0 80px rgba(0,0,0,0.1);
             mix-blend-mode: multiply;
             transition: all 0.3s ease;
@@ -71,11 +71,25 @@
             z-index: 1;
         }
 
-        /* --- HEADER SECTION --- */
+        /* --- HEADER SECTION (FLEXIBLE STICKY) --- */
         header {
             display: flex;
             width: 100%;
+            /* min-height permette all'header di crescere se il testo va a capo */
+            min-height: 70px; 
             border-bottom: var(--border-thick); 
+            background-color: var(--bg-color);
+            z-index: 1000;
+            
+            /* Sticky Logic */
+            position: sticky;
+            top: 0; 
+            transition: transform 0.4s ease-in-out;
+        }
+        
+        /* Nasconde spostando in alto del 100% della sua altezza (qualsiasi essa sia) */
+        header.hide {
+            transform: translateY(-100%);
         }
 
         .title-block {
@@ -85,24 +99,31 @@
             flex-grow: 1; 
             display: flex;
             align-items: center;
+            /* Permette al testo di andare a capo se serve */
+            flex-wrap: wrap; 
         }
 
         .menu-block {
             background-color: var(--bg-color);
-            width: 60px;
-            min-width: 60px;
+            width: 70px; /* Leggermente più largo per sicurezza */
+            min-width: 70px;
             display: flex;
             justify-content: center;
             align-items: center;
             border-left: var(--border-thick);
+            /* Stretch per seguire l'altezza del titolo se va a capo */
+            align-self: stretch; 
         }
 
         h1 {
             font-family: var(--font-title);
             text-transform: uppercase;
             margin: 0;
-            line-height: 0.9;
-            font-size: clamp(2.2rem, 8vw, 3.5rem); 
+            line-height: 0.95;
+            /* CLAMP CALIBRATO: Si riduce prima di toccare il menu */
+            font-size: clamp(2rem, 6vw, 4rem); 
+            width: 100%;
+            word-wrap: break-word; /* Spezza le parole se necessario */
         }
 
         h1 a {
@@ -134,18 +155,25 @@
         /* --- MENU A TENDINA --- */
         .mobile-menu {
             display: none;
-            position: absolute;
+            position: fixed; 
             top: 70px;
-            right: 0;
+            right: 10px; 
             width: 200px;
             background-color: var(--bg-color);
             border: var(--border-thick);
-            z-index: 90;
+            z-index: 990; 
             flex-direction: column;
             padding: 10px 0;
+            transition: opacity 0.3s ease;
         }
         
         .mobile-menu.active { display: flex; }
+        
+        /* Se header nascosto, nascondi menu */
+        header.hide ~ .mobile-menu {
+            opacity: 0;
+            pointer-events: none;
+        }
 
         .mobile-menu a {
             font-family: var(--font-body);
@@ -159,7 +187,7 @@
         }
         .mobile-menu a:hover { background-color: #e0ded7; }
 
-        /* SOTTOTITOLO HEADER */
+        /* SOTTOTITOLO */
         .sub-header {
             background-color: var(--bg-color);
             color: var(--black);
@@ -176,10 +204,7 @@
             justify-content: center;
             gap: 5px 10px;
         }
-        .sub-item { 
-            white-space: nowrap; 
-            letter-spacing: 1px;
-        }
+        .sub-item { white-space: nowrap; letter-spacing: 1px; }
         .separator { display: none; }
 
         /* HERO IMAGE */
@@ -196,7 +221,7 @@
             object-fit: cover;
             object-position: center;
             display: block;
-            filter: grayscale(100%) contrast(1.2);
+            filter: contrast(1.1); /* A COLORI */
             border: 4px solid var(--black);
         }
 
@@ -204,12 +229,7 @@
         section { border-bottom: var(--border-thick); }
         #intro { border-top: none; }
 
-        .section-header { 
-            padding: 15px 20px; 
-            display: flex; 
-            align-items: center; 
-            gap: 15px; 
-        }
+        .section-header { padding: 15px 20px; display: flex; align-items: center; gap: 15px; }
         
         h2 {
             font-family: var(--font-title);
@@ -235,45 +255,16 @@
 
         /* Projects */
         .projects-wrapper { border-top: var(--border-thick); }
-        .project-item { 
-            display: flex; 
-            flex-direction: column; 
-            border-bottom: var(--border-thin);
-        }
+        .project-item { display: flex; flex-direction: column; border-bottom: var(--border-thin); }
         .project-item:last-child { border-bottom: none; }
         
-        .project-img-wrapper { 
-            width: 100%; 
-            padding: 15px;
-            background-color: var(--bg-color); 
-        }
-        .project-img-wrapper img { 
-            width: 100%; 
-            height: 180px; 
-            object-fit: cover; 
-            display: block; 
-            border: 4px solid black; 
-            filter: grayscale(100%); 
-        }
+        .project-img-wrapper { width: 100%; padding: 15px; background-color: var(--bg-color); }
+        .project-img-wrapper img { width: 100%; height: 180px; object-fit: cover; display: block; border: 4px solid black; filter: grayscale(100%); }
         
-        .project-content { 
-            padding: 15px;
-            padding-top: 5px;
-            display: flex; 
-            flex-direction: column; 
-            justify-content: space-between; 
-            gap: 8px;
-        }
+        .project-content { padding: 15px; padding-top: 5px; display: flex; flex-direction: column; justify-content: space-between; gap: 8px; }
         .project-title { font-family: var(--font-title); font-size: 1.8rem; text-transform: uppercase; line-height: 1; margin-bottom: 3px; }
         .project-subtitle { font-family: var(--font-body); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin-bottom: 3px; }
-        
-        .project-desc { 
-            font-family: var(--font-body); 
-            font-size: 0.85rem; 
-            margin-bottom: 12px;
-            line-height: 1.4;
-            font-weight: 500;
-        }
+        .project-desc { font-family: var(--font-body); font-size: 0.85rem; margin-bottom: 12px; line-height: 1.4; font-weight: 500; }
         
         .btn { 
             background-color: var(--accent-blue); 
@@ -291,108 +282,88 @@
         }
         .btn:hover { background-color: var(--black); }
 
-        /* --- SLIDER LOGHI (Rallentato a 40s) --- */
-        #collaborations {
-            overflow: hidden; 
-            padding: 0;
-            border-top: var(--border-thick);
-        }
+        /* --- SLIDER LOGHI --- */
+        #collaborations { overflow: hidden; padding: 0; border-top: var(--border-thick); }
+        .slider { background: var(--bg-color); height: 140px; margin: auto; overflow: hidden; position: relative; width: 100%; display: flex; align-items: center; }
+        .slide-track { animation: scroll 40s linear infinite; display: flex; width: calc(250px * 16); }
+        .slide { height: 100px; width: 50vw; display: flex; align-items: center; justify-content: center; padding: 0 20px; border-right: var(--border-thin); }
+        .slide img { max-width: 80%; max-height: 70px; object-fit: contain; filter: grayscale(100%); opacity: 0.8; }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-50vw * 8)); } }
 
-        .slider {
-            background: var(--bg-color);
-            height: 140px;
-            margin: auto;
-            overflow: hidden;
-            position: relative;
-            width: 100%;
-            display: flex;
-            align-items: center;
-        }
+        /* --- CONTACT MOBILE (Moderno & Brutalista) --- */
+        #contact { border-bottom: none; padding-bottom: 0; }
+        .contact-content-wrapper { display: flex; flex-direction: column; padding: 20px; gap: 20px; background-color: var(--bg-color); }
 
-        .slide-track {
-            animation: scroll 40s linear infinite;
-            display: flex;
-            width: calc(250px * 16); 
-        }
-
-        .slide {
-            height: 100px;
-            width: 50vw; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0 20px;
-            border-right: var(--border-thin);
-        }
-
-        .slide img {
-            max-width: 80%;
-            max-height: 70px;
-            object-fit: contain;
-            filter: grayscale(100%);
-            opacity: 0.8;
-        }
-
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-50vw * 8)); }
-        }
-
-        /* --- CONTACT PHOTO STYLE (PULITO E PROFESSIONALE) --- */
-        #contact { border-bottom: none; padding-bottom: 20px; }
-
-        .contact-content-wrapper {
-            display: flex;
-            flex-direction: column; /* Mobile: colonna */
-            padding: 20px;
-            gap: 20px;
-            background-color: var(--bg-color);
-        }
-
-        .contact-face-wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: transparent;
-            padding: 0;
-        }
-
+        .contact-face-wrapper { display: flex; justify-content: center; align-items: center; background-color: transparent; padding: 0; margin-bottom: 10px; }
         .contact-face {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            /* MODIFICA: Foto quadrata anche su mobile */
-            border-radius: 0; 
-            border: 4px solid var(--black); 
-            filter: grayscale(100%);
+            width: 180px; height: 180px; object-fit: cover;
+            border: 4px solid var(--black); filter: contrast(1.1); /* A COLORI */
             display: block;
         }
 
-        .contact-info-wrapper {
+        .contact-info-wrapper { display: flex; flex-direction: column; gap: 15px; justify-content: center; }
+
+        /* STILE CONTATTI BOX NERI (Mobile) */
+        .contact-row { 
+            background-color: var(--black); 
+            color: var(--white); 
+            border: none;
+            margin: 0; padding: 15px; 
+            text-align: center; 
+            font-family: var(--font-body); 
+            font-weight: 700; font-size: 0.9rem; 
+            text-transform: uppercase; letter-spacing: 1px; 
+            word-wrap: break-word; 
+            transition: background 0.3s;
+        }
+        
+        .contact-row:hover {
+            background-color: var(--accent-blue);
+        }
+        
+        .social-row { 
+            background-color: transparent;
+            display: flex; justify-content: center; gap: 25px; 
+            font-size: 1.8rem; padding: 10px;
+        }
+        .social-row a { color: var(--black); transition: transform 0.2s, color 0.3s; }
+        .social-row a:hover { color: var(--accent-blue); transform: scale(1.1); }
+
+        /* --- FOOTER CREDITS (Sexy & Simple) --- */
+        .footer-credits {
+            border-top: var(--border-thick);
+            background-color: var(--bg-color);
+            color: var(--black);
+            padding: 30px 20px;
+            text-align: center;
+            font-family: var(--font-body);
+            font-weight: 400; /* Font leggero ed elegante */
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             display: flex;
             flex-direction: column;
             gap: 10px;
-            justify-content: center;
+            line-height: 1.5;
+            opacity: 0.7; /* Leggermente più soft */
         }
-
-        /* Contact Text */
-        .contact-row { background-color: var(--black); color: var(--white); margin: 0; padding: 12px; text-align: center; font-family: var(--font-body); font-weight: 500; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; word-wrap: break-word; }
         
-        .social-row { display: flex; justify-content: center; gap: 20px; font-size: 1.5rem; }
-        .social-row a { color: white; transition: color 0.3s; }
-        .social-row a:hover { color: var(--accent-blue); }
+        .footer-credits a {
+            color: var(--black);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(0,0,0,0.3);
+            transition: all 0.3s;
+        }
+        .footer-credits a:hover { color: var(--accent-blue); border-color: var(--accent-blue); opacity: 1; }
 
         /* --- DESKTOP MEDIA QUERY --- */
         @media (min-width: 900px) {
-            body::after {
-                backdrop-filter: blur(0.3px);
-                box-shadow: inset 0 0 150px rgba(0,0,0,0.25);
-            }
+            body::after { backdrop-filter: blur(0.3px); box-shadow: inset 0 0 150px rgba(0,0,0,0.25); }
 
             h1 { font-size: 5rem; }
-            
             header { border-bottom: none; } 
-            .title-block { padding: 20px 30px; border-bottom: var(--border-thick); }
+            
+            .title-block { padding: 20px 30px; border-bottom: var(--border-thick); flex-wrap: nowrap; }
             .menu-block { width: auto; padding: 0 30px; border-bottom: var(--border-thick); }
             
             .sub-header { font-size: 0.85rem; letter-spacing: 1px; padding: 15px 30px; text-align: left; justify-content: flex-start; }
@@ -400,81 +371,42 @@
             
             .hero-container { height: 450px; padding: 20px; }
             
-            .project-item { 
-                flex-direction: row; 
-                min-height: 260px;
-                align-items: stretch;
-            }
-            .project-img-wrapper { 
-                width: 50%; 
-                height: auto; 
-                border-right: none; 
-                display: flex; 
-                align-items: center; 
-                justify-content: center; 
-                padding: 20px;
-            }
+            .project-item { flex-direction: row; min-height: 260px; align-items: stretch; }
+            .project-img-wrapper { width: 50%; height: auto; border-right: none; display: flex; align-items: center; justify-content: center; padding: 20px; }
             .project-img-wrapper img { height: 100%; max-height: 220px; }
-            .project-content { 
-                width: 50%; 
-                padding: 25px 20px;
-                padding-left: 5px;
-                justify-content: center;
-            }
+            .project-content { width: 50%; padding: 25px 20px; padding-left: 5px; justify-content: center; }
             
             .project-title { font-size: 2.5rem; }
             .intro-text { font-size: 1.1rem; }
 
-            /* SLIDER DESKTOP (4 Loghi) */
+            /* SLIDER DESKTOP */
             .slide { width: 25vw; } 
-            
-            @keyframes scroll {
-                0% { transform: translateX(0); }
-                100% { transform: translateX(calc(-25vw * 8)); }
-            }
+            @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-25vw * 8)); } }
 
-            /* CONTACT FACE DESKTOP (Foto a sinistra) */
-            #contact { padding-bottom: 0; }
-            .contact-content-wrapper {
-                flex-direction: row; 
-                padding: 0;
-                gap: 0;
-                border-top: var(--border-thick);
-            }
-            .contact-face-wrapper {
-                width: 40%;
-                padding: 40px;
-                background-color: var(--black); 
-                border-right: var(--border-thick);
-            }
-            .contact-face {
-                width: 100%;
-                height: auto;
-                max-width: 250px;
-                border: 5px solid var(--bg-color); 
-            }
-            .contact-info-wrapper {
-                width: 60%;
-                padding: 40px;
-                background-color: var(--bg-color);
-                align-items: stretch; 
-            }
-            .contact-row {
+            /* CONTACT DESKTOP */
+            .contact-content-wrapper { flex-direction: row; padding: 0; gap: 0; border-top: var(--border-thick); }
+            .contact-face-wrapper { width: 40%; padding: 40px; background-color: var(--black); border-right: var(--border-thick); margin-bottom: 0; }
+            .contact-face { width: 100%; height: auto; max-width: 250px; border: 5px solid var(--bg-color); }
+            .contact-info-wrapper { width: 60%; padding: 40px; background-color: var(--bg-color); align-items: stretch; justify-content: center; }
+            
+            /* Stile Desktop Contatti (Diverso da Mobile) */
+            .contact-row { 
                 text-align: left; 
                 background-color: transparent; 
                 color: var(--black); 
-                padding: 15px 0;
-                border-bottom: var(--border-thin);
+                border: none;
+                padding: 15px 0; 
+                border-bottom: var(--border-thin); 
+                font-weight: 500; 
+                transition: color 0.3s;
             }
+            .contact-row:hover { background-color: transparent; color: var(--accent-blue); }
             .contact-row:last-child { border-bottom: none; }
-            .social-row {
-                justify-content: flex-start;
-                background-color: transparent;
-                padding: 15px 0;
-                margin-top: 20px;
-            }
-            .social-row a { color: var(--black); }
-            .social-row a:hover { color: var(--accent-blue); }
+            
+            .social-row { justify-content: flex-start; padding: 15px 0; margin-top: 20px; }
+            
+            /* Footer Desktop */
+            .footer-credits { flex-direction: row; justify-content: center; gap: 15px; padding: 25px; }
         }
     </style>
 </head>
@@ -487,7 +419,7 @@
 
     <div class="container">
         
-        <header>
+        <header id="mainHeader">
             <div class="title-block">
                 <h1><a href="#">ROCCO PAGLIARULO</a></h1>
             </div>
@@ -584,23 +516,15 @@
             
             <div class="slider">
                 <div class="slide-track">
-                    <div class="slide"><img src="images/logo1.png" alt="Logo 1"></div>
-                    <div class="slide"><img src="images/logo2.png" alt="Logo 2"></div>
-                    <div class="slide"><img src="images/logo3.png" alt="Logo 3"></div>
-                    <div class="slide"><img src="images/logo4.png" alt="Logo 4"></div>
-                    <div class="slide"><img src="images/logo5.png" alt="Logo 5"></div>
-                    <div class="slide"><img src="images/logo6.png" alt="Logo 6"></div>
-                    <div class="slide"><img src="images/logo7.png" alt="Logo 7"></div>
-                    <div class="slide"><img src="images/logo8.png" alt="Logo 8"></div>
-                    
-                    <div class="slide"><img src="images/logo1.png" alt="Logo 1"></div>
-                    <div class="slide"><img src="images/logo2.png" alt="Logo 2"></div>
-                    <div class="slide"><img src="images/logo3.png" alt="Logo 3"></div>
-                    <div class="slide"><img src="images/logo4.png" alt="Logo 4"></div>
-                    <div class="slide"><img src="images/logo5.png" alt="Logo 5"></div>
-                    <div class="slide"><img src="images/logo6.png" alt="Logo 6"></div>
-                    <div class="slide"><img src="images/logo7.png" alt="Logo 7"></div>
-                    <div class="slide"><img src="images/logo8.png" alt="Logo 8"></div>
+                    <div class="slide"><img src="images/logo_Narhval.png" alt="Logo Narhval"></div>
+                    <div class="slide"><img src="images/logo_Monk.png" alt="Logo Monk"></div>
+                    <div class="slide"><img src="images/logo_barVolo.jpg" alt="Logo BarVolo"></div>
+                    <div class="slide"><img src="images/logo_martelive.png" alt="Logo MarteLive"></div>
+                     <div class="slide"><img src="images/logo_tomo.jpg" alt="Logo Tomo"></div>
+                    <div class="slide"><img src="images/logo_AngeloMai.jpg" alt="Logo AngeloMai"></div>
+                    <div class="slide"><img src="images/logo_Rhizome.png" alt="Logo Rhizome"></div>
+                     <div class="slide"><img src="images/logo_exitWell.jpeg" alt="Logo ExitWell"></div>
+        
                 </div>
             </div>
         </section>
@@ -620,13 +544,19 @@
                     <div class="contact-row">EMAIL: INFO@ROCCOPAGLIARULO.COM</div>
                     <div class="contact-row">PHONE: +39 0123 456789</div>
                     
-                    <div class="contact-row social-row">
+                    <div class="social-row">
                         <a href="https://instagram.com/rocc.mann" target="_blank"><i class="fab fa-instagram"></i></a>
                         <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
             </div>
         </section>
+
+        <div class="footer-credits">
+            <span>&copy; <span id="year"></span> ROCCO PAGLIARULO</span>
+            <span class="separator">|</span>
+            <span>SITE CREATED BY <a href="https://instagram.com/vxly.ps" target="_blank">@VXLY.PS</a></span>
+        </div>
 
     </div>
 
@@ -635,6 +565,27 @@
             var menu = document.getElementById("mobileMenu");
             menu.classList.toggle("active");
         }
+
+        // Anno automatico
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // SMART STICKY HEADER
+        let lastScrollTop = 0;
+        const header = document.getElementById('mainHeader');
+
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop && scrollTop > 70) {
+                // Scendi -> Nascondi
+                header.classList.add('hide');
+            } else {
+                // Sali -> Mostra
+                header.classList.remove('hide');
+            }
+            
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; 
+        });
     </script>
 
 </body>
