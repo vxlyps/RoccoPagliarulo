@@ -31,7 +31,7 @@
             padding: 0;
         }
 
-        /* EFFETTO INVECCHIATO BILANCIATO */
+        /* EFFETTO INVECCHIATO BILANCIATO (BLUR RIDOTTO) */
         body::after {
             content: "";
             position: fixed;
@@ -41,16 +41,9 @@
             height: 100%;
             pointer-events: none;
             z-index: 9999;
-            
-            /* Texture Rumore */
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E");
-            
-            /* MOBILE: Blur leggerissimo */
-            backdrop-filter: blur(0.2px);
-            
-            /* MOBILE: Vignettatura soft */
+            backdrop-filter: blur(0.3px);
             box-shadow: inset 0 0 80px rgba(0,0,0,0.1);
-            
             mix-blend-mode: multiply;
             transition: all 0.3s ease;
         }
@@ -218,17 +211,15 @@
             gap: 15px; 
         }
         
-        /* FIX: PERMETTE IL WRAP SU MOBILE */
         h2 {
             font-family: var(--font-title);
             color: var(--accent-blue);
-            /* Leggermente ridotto il minimo per accomodare titoli lunghi */
             font-size: clamp(1.8rem, 7vw, 3.5rem); 
             text-transform: uppercase;
             margin: 0;
             line-height: 0.9;
-            white-space: normal; /* Permette di andare a capo */
-            word-break: break-word; /* Evita overflow orizzontale */
+            white-space: normal; 
+            word-break: break-word; 
         }
 
         .filler-bar { flex-grow: 1; height: 30px; background-color: var(--black); }
@@ -300,28 +291,41 @@
         }
         .btn:hover { background-color: var(--black); }
 
-        /* COLLABORAZIONI */
-        .collab-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr); 
+        /* --- SLIDER LOGHI (Rallentato a 40s) --- */
+        #collaborations {
+            overflow: hidden; 
+            padding: 0;
             border-top: var(--border-thick);
         }
 
-        .collab-item {
-            height: 130px; 
+        .slider {
+            background: var(--bg-color);
+            height: 140px;
+            margin: auto;
+            overflow: hidden;
+            position: relative;
+            width: 100%;
             display: flex;
-            justify-content: center;
             align-items: center;
-            padding: 20px;
-            border-right: var(--border-thin);
-            border-bottom: var(--border-thin);
-            background-color: var(--bg-color);
         }
 
-        .collab-item:nth-child(2n) { border-right: none; } 
-        .collab-item:nth-last-child(-n+2) { border-bottom: none; } 
+        .slide-track {
+            animation: scroll 40s linear infinite;
+            display: flex;
+            width: calc(250px * 16); 
+        }
 
-        .collab-logo {
+        .slide {
+            height: 100px;
+            width: 50vw; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+            border-right: var(--border-thin);
+        }
+
+        .slide img {
             max-width: 80%;
             max-height: 70px;
             object-fit: contain;
@@ -329,18 +333,59 @@
             opacity: 0.8;
         }
 
-        /* Contact */
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-50vw * 8)); }
+        }
+
+        /* --- CONTACT PHOTO STYLE (PULITO E PROFESSIONALE) --- */
         #contact { border-bottom: none; padding-bottom: 20px; }
-        .contact-row { background-color: var(--black); color: var(--white); margin: 10px 15px; padding: 12px; text-align: center; font-family: var(--font-body); font-weight: 500; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; word-wrap: break-word; }
+
+        .contact-content-wrapper {
+            display: flex;
+            flex-direction: column; /* Mobile: colonna */
+            padding: 20px;
+            gap: 20px;
+            background-color: var(--bg-color);
+        }
+
+        .contact-face-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: transparent;
+            padding: 0;
+        }
+
+        .contact-face {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            /* MODIFICA: Foto quadrata anche su mobile */
+            border-radius: 0; 
+            border: 4px solid var(--black); 
+            filter: grayscale(100%);
+            display: block;
+        }
+
+        .contact-info-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        /* Contact Text */
+        .contact-row { background-color: var(--black); color: var(--white); margin: 0; padding: 12px; text-align: center; font-family: var(--font-body); font-weight: 500; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; word-wrap: break-word; }
+        
         .social-row { display: flex; justify-content: center; gap: 20px; font-size: 1.5rem; }
         .social-row a { color: white; transition: color 0.3s; }
         .social-row a:hover { color: var(--accent-blue); }
 
         /* --- DESKTOP MEDIA QUERY --- */
         @media (min-width: 900px) {
-            /* DESKTOP: Effetto rovinato più presente */
             body::after {
-                backdrop-filter: blur(0.5px);
+                backdrop-filter: blur(0.3px);
                 box-shadow: inset 0 0 150px rgba(0,0,0,0.25);
             }
 
@@ -355,7 +400,6 @@
             
             .hero-container { height: 450px; padding: 20px; }
             
-            /* CARD DESKTOP */
             .project-item { 
                 flex-direction: row; 
                 min-height: 260px;
@@ -381,11 +425,56 @@
             .project-title { font-size: 2.5rem; }
             .intro-text { font-size: 1.1rem; }
 
-            /* COLLABORAZIONI DESKTOP */
-            .collab-grid { grid-template-columns: repeat(4, 1fr); }
-            .collab-item { border-bottom: none; } 
-            .collab-item:nth-child(2n) { border-right: var(--border-thin); } 
-            .collab-item:last-child { border-right: none; }
+            /* SLIDER DESKTOP (4 Loghi) */
+            .slide { width: 25vw; } 
+            
+            @keyframes scroll {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(calc(-25vw * 8)); }
+            }
+
+            /* CONTACT FACE DESKTOP (Foto a sinistra) */
+            #contact { padding-bottom: 0; }
+            .contact-content-wrapper {
+                flex-direction: row; 
+                padding: 0;
+                gap: 0;
+                border-top: var(--border-thick);
+            }
+            .contact-face-wrapper {
+                width: 40%;
+                padding: 40px;
+                background-color: var(--black); 
+                border-right: var(--border-thick);
+            }
+            .contact-face {
+                width: 100%;
+                height: auto;
+                max-width: 250px;
+                border: 5px solid var(--bg-color); 
+            }
+            .contact-info-wrapper {
+                width: 60%;
+                padding: 40px;
+                background-color: var(--bg-color);
+                align-items: stretch; 
+            }
+            .contact-row {
+                text-align: left; 
+                background-color: transparent; 
+                color: var(--black); 
+                padding: 15px 0;
+                border-bottom: var(--border-thin);
+            }
+            .contact-row:last-child { border-bottom: none; }
+            .social-row {
+                justify-content: flex-start;
+                background-color: transparent;
+                padding: 15px 0;
+                margin-top: 20px;
+            }
+            .social-row a { color: var(--black); }
+            .social-row a:hover { color: var(--accent-blue); }
         }
     </style>
 </head>
@@ -418,7 +507,7 @@
         </div>
 
         <div class="hero-container">
-            <img src="https://valeriofrancini.it/images/Testata_Rocco.jpg">
+            <img src="images/hero.jpg" alt="Abstract Texture">
         </div>
 
         <section id="intro">
@@ -441,7 +530,7 @@
             <div class="projects-wrapper">
                 <article class="project-item">
                     <div class="project-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1542396601-dca920ea2807?q=80&w=1000&auto=format&fit=crop" alt="Narhval">
+                        <img src="images/project1.jpg" alt="Narhval">
                     </div>
                     <div class="project-content">
                         <div>
@@ -456,7 +545,7 @@
                 </article>
                 <article class="project-item">
                     <div class="project-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1533174072545-e8d4aa97edf9?q=80&w=1000&auto=format&fit=crop" alt="Uragano">
+                        <img src="images/project2.jpg" alt="Uragano">
                     </div>
                     <div class="project-content">
                         <div>
@@ -471,7 +560,7 @@
                 </article>
                 <article class="project-item">
                     <div class="project-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop" alt="Valerio Francini">
+                        <img src="images/project3.jpg" alt="Valerio Francini">
                     </div>
                     <div class="project-content">
                         <div>
@@ -493,11 +582,26 @@
                 <div class="filler-bar"></div>
             </div>
             
-            <div class="collab-grid">
-                <div class="collab-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Adidas_Logo.svg/2560px-Adidas_Logo.svg.png" alt="Client 1" class="collab-logo"></div>
-                <div class="collab-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Logo_NIKE.svg/1200px-Logo_NIKE.svg.png" alt="Client 2" class="collab-logo"></div>
-                <div class="collab-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Vans_logo.svg/2560px-Vans_logo.svg.png" alt="Client 3" class="collab-logo"></div>
-                <div class="collab-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/The_North_Face_logo.svg/2560px-The_North_Face_logo.svg.png" alt="Client 4" class="collab-logo"></div>
+            <div class="slider">
+                <div class="slide-track">
+                    <div class="slide"><img src="images/logo1.png" alt="Logo 1"></div>
+                    <div class="slide"><img src="images/logo2.png" alt="Logo 2"></div>
+                    <div class="slide"><img src="images/logo3.png" alt="Logo 3"></div>
+                    <div class="slide"><img src="images/logo4.png" alt="Logo 4"></div>
+                    <div class="slide"><img src="images/logo5.png" alt="Logo 5"></div>
+                    <div class="slide"><img src="images/logo6.png" alt="Logo 6"></div>
+                    <div class="slide"><img src="images/logo7.png" alt="Logo 7"></div>
+                    <div class="slide"><img src="images/logo8.png" alt="Logo 8"></div>
+                    
+                    <div class="slide"><img src="images/logo1.png" alt="Logo 1"></div>
+                    <div class="slide"><img src="images/logo2.png" alt="Logo 2"></div>
+                    <div class="slide"><img src="images/logo3.png" alt="Logo 3"></div>
+                    <div class="slide"><img src="images/logo4.png" alt="Logo 4"></div>
+                    <div class="slide"><img src="images/logo5.png" alt="Logo 5"></div>
+                    <div class="slide"><img src="images/logo6.png" alt="Logo 6"></div>
+                    <div class="slide"><img src="images/logo7.png" alt="Logo 7"></div>
+                    <div class="slide"><img src="images/logo8.png" alt="Logo 8"></div>
+                </div>
             </div>
         </section>
 
@@ -506,11 +610,21 @@
                 <h2>CONTACT</h2>
                 <div class="filler-bar"></div>
             </div>
-            <div class="contact-row">EMAIL: INFO@ROCCOPAGLIARULO.COM</div>
-            <div class="contact-row">PHONE: +39 0123 456789</div>
-            <div class="contact-row social-row">
-                <a href="https://instagram.com/rocc.mann" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+
+            <div class="contact-content-wrapper">
+                <div class="contact-face-wrapper">
+                    <img src="images/rocco_face.jpg" alt="Rocco Pagliarulo" class="contact-face">
+                </div>
+
+                <div class="contact-info-wrapper">
+                    <div class="contact-row">EMAIL: INFO@ROCCOPAGLIARULO.COM</div>
+                    <div class="contact-row">PHONE: +39 0123 456789</div>
+                    
+                    <div class="contact-row social-row">
+                        <a href="https://instagram.com/rocc.mann" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
             </div>
         </section>
 
