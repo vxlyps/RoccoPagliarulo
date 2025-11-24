@@ -15,20 +15,20 @@
 
     <style>
         :root {
-            --bg-color: #F2F0E9; /* Beige Carta */
+            --bg-color: #F2F0E9; /* Paper Beige */
             --black: #000000;
             --white: #ffffff;
             --accent-blue: #1a3cba;
             --border-thick: 4px solid var(--black);
             --border-thin: 2px solid var(--black);
             
-            /* Tipografia */
+            /* Typography */
             --font-title: 'Archivo Black', sans-serif;
             --font-body: 'Space Mono', monospace;
         }
 
         html {
-            scroll-behavior: smooth; /* Scorrimento fluido */
+            scroll-behavior: smooth;
         }
 
         * {
@@ -37,7 +37,7 @@
             padding: 0;
         }
 
-        /* EFFETTO INVECCHIATO */
+        /* NOISE TEXTURE */
         body::after {
             content: "";
             position: fixed;
@@ -77,7 +77,7 @@
             z-index: 1;
         }
 
-        /* --- HEADER SECTION (FLEXIBLE STICKY) --- */
+        /* --- HEADER SECTION --- */
         header {
             display: flex;
             width: 100%;
@@ -88,6 +88,7 @@
             position: sticky;
             top: 0; 
             transition: transform 0.4s ease-in-out;
+            align-items: stretch;
         }
         
         header.hide {
@@ -102,39 +103,6 @@
             display: flex;
             align-items: center;
             flex-wrap: wrap; 
-        }
-
-        /* BLOCCO LINGUA (NUOVO) */
-        .lang-block {
-            background-color: var(--bg-color);
-            width: 60px; /* Larghezza fissa per il box lingua */
-            min-width: 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-left: var(--border-thick);
-            font-family: var(--font-body);
-            font-weight: 700;
-            font-size: 0.85rem;
-            gap: 4px;
-        }
-
-        .lang-link {
-            text-decoration: none;
-            color: var(--black);
-            opacity: 0.5;
-            transition: opacity 0.3s, color 0.3s;
-        }
-        
-        .lang-link:hover {
-            opacity: 1;
-            color: var(--accent-blue);
-        }
-
-        .lang-link.active {
-            opacity: 1;
-            text-decoration: underline;
-            text-underline-offset: 3px;
         }
 
         .menu-block {
@@ -184,7 +152,7 @@
             width: 100%;
         }
 
-        /* --- MENU A TENDINA --- */
+        /* --- MOBILE DROPDOWN MENU --- */
         .mobile-menu {
             display: none;
             position: fixed; 
@@ -195,8 +163,8 @@
             border: var(--border-thick);
             z-index: 990; 
             flex-direction: column;
-            padding: 10px 0;
             transition: opacity 0.3s ease;
+            box-shadow: 10px 10px 0px rgba(0,0,0,0.2);
         }
         
         .mobile-menu.active { display: flex; }
@@ -206,7 +174,13 @@
             pointer-events: none;
         }
 
-        .mobile-menu a {
+        .mobile-menu-links {
+            padding: 10px 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-menu a.menu-link {
             font-family: var(--font-body);
             font-weight: 700;
             font-size: 0.9rem;
@@ -216,27 +190,66 @@
             padding: 12px 20px;
             transition: background 0.2s;
         }
-        .mobile-menu a:hover { background-color: #e0ded7; }
+        .mobile-menu a.menu-link:hover { background-color: #e0ded7; }
 
-        /* SOTTOTITOLO */
+        /* MOBILE LANGUAGE BLOCK (INSIDE MENU) */
+        .mobile-lang-wrapper {
+            border-top: var(--border-thick);
+            padding: 15px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            background-color: var(--bg-color);
+        }
+        
+        .lang-link {
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            color: var(--black);
+            opacity: 0.5;
+            transition: all 0.3s;
+        }
+        .lang-link:hover { opacity: 1; color: var(--accent-blue); }
+        .lang-link.active { opacity: 1; text-decoration: underline; text-underline-offset: 4px; }
+
+
+        /* --- SUB-HEADER --- */
         .sub-header {
             background-color: var(--bg-color);
             color: var(--black);
             border-bottom: var(--border-thin); 
-            padding: 12px 10px;
-            text-align: center;
+            padding: 12px 15px;
             font-family: var(--font-body);
             font-weight: 800;
             font-size: 0.7rem; 
             text-transform: uppercase;
             line-height: 1.4;
             display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        
+        .sub-header-content {
+            display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 5px 10px;
         }
+
         .sub-item { white-space: nowrap; letter-spacing: 1px; }
         .separator { display: none; }
+
+        /* Desktop Language (Right side of sub-header) */
+        .sub-header-lang {
+            display: none; 
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-left: auto;
+        }
 
         /* HERO IMAGE */
         .hero-container {
@@ -252,11 +265,11 @@
             object-fit: cover;
             object-position: center;
             display: block;
-            filter: contrast(1.1); /* A COLORI */
+            filter: contrast(1.1); /* Color */
             border: 4px solid var(--black);
         }
 
-        /* --- SEZIONI --- */
+        /* --- SECTIONS --- */
         section { border-bottom: var(--border-thick); }
         #intro { border-top: none; }
 
@@ -313,7 +326,7 @@
         }
         .btn:hover { background-color: var(--black); }
 
-        /* --- SLIDER LOGHI --- */
+        /* --- SLIDER LOGOS --- */
         #collaborations { 
             overflow: hidden; 
             padding: 0; 
@@ -351,7 +364,7 @@
             max-width: 80%; 
             max-height: 70px; 
             object-fit: contain; 
-            filter: none; /* Colori */
+            filter: none; /* Colors */
             opacity: 1; 
         }
         
@@ -363,7 +376,7 @@
             height: 100%;
         }
 
-        /* Animazione Mobile */
+        /* Mobile Animation */
         @keyframes scroll { 
             0% { transform: translateX(0); } 
             100% { transform: translateX(calc(-50vw * 8)); } 
@@ -441,12 +454,21 @@
             header { border-bottom: none; } 
             
             .title-block { padding: 20px 30px; border-bottom: var(--border-thick); flex-wrap: nowrap; }
-            .menu-block { width: auto; padding: 0 30px; border-bottom: var(--border-thick); }
-            /* BORDO INFERIORE ANCHE PER IL BLOCCO LINGUA SU DESKTOP */
-            .lang-block { width: auto; padding: 0 20px; border-bottom: var(--border-thick); }
             
-            .sub-header { font-size: 0.85rem; letter-spacing: 1px; padding: 15px 30px; text-align: left; justify-content: flex-start; }
+            .menu-block { width: auto; padding: 0 30px; border-bottom: var(--border-thick); }
+            
+            /* DESKTOP SUB-HEADER TWEAKS */
+            .sub-header { 
+                font-size: 0.85rem; 
+                letter-spacing: 1px; 
+                padding: 15px 30px; 
+                justify-content: space-between;
+            }
+            
+            .sub-header-content { justify-content: flex-start; }
             .separator { display: inline; margin: 0 10px; }
+            
+            .sub-header-lang { display: block; } /* Show language on desktop */
             
             .hero-container { height: 450px; padding: 20px; }
             
@@ -497,8 +519,16 @@
 <body>
 
     <div class="mobile-menu" id="mobileMenu">
-        <a href="#projects" onclick="toggleMenu()">Projects</a>
-        <a href="#contact" onclick="toggleMenu()">Contact</a>
+        <div class="mobile-menu-links">
+            <a href="#projects" class="menu-link" onclick="toggleMenu()">Projects</a>
+            <a href="#contact" class="menu-link" onclick="toggleMenu()">Contact</a>
+        </div>
+        
+        <div class="mobile-lang-wrapper">
+            <a href="#" class="lang-link active">EN</a>
+            <span>|</span>
+            <a href="index.html" class="lang-link">IT</a>
+        </div>
     </div>
 
     <div class="container">
@@ -506,12 +536,6 @@
         <header id="mainHeader">
             <div class="title-block">
                 <h1><a href="#">ROCCO PAGLIARULO</a></h1>
-            </div>
-            
-            <div class="lang-block">
-                <a href="#" class="lang-link">EN</a>
-                <span>|</span>
-                <a href="index.html" class="lang-link active">IT</a>
             </div>
             
             <div class="menu-block">
@@ -522,11 +546,19 @@
         </header>
 
         <div class="sub-header">
-            <span class="sub-item">Arts Project Manager</span>
-            <span class="separator">|</span>
-            <span class="sub-item">Cultural Events</span>
-            <span class="separator">|</span>
-            <span class="sub-item">Talent Agent and Manager</span>
+            <div class="sub-header-content">
+                <span class="sub-item">Arts Project Manager</span>
+                <span class="separator">|</span>
+                <span class="sub-item">Cultural Events</span>
+                <span class="separator">|</span>
+                <span class="sub-item">Talent Agent and Manager</span>
+            </div>
+            
+            <div class="sub-header-lang">
+                <a href="#" class="lang-link active">EN</a>
+                <span>|</span>
+                <a href="index.html" class="lang-link">IT</a>
+            </div>
         </div>
 
         <div class="hero-container">
@@ -538,10 +570,10 @@
                 <h2>INTRODUCTION</h2>
             </div>
             <div class="intro-text">
-                Attivo nel mondo associativo e nella promozione di iniziative ad impatto locale, per studio e vocazione. 
-                Progettista e coordinatore di eventi cultuali.
-                Sempre pronto come agente e manager di registri e videomaker Indipendenti.
-                Alcuni giorni salgo in cattedra come docente di statistica, altri scatto foto, ogni giorno inseguo la musica.
+                Active in the associative world and in promoting local impact initiatives, by study and vocation. 
+                Designer and coordinator of cultural events.
+                Always ready as an agent and manager for independent directors and videomakers.
+                Some days I take the chair as a statistics teacher, others I take photos; every day I chase music.
             </div>
         </section>
 
@@ -559,14 +591,14 @@
                     <div class="project-content">
                         <div>
                             <div class="project-title">PROJECT MANAGER</div>
-                            <div class="project-subtitle">DI NARHVAL EDIZIONI</div>
+                            <div class="project-subtitle">OF NARHVAL EDIZIONI</div>
                             <p class="project-desc">
-                                Gestione strategica e operativa della casa editrice <br> Coordinamento di eventi cultuali del format Interspazi
+                                Strategic and operational management of the publishing house. <br> Coordination of cultural events for the Interspazi format.
                             </p>
                         </div>
                         <div style="display: flex; gap: 15px; flex-wrap: wrap;">
                             <a href="https://www.narhvaledizioni.it" class="btn">Narhval Edizioni</a>
-                            <a href="https://www.narhvaledizioni.it/interspazi-2/" class="btn">Progetto Interspazi</a>
+                            <a href="https://www.narhvaledizioni.it/interspazi-2/" class="btn">Interspazi Project</a>
                         </div>
                     </div>
                 </article>
@@ -576,10 +608,10 @@
                     </div>
                     <div class="project-content">
                         <div>
-                            <div class="project-title">CONSULENTE EVENTI CULTURALI</div>
-                            <div class="project-subtitle">per MArteLive</div>
+                            <div class="project-title">CULTURAL EVENTS CONSULTANT</div>
+                            <div class="project-subtitle">FOR MArteLive</div>
                             <p class="project-desc">
-                                Organizing the 'Uragano' event at Angelo Mai with MartLive. Presenting and directors. Innovative cultural gathering.
+                                Organizing the 'Uragano' event at Angelo Mai with MArteLive. Presenting artists and directors. An innovative cultural gathering.
                             </p>
                         </div>
                         <a href="https://martelive.it/" class="btn">MArteLive</a>
@@ -591,10 +623,10 @@
                     </div>
                     <div class="project-content">
                         <div>
-                            <div class="project-title">AGENTE E MANAGER</div>
-                            <div class="project-subtitle">DI REGISTI E VIDEOMAKER INDIPENDENTI</div>
+                            <div class="project-title">AGENT AND MANAGER</div>
+                            <div class="project-subtitle">OF INDEPENDENT DIRECTORS AND VIDEOMAKERS</div>
                             <p class="project-desc">
-                                Representing director Valerio Francini. Scouter for artists and ideator for 'Naskar - Ycon Ydol' video production.
+                                Representing director Valerio Francini. Talent scouter and concept creator for 'Naskar - Ycon Ydol' video production.
                             </p>
                         </div>
                         <div style="display: flex; gap: 15px; flex-wrap: wrap;">
@@ -672,7 +704,7 @@
             menu.classList.toggle("active");
         }
 
-        // Anno automatico
+        // Auto Year
         document.getElementById("year").textContent = new Date().getFullYear();
 
         // SMART STICKY HEADER
@@ -683,22 +715,22 @@
             let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             
             if (scrollTop > lastScrollTop && scrollTop > 70) {
-                // Scendi -> Nascondi
+                // Scroll Down -> Hide
                 header.classList.add('hide');
             } else {
-                // Sali -> Mostra
+                // Scroll Up -> Show
                 header.classList.remove('hide');
             }
             
             lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; 
         });
 
-        // CHIUDI MENU AL CLICK FUORI
+        // CLOSE MENU ON CLICK OUTSIDE
         document.addEventListener('click', function(event) {
             var menu = document.getElementById("mobileMenu");
             var hamburger = document.querySelector(".hamburger");
 
-            // Se il menu è aperto E il click NON è sul menu E NON è sul burger
+            // If menu is open AND click is NOT on menu AND NOT on burger
             if (menu.classList.contains('active') && !menu.contains(event.target) && !hamburger.contains(event.target)) {
                 menu.classList.remove("active");
             }
