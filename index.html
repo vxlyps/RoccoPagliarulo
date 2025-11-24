@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Rocco Pagliarulo - Portfolio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:ital,wght@0,400;0,500;0,700;0,800;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-color: #F2F0E9; /* Beige Carta */
+            --black: #000000;
+            --white: #ffffff;
+            --accent-blue: #1a3cba;
+            --border-thick: 4px solid var(--black);
+            --border-thin: 2px solid var(--black);
+            
+            /* Tipografia */
+            --font-title: 'Archivo Black', sans-serif;
+            --font-body: 'Space Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* EFFETTO INVECCHIATO BILANCIATO */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            
+            /* Texture Rumore */
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E");
+            
+            /* MOBILE: Blur leggerissimo */
+            backdrop-filter: blur(0.2px);
+            
+            /* MOBILE: Vignettatura soft */
+            box-shadow: inset 0 0 80px rgba(0,0,0,0.1);
+            
+            mix-blend-mode: multiply;
+            transition: all 0.3s ease;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--black);
+            font-family: var(--font-body);
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            border: var(--border-thick);
+            background-color: var(--bg-color);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* --- HEADER SECTION --- */
+        header {
+            display: flex;
+            width: 100%;
+            border-bottom: var(--border-thick); 
+        }
+
+        .title-block {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 15px;
+            flex-grow: 1; 
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-block {
+            background-color: var(--bg-color);
+            width: 60px;
+            min-width: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-left: var(--border-thick);
+        }
+
+        h1 {
+            font-family: var(--font-title);
+            text-transform: uppercase;
+            margin: 0;
+            line-height: 0.9;
+            font-size: clamp(2.2rem, 8vw, 3.5rem); 
+        }
+
+        h1 a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+        h1 a:hover {
+            color: var(--accent-blue);
+        }
+
+        .hamburger {
+            width: 30px;
+            height: 22px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        .hamburger span {
+            display: block;
+            height: 3px;
+            background: var(--black);
+            width: 100%;
+        }
+
+        /* --- MENU A TENDINA --- */
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 70px;
+            right: 0;
+            width: 200px;
+            background-color: var(--bg-color);
+            border: var(--border-thick);
+            z-index: 90;
+            flex-direction: column;
+            padding: 10px 0;
+        }
+        
+        .mobile-menu.active { display: flex; }
+
+        .mobile-menu a {
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--black);
+            text-decoration: none;
+            text-transform: uppercase;
+            padding: 12px 20px;
+            transition: background 0.2s;
+        }
+        .mobile-menu a:hover { background-color: #e0ded7; }
+
+        /* SOTTOTITOLO HEADER */
+        .sub-header {
+            background-color: var(--bg-color);
+            color: var(--black);
+            border-bottom: var(--border-thin); 
+            padding: 12px 10px;
+            text-align: center;
+            font-family: var(--font-body);
+            font-weight: 800;
+            font-size: 0.7rem; 
+            text-transform: uppercase;
+            line-height: 1.4;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 5px 10px;
+        }
+        .sub-item { 
+            white-space: nowrap; 
+            letter-spacing: 1px;
+        }
+        .separator { display: none; }
+
+        /* HERO IMAGE */
+        .hero-container {
+            width: 100%;
+            height: 250px; 
+            overflow: hidden;
+            padding: 15px; 
+            background: var(--bg-color);
+        }
+        .hero-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            filter: grayscale(100%) contrast(1.2);
+            border: 4px solid var(--black);
+        }
+
+        /* --- SEZIONI --- */
+        section { border-bottom: var(--border-thick); }
+        #intro { border-top: none; }
+
+        .section-header { 
+            padding: 15px 20px; 
+            display: flex; 
+            align-items: center; 
+            gap: 15px; 
+        }
+        
+        /* FIX: PERMETTE IL WRAP SU MOBILE */
+        h2 {
+            font-family: var(--font-title);
+            color: var(--accent-blue);
+            /* Leggermente ridotto il minimo per accomodare titoli lunghi */
+            font-size: clamp(1.8rem, 7vw, 3.5rem); 
+            text-transform: uppercase;
+            margin: 0;
+            line-height: 0.9;
+            white-space: normal; /* Permette di andare a capo */
+            word-break: break-word; /* Evita overflow orizzontale */
+        }
+
+        .filler-bar { flex-grow: 1; height: 30px; background-color: var(--black); }
+        
+        .intro-text { 
+            padding: 20px 20px 30px 20px; 
+            font-family: var(--font-body); 
+            font-size: 0.9rem; 
+            line-height: 1.6; 
+            text-align: left; 
+            font-weight: 500;
+        }
+
+        /* Projects */
+        .projects-wrapper { border-top: var(--border-thick); }
+        .project-item { 
+            display: flex; 
+            flex-direction: column; 
+            border-bottom: var(--border-thin);
+        }
+        .project-item:last-child { border-bottom: none; }
+        
+        .project-img-wrapper { 
+            width: 100%; 
+            padding: 15px;
+            background-color: var(--bg-color); 
+        }
+        .project-img-wrapper img { 
+            width: 100%; 
+            height: 180px; 
+            object-fit: cover; 
+            display: block; 
+            border: 4px solid black; 
+            filter: grayscale(100%); 
+        }
+        
+        .project-content { 
+            padding: 15px;
+            padding-top: 5px;
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between; 
+            gap: 8px;
+        }
+        .project-title { font-family: var(--font-title); font-size: 1.8rem; text-transform: uppercase; line-height: 1; margin-bottom: 3px; }
+        .project-subtitle { font-family: var(--font-body); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin-bottom: 3px; }
+        
+        .project-desc { 
+            font-family: var(--font-body); 
+            font-size: 0.85rem; 
+            margin-bottom: 12px;
+            line-height: 1.4;
+            font-weight: 500;
+        }
+        
+        .btn { 
+            background-color: var(--accent-blue); 
+            color: white; 
+            padding: 10px 20px; 
+            text-decoration: none; 
+            font-family: var(--font-title); 
+            text-transform: uppercase; 
+            font-size: 1rem; 
+            letter-spacing: 1px; 
+            display: inline-block; 
+            width: fit-content; 
+            border: none;
+            box-shadow: inset -2px -2px 4px rgba(0,0,0,0.3);
+        }
+        .btn:hover { background-color: var(--black); }
+
+        /* COLLABORAZIONI */
+        .collab-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); 
+            border-top: var(--border-thick);
+        }
+
+        .collab-item {
+            height: 130px; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            border-right: var(--border-thin);
+            border-bottom: var(--border-thin);
+            background-color: var(--bg-color);
+        }
+
+        .collab-item:nth-child(2n) { border-right: none; } 
+        .collab-item:nth-last-child(-n+2) { border-bottom: none; } 
+
+        .collab-logo {
+            max-width: 80%;
+            max-height: 70px;
+            object-fit: contain;
+            filter: grayscale(100%);
+            opacity: 0.8;
+        }
+
+        /* Contact */
+        #contact { border-bottom: none; padding-bottom: 20px; }
+        .contact-row { background-color: var(--black); color: var(--white); margin: 10px 15px; padding: 12px; text-align: center; font-family: var(--font-body); font-weight: 500; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; word-wrap: break-word; }
+        .social-row { display: flex; justify-content: center; gap: 20px; font-size: 1.5rem; }
+        .social-row a { color: white; transition: color 0.3s; }
+        .social-row a:hover { color: var(--accent-blue); }
+
+        /* --- DESKTOP MEDIA QUERY --- */
+        @media (min-width: 900px) {
+            /* DESKTOP: Effetto rovinato più presente */
+            body::after {
+                backdrop-filter: blur(0.5px);
+                box-shadow: inset 0 0 150px rgba(0,0,0,0.25);
+            }
+
+            h1 { font-size: 5rem; }
+            
+            header { border-bottom: none; } 
+            .title-block { padding: 20px 30px; border-bottom: var(--border-thick); }
+            .menu-block { width: auto; padding: 0 30px; border-bottom: var(--border-thick); }
+            
+            .sub-header { font-size: 0.85rem; letter-spacing: 1px; padding: 15px 30px; text-align: left; justify-content: flex-start; }
+            .separator { display: inline; margin: 0 10px; }
+            
+            .hero-container { height: 450px; padding: 20px; }
+            
+            /* CARD DESKTOP */
+            .project-item { 
+                flex-direction: row; 
+                min-height: 260px;
+                align-items: stretch;
+            }
+            .project-img-wrapper { 
+                width: 50%; 
+                height: auto; 
+                border-right: none; 
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                padding: 20px;
+            }
+            .project-img-wrapper img { height: 100%; max-height: 220px; }
+            .project-content { 
+                width: 50%; 
+                padding: 25px 20px;
+                padding-left: 5px;
+                justify-content: center;
+            }
+            
+            .project-title { font-size: 2.5rem; }
+            .intro-text { font-size: 1.1rem; }
+
+            /* COLLABORAZIONI DESKTOP */
+            .collab-grid { grid-template-columns: repeat(4, 1fr); }
+            .collab-item { border-bottom: none; } 
+            .collab-item:nth-child(2n) { border-right: var(--border-thin); } 
+            .collab-item:last-child { border-right: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#projects" onclick="toggleMenu()">Projects</a>
+        <a href="#contact" onclick="toggleMenu()">Contact</a>
+    </div>
+
+    <div class="container">
+        
+        <header>
+            <div class="title-block">
+                <h1><a href="#">ROCCO PAGLIARULO</a></h1>
+            </div>
+            <div class="menu-block">
+                <div class="hamburger" onclick="toggleMenu()">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </header>
+
+        <div class="sub-header">
+            <span class="sub-item">Project Manager</span>
+            <span class="separator">|</span>
+            <span class="sub-item">Cultural Events</span>
+            <span class="separator">|</span>
+            <span class="sub-item">Independent Director Agent</span>
+        </div>
+
+        <div class="hero-container">
+            <img src="https://valeriofrancini.it/images/Testata_Rocco.jpg">
+        </div>
+
+        <section id="intro">
+            <div class="section-header">
+                <h2>INTRODUCTION</h2>
+            </div>
+            <div class="intro-text">
+                Passionate project manager dedicated to curating and producing cultural events. 
+                Specialized in representing independent directors and fostering creative collaborations. 
+                My approach is driven by a minimalist, impactful vision, pushing boundaries in both form and function.
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="section-header">
+                <h2>PROJECTS</h2>
+                <div class="filler-bar"></div>
+            </div>
+
+            <div class="projects-wrapper">
+                <article class="project-item">
+                    <div class="project-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1542396601-dca920ea2807?q=80&w=1000&auto=format&fit=crop" alt="Narhval">
+                    </div>
+                    <div class="project-content">
+                        <div>
+                            <div class="project-title">PROJECT MANAGER: NARHVAL EDIZIONI</div>
+                            <div class="project-subtitle">CASALE STO CAZZONE EVENT</div>
+                            <p class="project-desc">
+                                Recent cultural event at Casale. Curating and creating and producing a unique experience focused on raw aesthetics and sound.
+                            </p>
+                        </div>
+                        <a href="#" class="btn">View Project</a>
+                    </div>
+                </article>
+                <article class="project-item">
+                    <div class="project-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1533174072545-e8d4aa97edf9?q=80&w=1000&auto=format&fit=crop" alt="Uragano">
+                    </div>
+                    <div class="project-content">
+                        <div>
+                            <div class="project-title">PROJECT MANAGER: URAGANO</div>
+                            <div class="project-subtitle">31 OCT & 01 NOV | MARTLIVE & ANGELO MAI, ROME</div>
+                            <p class="project-desc">
+                                Organizing the 'Uragano' event at Angelo Mai with MartLive. Presenting and directors. Innovative cultural gathering.
+                            </p>
+                        </div>
+                        <a href="#" class="btn">View Project</a>
+                    </div>
+                </article>
+                <article class="project-item">
+                    <div class="project-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop" alt="Valerio Francini">
+                    </div>
+                    <div class="project-content">
+                        <div>
+                            <div class="project-title">AGENT FOR VALERIO FRANCINI</div>
+                            <div class="project-subtitle">MASKARA - YCON YDOL | ARTIST SCOUTER & CONCEPT</div>
+                            <p class="project-desc">
+                                Representing director Valerio Francini. Scouter for artists and ideator for 'Naskar - Ycon Ydol' video production.
+                            </p>
+                        </div>
+                        <a href="#" class="btn">View Project</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="collaborations">
+            <div class="section-header">
+                <h2>SELECTED COLLABORATIONS</h2>
+                <div class="filler-bar"></div>
+            </div>
+            
+            <div class="collab-grid">
+                <div class="collab-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Adidas_Logo.svg/2560px-Adidas_Logo.svg.png" alt="Client 1" class="collab-logo"></div>
+                <div class="collab-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Logo_NIKE.svg/1200px-Logo_NIKE.svg.png" alt="Client 2" class="collab-logo"></div>
+                <div class="collab-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Vans_logo.svg/2560px-Vans_logo.svg.png" alt="Client 3" class="collab-logo"></div>
+                <div class="collab-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/The_North_Face_logo.svg/2560px-The_North_Face_logo.svg.png" alt="Client 4" class="collab-logo"></div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="section-header">
+                <h2>CONTACT</h2>
+                <div class="filler-bar"></div>
+            </div>
+            <div class="contact-row">EMAIL: INFO@ROCCOPAGLIARULO.COM</div>
+            <div class="contact-row">PHONE: +39 0123 456789</div>
+            <div class="contact-row social-row">
+                <a href="https://instagram.com/rocc.mann" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("mobileMenu");
+            menu.classList.toggle("active");
+        }
+    </script>
+
+</body>
+</html>
