@@ -87,7 +87,7 @@
             transition: transform 0.4s ease-in-out;
         }
         
-        /* Nasconde spostando in alto del 100% della sua altezza (qualsiasi essa sia) */
+        /* Nasconde spostando in alto del 100% della sua altezza */
         header.hide {
             transform: translateY(-100%);
         }
@@ -99,19 +99,17 @@
             flex-grow: 1; 
             display: flex;
             align-items: center;
-            /* Permette al testo di andare a capo se serve */
             flex-wrap: wrap; 
         }
 
         .menu-block {
             background-color: var(--bg-color);
-            width: 70px; /* Leggermente più largo per sicurezza */
+            width: 70px;
             min-width: 70px;
             display: flex;
             justify-content: center;
             align-items: center;
             border-left: var(--border-thick);
-            /* Stretch per seguire l'altezza del titolo se va a capo */
             align-self: stretch; 
         }
 
@@ -120,10 +118,9 @@
             text-transform: uppercase;
             margin: 0;
             line-height: 0.95;
-            /* CLAMP CALIBRATO: Si riduce prima di toccare il menu */
             font-size: clamp(2rem, 6vw, 4rem); 
             width: 100%;
-            word-wrap: break-word; /* Spezza le parole se necessario */
+            word-wrap: break-word; 
         }
 
         h1 a {
@@ -169,7 +166,6 @@
         
         .mobile-menu.active { display: flex; }
         
-        /* Se header nascosto, nascondi menu */
         header.hide ~ .mobile-menu {
             opacity: 0;
             pointer-events: none;
@@ -284,26 +280,77 @@
 
         /* --- SLIDER LOGHI --- */
         #collaborations { overflow: hidden; padding: 0; border-top: var(--border-thick); }
-        .slider { background: var(--bg-color); height: 140px; margin: auto; overflow: hidden; position: relative; width: 100%; display: flex; align-items: center; }
-        .slide-track { animation: scroll 40s linear infinite; display: flex; width: calc(250px * 16); }
-        .slide { height: 100px; width: 50vw; display: flex; align-items: center; justify-content: center; padding: 0 20px; border-right: var(--border-thin); }
-        .slide img { max-width: 80%; max-height: 70px; object-fit: contain; filter: grayscale(100%); opacity: 0.8; }
-        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-50vw * 8)); } }
+        
+        .slider { 
+            background: var(--bg-color); 
+            height: 140px; 
+            margin: auto; 
+            overflow: hidden; 
+            position: relative; 
+            width: 100%; 
+            display: flex; 
+            align-items: center; 
+        }
 
-        /* --- CONTACT MOBILE (Moderno & Brutalista) --- */
+        .slide-track { 
+            animation: scroll 40s linear infinite; 
+            display: flex; 
+            /* CALCOLO DINAMICO PER MOBILE: 16 slide * 50vw l'una = 800vw */
+            width: calc(50vw * 16); 
+        }
+
+        .slide { 
+            height: 100px; 
+            width: 50vw; /* 2 loghi visibili su mobile */
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            padding: 0 20px; 
+            border-right: var(--border-thin); 
+        }
+
+        /* Loghi a colori, cliccabili */
+        .slide img { 
+            max-width: 80%; 
+            max-height: 70px; 
+            object-fit: contain; 
+            /* Rimosso grayscale per avere i colori */
+            filter: none; 
+            opacity: 1; 
+            transition: transform 0.2s;
+        }
+        
+        .slide a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide img:hover {
+            transform: scale(1.1); /* Piccolo zoom hover */
+        }
+
+        /* Animazione Mobile: Scorri metà della track (8 slide) */
+        @keyframes scroll { 
+            0% { transform: translateX(0); } 
+            100% { transform: translateX(calc(-50vw * 8)); } 
+        }
+
+        /* --- CONTACT MOBILE --- */
         #contact { border-bottom: none; padding-bottom: 0; }
         .contact-content-wrapper { display: flex; flex-direction: column; padding: 20px; gap: 20px; background-color: var(--bg-color); }
 
         .contact-face-wrapper { display: flex; justify-content: center; align-items: center; background-color: transparent; padding: 0; margin-bottom: 10px; }
         .contact-face {
             width: 180px; height: 180px; object-fit: cover;
-            border: 4px solid var(--black); filter: contrast(1.1); /* A COLORI */
+            border: 4px solid var(--black); filter: contrast(1.1);
             display: block;
         }
 
         .contact-info-wrapper { display: flex; flex-direction: column; gap: 15px; justify-content: center; }
 
-        /* STILE CONTATTI BOX NERI (Mobile) */
         .contact-row { 
             background-color: var(--black); 
             color: var(--white); 
@@ -317,9 +364,7 @@
             transition: background 0.3s;
         }
         
-        .contact-row:hover {
-            background-color: var(--accent-blue);
-        }
+        .contact-row:hover { background-color: var(--accent-blue); }
         
         .social-row { 
             background-color: transparent;
@@ -329,7 +374,7 @@
         .social-row a { color: var(--black); transition: transform 0.2s, color 0.3s; }
         .social-row a:hover { color: var(--accent-blue); transform: scale(1.1); }
 
-        /* --- FOOTER CREDITS (Sexy & Simple) --- */
+        /* --- FOOTER CREDITS --- */
         .footer-credits {
             border-top: var(--border-thick);
             background-color: var(--bg-color);
@@ -337,7 +382,7 @@
             padding: 30px 20px;
             text-align: center;
             font-family: var(--font-body);
-            font-weight: 400; /* Font leggero ed elegante */
+            font-weight: 400;
             font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -345,7 +390,7 @@
             flex-direction: column;
             gap: 10px;
             line-height: 1.5;
-            opacity: 0.7; /* Leggermente più soft */
+            opacity: 0.7;
         }
         
         .footer-credits a {
@@ -380,8 +425,16 @@
             .intro-text { font-size: 1.1rem; }
 
             /* SLIDER DESKTOP */
+            /* Larghezza track ricalcolata per desktop: 16 slide * 25vw = 400vw */
+            .slide-track { width: calc(25vw * 16); }
+            
             .slide { width: 25vw; } 
-            @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-25vw * 8)); } }
+            
+            /* Animazione Desktop: Scorri metà della track (8 slide * 25vw) */
+            @keyframes scroll { 
+                0% { transform: translateX(0); } 
+                100% { transform: translateX(calc(-25vw * 8)); } 
+            }
 
             /* CONTACT DESKTOP */
             .contact-content-wrapper { flex-direction: row; padding: 0; gap: 0; border-top: var(--border-thick); }
@@ -389,7 +442,6 @@
             .contact-face { width: 100%; height: auto; max-width: 250px; border: 5px solid var(--bg-color); }
             .contact-info-wrapper { width: 60%; padding: 40px; background-color: var(--bg-color); align-items: stretch; justify-content: center; }
             
-            /* Stile Desktop Contatti (Diverso da Mobile) */
             .contact-row { 
                 text-align: left; 
                 background-color: transparent; 
@@ -405,7 +457,6 @@
             
             .social-row { justify-content: flex-start; padding: 15px 0; margin-top: 20px; }
             
-            /* Footer Desktop */
             .footer-credits { flex-direction: row; justify-content: center; gap: 15px; padding: 25px; }
         }
     </style>
@@ -516,15 +567,23 @@
             
             <div class="slider">
                 <div class="slide-track">
-                    <div class="slide"><img src="images/logo_Narhval.png" alt="Logo Narhval"></div>
-                    <div class="slide"><img src="images/logo_Monk.png" alt="Logo Monk"></div>
-                    <div class="slide"><img src="images/logo_barVolo.jpg" alt="Logo BarVolo"></div>
-                    <div class="slide"><img src="images/logo_martelive.png" alt="Logo MarteLive"></div>
-                     <div class="slide"><img src="images/logo_tomo.jpg" alt="Logo Tomo"></div>
-                    <div class="slide"><img src="images/logo_AngeloMai.jpg" alt="Logo AngeloMai"></div>
-                    <div class="slide"><img src="images/logo_Rhizome.png" alt="Logo Rhizome"></div>
-                     <div class="slide"><img src="images/logo_exitWell.jpeg" alt="Logo ExitWell"></div>
-        
+                    <div class="slide"><a href="https://www.narhvaledizioni.it/" target="_blank"><img src="images/logo_Narhval.png" alt="Logo Narhval"></a></div>
+                    <div class="slide"><a href="https://www.monkroma.it/" target="_blank"><img src="images/logo_Monk.png" alt="Logo Monk"></a></div>
+                    <div class="slide"><a href="https://www.instagram.com/bar.volo/" target="_blank"><img src="images/logo_barVolo.jpg" alt="Logo BarVolo"></a></div>
+                    <div class="slide"><a href="https://martelive.it/" target="_blank"><img src="images/logo_martelive.png" alt="Logo MarteLive"></a></div>
+                    <div class="slide"><a href="https://zero.eu/it/luoghi/212701-tomo-libreria-caffe,roma/" target="_blank"><img src="images/logo_tomo.jpg" alt="Logo Tomo"></a></div>
+                    <div class="slide"><a href="https://www.angelomai.org/" target="_blank"><img src="images/logo_AngeloMai.jpg" alt="Logo AngeloMai"></a></div>
+                    <div class="slide"><a href="https://www.rhizomerm.com/" target="_blank"><img src="images/logo_Rhizome.png" alt="Logo Rhizome"></a></div>
+                    <div class="slide"><a href="https://www.exitwell.com/" target="_blank"><img src="images/logo_exitWell.jpeg" alt="Logo ExitWell"></a></div>
+
+                    <div class="slide"><a href="https://www.narhvaledizioni.it/" target="_blank"><img src="images/logo_Narhval.png" alt="Logo Narhval"></a></div>
+                    <div class="slide"><a href="https://www.monkroma.it/" target="_blank"><img src="images/logo_Monk.png" alt="Logo Monk"></a></div>
+                    <div class="slide"><a href="https://www.instagram.com/bar.volo/" target="_blank"><img src="images/logo_barVolo.jpg" alt="Logo BarVolo"></a></div>
+                    <div class="slide"><a href="https://martelive.it/" target="_blank"><img src="images/logo_martelive.png" alt="Logo MarteLive"></a></div>
+                    <div class="slide"><a href="https://zero.eu/it/luoghi/212701-tomo-libreria-caffe,roma/" target="_blank"><img src="images/logo_tomo.jpg" alt="Logo Tomo"></a></div>
+                    <div class="slide"><a href="https://www.angelomai.org/" target="_blank"><img src="images/logo_AngeloMai.jpg" alt="Logo AngeloMai"></a></div>
+                    <div class="slide"><a href="https://www.rhizomerm.com/" target="_blank"><img src="images/logo_Rhizome.png" alt="Logo Rhizome"></a></div>
+                    <div class="slide"><a href="https://www.exitwell.com/" target="_blank"><img src="images/logo_exitWell.jpeg" alt="Logo ExitWell"></a></div>
                 </div>
             </div>
         </section>
@@ -546,16 +605,16 @@
                     
                     <div class="social-row">
                         <a href="https://instagram.com/rocc.mann" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://it.linkedin.com/in/rocco-pagliarulo-1912b554" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
             </div>
         </section>
 
         <div class="footer-credits">
-            <span>&copy;<span id="year"></span> ROCCO PAGLIARULO</span>
+            <span>&copy; <span id="year"></span> ROCCO PAGLIARULO</span>
             <span class="separator">|</span>
-            <span>SITE BY <a href="https://instagram.com/vxly.ps" target="_blank">@VXLY.PS</a></span>
+            <span>SITE CREATED BY <a href="https://instagram.com/vxly.ps" target="_blank">@VXLY.PS</a></span>
         </div>
 
     </div>
