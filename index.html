@@ -104,6 +104,39 @@
             flex-wrap: wrap; 
         }
 
+        /* BLOCCO LINGUA (NUOVO) */
+        .lang-block {
+            background-color: var(--bg-color);
+            width: 60px; /* Larghezza fissa per il box lingua */
+            min-width: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-left: var(--border-thick);
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 0.85rem;
+            gap: 4px;
+        }
+
+        .lang-link {
+            text-decoration: none;
+            color: var(--black);
+            opacity: 0.5;
+            transition: opacity 0.3s, color 0.3s;
+        }
+        
+        .lang-link:hover {
+            opacity: 1;
+            color: var(--accent-blue);
+        }
+
+        .lang-link.active {
+            opacity: 1;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
         .menu-block {
             background-color: var(--bg-color);
             width: 70px;
@@ -284,7 +317,7 @@
         #collaborations { 
             overflow: hidden; 
             padding: 0; 
-            border-top: none; /* FIX: RIMOSSO BORDO DOPPIO */
+            border-top: none; 
         }
         
         .slider { 
@@ -409,6 +442,8 @@
             
             .title-block { padding: 20px 30px; border-bottom: var(--border-thick); flex-wrap: nowrap; }
             .menu-block { width: auto; padding: 0 30px; border-bottom: var(--border-thick); }
+            /* BORDO INFERIORE ANCHE PER IL BLOCCO LINGUA SU DESKTOP */
+            .lang-block { width: auto; padding: 0 20px; border-bottom: var(--border-thick); }
             
             .sub-header { font-size: 0.85rem; letter-spacing: 1px; padding: 15px 30px; text-align: left; justify-content: flex-start; }
             .separator { display: inline; margin: 0 10px; }
@@ -472,6 +507,13 @@
             <div class="title-block">
                 <h1><a href="#">ROCCO PAGLIARULO</a></h1>
             </div>
+            
+            <div class="lang-block">
+                <a href="index-en.html" class="lang-link">EN</a>
+                <span>|</span>
+                <a href="#" class="lang-link active">IT</a>
+            </div>
+            
             <div class="menu-block">
                 <div class="hamburger" onclick="toggleMenu()">
                     <span></span><span></span><span></span>
