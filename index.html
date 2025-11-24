@@ -25,6 +25,10 @@
             --font-body: 'Space Mono', monospace;
         }
 
+        html {
+            scroll-behavior: smooth; /* Scorrimento fluido */
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -310,7 +314,6 @@
             object-fit: contain; 
             filter: none; /* Colori */
             opacity: 1; 
-            /* Rimosso transform su hover */
         }
         
         .slide a {
@@ -538,11 +541,12 @@
                             <p class="project-desc">
                                 Representing director Valerio Francini. Scouter for artists and ideator for 'Naskar - Ycon Ydol' video production.
                             </p>
-                            </div>
-                      <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-    <a href="https://valeriofrancini.it/" target="_blank" class="btn">Valerio Francini</a>
-    <a href="https://instagram.com/xaella12" target="_blank" class="btn">Gabriella Ripamonti</a>
-</div>
+                        </div>
+                        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                            <a href="https://valeriofrancini.it/" target="_blank" class="btn">Valerio Francini</a>
+                            <a href="https://instagram.com/xaella12" target="_blank" class="btn">Gabriella Ripamonti</a>
+                        </div>
+                    </div>
                 </article>
             </div>
         </section>
@@ -632,6 +636,17 @@
             }
             
             lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; 
+        });
+
+        // CHIUDI MENU AL CLICK FUORI
+        document.addEventListener('click', function(event) {
+            var menu = document.getElementById("mobileMenu");
+            var hamburger = document.querySelector(".hamburger");
+
+            // Se il menu è aperto E il click NON è sul menu E NON è sul burger
+            if (menu.classList.contains('active') && !menu.contains(event.target) && !hamburger.contains(event.target)) {
+                menu.classList.remove("active");
+            }
         });
     </script>
 
