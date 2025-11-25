@@ -305,7 +305,7 @@
         
         .project-img-wrapper { width: 100%; padding: 15px; background-color: var(--bg-color); }
         
-        /* AGGIORNATO PER INCLUDERE IL VIDEO */
+        /* AGGIORNATO PER INCLUDERE IL VIDEO E RIMUOVERE IL B/N */
         .project-img-wrapper img, 
         .project-img-wrapper video { 
             width: 100%; 
@@ -313,7 +313,7 @@
             object-fit: cover; 
             display: block; 
             border: 4px solid black; 
-            filter: grayscale(100%); /* Filtro bianco e nero */
+            /* filter: grayscale(100%);  <-- RIMOSSO IL FILTRO BIANCO E NERO */
         }
         
         .project-content { padding: 15px; padding-top: 5px; display: flex; flex-direction: column; justify-content: space-between; gap: 8px; }
@@ -642,7 +642,7 @@ altri scatto foto, ogni giorno inseguo la musica.
                 <article class="project-item">
                     <div class="project-img-wrapper">
                         <video autoplay loop muted playsinline>
-                            <source src="images/MASKARA.mov" type="video/mov">
+                            <source src="images/MASKARA.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                     </div>
