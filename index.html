@@ -304,7 +304,17 @@
         .project-item:last-child { border-bottom: none; }
         
         .project-img-wrapper { width: 100%; padding: 15px; background-color: var(--bg-color); }
-        .project-img-wrapper img { width: 100%; height: 180px; object-fit: cover; display: block; border: 4px solid black; filter: grayscale(100%); }
+        
+        /* AGGIORNATO PER INCLUDERE IL VIDEO */
+        .project-img-wrapper img, 
+        .project-img-wrapper video { 
+            width: 100%; 
+            height: 180px; 
+            object-fit: cover; 
+            display: block; 
+            border: 4px solid black; 
+            filter: grayscale(100%); /* Filtro bianco e nero */
+        }
         
         .project-content { padding: 15px; padding-top: 5px; display: flex; flex-direction: column; justify-content: space-between; gap: 8px; }
         .project-title { font-family: var(--font-title); font-size: 1.8rem; text-transform: uppercase; line-height: 1; margin-bottom: 3px; }
@@ -475,7 +485,14 @@
             
             .project-item { flex-direction: row; min-height: 260px; align-items: stretch; }
             .project-img-wrapper { width: 50%; height: auto; border-right: none; display: flex; align-items: center; justify-content: center; padding: 20px; }
-            .project-img-wrapper img { height: 100%; max-height: 220px; }
+            
+            /* AGGIORNATO PER INCLUDERE VIDEO SU DESKTOP */
+            .project-img-wrapper img, 
+            .project-img-wrapper video { 
+                height: 100%; 
+                max-height: 220px; 
+            }
+            
             .project-content { width: 50%; padding: 25px 20px; padding-left: 5px; justify-content: center; }
             
             .project-title { font-size: 2.5rem; }
@@ -571,10 +588,10 @@
                 <h2>CHI SONO</h2>
             </div>
             <div class="intro-text">
-Attivo nel mondo associativo e nella promozione di iniziative ad impatto locale, per studio e vocazione.
+Attivo nel mondo associativo e nella promozione di iniziative ad impatto locale, per studio e vocazione. 
 Progettista e coordinatore di eventi culturali.
 Come agente e manager supporto registri e videomaker Indipendenti.
-Alcuni giorni salgo in cattedra come docente di statistica,
+Alcuni giorni salgo in cattedra come docente di statistica, 
 altri scatto foto, ogni giorno inseguo la musica.
             </div>
         </section>
@@ -618,12 +635,16 @@ altri scatto foto, ogni giorno inseguo la musica.
     <div style="display: flex; gap: 15px; flex-wrap: wrap;">
                                   <a href="https://martelive.it/" class="btn">MArteLive</a>
                             <a href="https://martelive.it/2025/10/uragano-revue/" target="_blank" class="btn">Uragano Revue</a>
-                        </div>              
+                        </div>             
+                    </div>
                     
                 </article>
                 <article class="project-item">
                     <div class="project-img-wrapper">
-                        <img src="images/project3.jpg" alt="Valerio Francini">
+                        <video autoplay loop muted playsinline>
+                            <source src="images/MASKARA.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
                     </div>
                     <div class="project-content">
                         <div>
