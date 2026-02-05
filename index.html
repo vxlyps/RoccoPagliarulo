@@ -212,6 +212,7 @@
             opacity: 0.5;
             transition: all 0.3s;
         }
+        .lang-link:hover { opacity: 1; color: var(--accent-blue); }
         .lang-link.active { opacity: 1; text-decoration: underline; text-underline-offset: 4px; }
 
 
@@ -317,20 +318,23 @@
         /* --- STILE SPECIFICO PER SLIDESHOW NEXT EVENTS (RAPPORTO 4:5) --- */
         .event-slideshow-wrapper {
             position: relative;
-            /* Rimuovo il padding per gestire meglio il rapporto */
             padding: 15px; 
             width: 100%;
-            height: auto !important; /* Sovrascrive altezze fisse */
+            height: auto !important;
+            display: flex;
+            justify-content: center; /* Centra l'immagine più piccola su mobile */
+            align-items: center;
         }
         
         .slideshow-container {
             width: 100%;
+            max-width: 240px; /* IMPOSTATO PER ESSERE PICCOLO (META' DI PRIMA) */
             /* Rapporto d'aspetto 4:5 (verticale) */
             aspect-ratio: 4 / 5;
             position: relative;
             overflow: hidden;
-            border: 4px solid var(--black);
-            background-color: var(--black); /* Per evitare flash bianchi */
+            border: 2px solid var(--black); /* BORDO SOTTILE (2px) */
+            background-color: var(--black);
         }
 
         .slide-img {
@@ -339,10 +343,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: cover; /* Riempie il riquadro */
             opacity: 0;
             transition: opacity 1.5s ease-in-out;
-            border: none; /* Il bordo è sul container */
+            border: none;
         }
 
         .slide-img.active {
@@ -517,6 +521,7 @@
             .hero-container { height: 450px; padding: 20px; }
             
             .project-item { flex-direction: row; min-height: 260px; align-items: stretch; }
+            
             /* Allineamento testo in alto per Next Events */
             #next-events .project-item { align-items: flex-start; }
             
@@ -529,10 +534,12 @@
                 max-height: 220px; 
             }
 
-            /* Per Next Events su Desktop: Ridotto al 50% */
+            /* Per Next Events su Desktop: */
             .event-slideshow-wrapper {
-                 width: 50%; /* Dimensione ridotta */
+                 width: 50%; 
                  height: auto;
+                 justify-content: center; /* Centra l'immagine nella sua colonna */
+                 align-items: flex-start; /* Allinea in alto */
             }
             
             .project-content { width: 50%; padding: 25px 20px; padding-left: 5px; justify-content: center; }
@@ -715,7 +722,8 @@ altri scatto foto, ogni giorno inseguo la musica.
                 <div class="filler-bar"></div>
             </div>
             
-            <div class="projects-wrapper"> <article class="project-item">
+            <div class="projects-wrapper"> 
+                <article class="project-item">
                     <div class="project-img-wrapper event-slideshow-wrapper">
                          <div class="slideshow-container" id="eventSlideshow">
                              <img src="images/interspazi_confluenze_7_2_2026_1.jpeg" class="slide-img active" alt="Evento 1">
@@ -732,7 +740,7 @@ altri scatto foto, ogni giorno inseguo la musica.
                             <div class="project-title">Interspazi | Confluenze</div>
                             <div class="project-subtitle">7 FEBBRAIO 2026</div>
                             <p class="project-desc">
-                                <a href="https://www.instagram.com/archivio.atena/" target="_blank" style="color: var(--accent-blue); text-decoration: underline;">Archivio Atena</a>.<br>
+                                Il 7 febbraio abiteremo l’<a href="https://www.instagram.com/archivio.atena/" target="_blank" style="color: var(--accent-blue); text-decoration: underline;">Archivio Atena</a>.<br>
                                 Interspazi | Confluenze è un luogo di possibilità, un luogo da attraversare, in cui sostare e, per un attimo, fuggire dall’ordinario.
                             </p>
                         </div>
