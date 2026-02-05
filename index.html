@@ -314,40 +314,37 @@
             border: 4px solid black; 
         }
 
-/* --- STILE SPECIFICO PER SLIDESHOW NEXT EVENTS (RAPPORTO 4:5) --- */
+        /* --- STILE SPECIFICO PER SLIDESHOW NEXT EVENTS (RAPPORTO 4:5) --- */
         .event-slideshow-wrapper {
             position: relative;
             padding: 15px; 
             width: 100%;
             height: auto !important;
             display: flex;
+            /*justify-content: center;  RIMOSSO PER ALLINEARE A SINISTRA SU MOBILE */
             align-items: center;
         }
         
-        /* IL CONTENITORE DEFINISCE LA FORMA (4:5) */
         .slideshow-container {
             width: 100%;
-            aspect-ratio: 4 / 5; /* Forza il rapporto verticale */
-            position: relative; /* Necessario per le immagini assolute dentro */
-            overflow: hidden; /* Taglia ciò che sborda */
+            /* max-width: 240px; RIMOSSO PER RIEMPIRE IL RIQUADRO SU MOBILE */
+            aspect-ratio: 4 / 5;
+            position: relative;
+            overflow: hidden;
             border: 2px solid var(--black);
             background-color: var(--black);
         }
 
-        /* L'IMMAGINE DEVE RIEMPIRE LA FORMA */
         .slide-img {
-            position: absolute; /* Si posiziona sopra le altre */
+            position: absolute;
             top: 0;
             left: 0;
-            width: 100% !important;  /* Forza larghezza piena */
-            height: 100% !important; /* Forza altezza piena */
-            /* LA PROPRIETÀ CHIAVE: */
-            object-fit: cover !important; /* Taglia l'immagine per riempire lo spazio senza deformare */
-            object-position: center; /* Centra l'immagine prima di tagliare */
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             opacity: 0;
             transition: opacity 1.5s ease-in-out;
             border: none;
-            display: block; /* Assicura che sia un blocco unico */
         }
 
         .slide-img.active {
@@ -529,16 +526,25 @@
             .project-img-wrapper { width: 50%; height: auto; border-right: none; display: flex; align-items: center; justify-content: center; padding: 20px; }
             
             /* AGGIORNATO PER INCLUDERE VIDEO SU DESKTOP */
+            /* Questo limita l'altezza delle immagini standard, MA NON dello slideshow grazie alla regola successiva */
             .project-img-wrapper img, 
             .project-img-wrapper video { 
                 height: 100%; 
                 max-height: 220px; 
             }
 
+            /* --- FIX PER SLIDESHOW SU DESKTOP --- */
+            /* Forza le immagini dello slideshow a riempire il contenitore 4:5, ignorando il limite di 220px */
+            .event-slideshow-wrapper .slide-img {
+                max-height: none !important;
+                height: 100% !important;
+            }
+
             /* Per Next Events su Desktop: */
             .event-slideshow-wrapper {
-                 width: 30%; 
+                 width: 50%; 
                  height: auto;
+                 /* justify-content: center; RIMOSSO PER ALLINEARE A SINISTRA */
                  align-items: flex-start; /* Allinea in alto */
             }
             
