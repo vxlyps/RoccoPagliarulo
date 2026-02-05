@@ -212,7 +212,6 @@
             opacity: 0.5;
             transition: all 0.3s;
         }
-        .lang-link:hover { opacity: 1; color: var(--accent-blue); }
         .lang-link.active { opacity: 1; text-decoration: underline; text-underline-offset: 4px; }
 
 
@@ -518,6 +517,9 @@
             .hero-container { height: 450px; padding: 20px; }
             
             .project-item { flex-direction: row; min-height: 260px; align-items: stretch; }
+            /* Allineamento testo in alto per Next Events */
+            #next-events .project-item { align-items: flex-start; }
+            
             .project-img-wrapper { width: 50%; height: auto; border-right: none; display: flex; align-items: center; justify-content: center; padding: 20px; }
             
             /* AGGIORNATO PER INCLUDERE VIDEO SU DESKTOP */
@@ -527,10 +529,9 @@
                 max-height: 220px; 
             }
 
-            /* Per Next Events su Desktop */
+            /* Per Next Events su Desktop: Ridotto al 50% */
             .event-slideshow-wrapper {
-                 /* Su desktop l'immagine sarà molto alta per rispettare il 4:5. */
-                 /* Lasciamo che il contenitore si adatti. */
+                 width: 50%; /* Dimensione ridotta */
                  height: auto;
             }
             
