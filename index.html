@@ -164,7 +164,7 @@
             z-index: 990; 
             flex-direction: column;
             transition: opacity 0.3s ease;
-            box-shadow: 10px 10px 0px rgba(0,0,0,0.2); /* Ombra netta stile brutalista */
+            box-shadow: 10px 10px 0px rgba(0,0,0,0.2);
         }
         
         .mobile-menu.active { display: flex; }
@@ -194,13 +194,13 @@
 
         /* BLOCCO LINGUA MOBILE (MIGLIORATO) */
         .mobile-lang-wrapper {
-            border-top: var(--border-thick); /* Bordo spesso per separare */
+            border-top: var(--border-thick); 
             padding: 15px 0;
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 15px;
-            background-color: var(--bg-color); /* Assicura sfondo */
+            background-color: var(--bg-color); 
         }
         
         .lang-link {
@@ -227,7 +227,7 @@
             text-transform: uppercase;
             line-height: 1.4;
             display: flex;
-            justify-content: center; /* Default centrato per mobile */
+            justify-content: center; 
             align-items: center;
             position: relative;
         }
@@ -248,7 +248,7 @@
             display: none; 
             font-weight: 700;
             font-size: 0.85rem;
-            margin-left: auto; /* Spinge a destra */
+            margin-left: auto; 
         }
 
         /* HERO IMAGE */
@@ -265,7 +265,7 @@
             object-fit: cover;
             object-position: center;
             display: block;
-            filter: contrast(1.1); /* A COLORI */
+            filter: contrast(1.1); 
             border: 4px solid var(--black);
         }
 
@@ -314,16 +314,13 @@
             border: 4px solid black; 
         }
 
-        /* --- STILE SPECIFICO PER SLIDESHOW NEXT EVENTS (RAPPORTO 4:5) --- */
-        /* Questo blocco sovrascrive i problemi di altezza sia su Mobile che Desktop */
-        
+        /* --- STILE SPECIFICO PER SLIDESHOW NEXT EVENTS --- */
         .event-slideshow-wrapper {
             position: relative;
             padding: 15px; 
             width: 100%;
             height: auto !important;
             display: flex;
-            /*justify-content: center; RIMOSSO PER ALLINEARE A SINISTRA SU MOBILE */
             align-items: center;
         }
         
@@ -340,9 +337,9 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 100% !important;  /* Importante */
-            height: 100% !important; /* Importante per coprire il nero sotto */
-            max-height: none !important; /* Importante per disabilitare il limite 180px/220px */
+            width: 100% !important;  
+            height: 100% !important; 
+            max-height: none !important; 
             object-fit: cover !important;
             opacity: 0;
             transition: opacity 1.5s ease-in-out;
@@ -413,7 +410,7 @@
             max-width: 80%; 
             max-height: 70px; 
             object-fit: contain; 
-            filter: none; /* Colori */
+            filter: none; 
             opacity: 1; 
         }
         
@@ -468,7 +465,7 @@
         .social-row a { color: var(--black); transition: transform 0.2s, color 0.3s; }
         .social-row a:hover { color: var(--accent-blue); transform: scale(1.1); }
 
-        /* --- FOOTER CREDITS (FIXED) --- */
+        /* --- FOOTER CREDITS --- */
         .footer-credits {
             border-top: var(--border-thick);
             background-color: var(--bg-color);
@@ -506,48 +503,41 @@
             
             .menu-block { width: auto; padding: 0 30px; border-bottom: var(--border-thick); }
             
-            /* MODIFICA SUB-HEADER DESKTOP */
             .sub-header { 
                 font-size: 0.85rem; 
                 letter-spacing: 1px; 
                 padding: 15px 30px; 
-                justify-content: space-between; /* Spinge job a sinistra e lingua a destra */
+                justify-content: space-between; 
             }
             
             .sub-header-content { justify-content: flex-start; }
             .separator { display: inline; margin: 0 10px; }
             
-            .sub-header-lang { display: block; } /* Mostra lingua su desktop */
+            .sub-header-lang { display: block; } 
             
             .hero-container { height: 450px; padding: 20px; }
             
             .project-item { flex-direction: row; min-height: 260px; align-items: stretch; }
             
-            /* Allineamento testo in alto per Next Events */
             #next-events .project-item { align-items: flex-start; }
             
             .project-img-wrapper { width: 50%; height: auto; border-right: none; display: flex; align-items: center; justify-content: center; padding: 20px; }
             
-            /* AGGIORNATO PER INCLUDERE VIDEO SU DESKTOP */
-            /* Questo limita l'altezza delle immagini standard, MA NON dello slideshow grazie alla regola successiva */
             .project-img-wrapper img, 
             .project-img-wrapper video { 
                 height: 100%; 
                 max-height: 220px; 
             }
 
-            /* --- FIX PER SLIDESHOW SU DESKTOP E MOBILE (RIDONDANTE MA SICURO) --- */
-            /* Forza le immagini dello slideshow a riempire il contenitore 4:5, ignorando il limite di 220px */
             .event-slideshow-wrapper .slide-img {
                 max-height: none !important;
                 height: 100% !important;
             }
 
-            /* Per Next Events su Desktop: */
             .event-slideshow-wrapper {
                  width: 30%; 
                  height: auto;
-                 align-items: flex-start; /* Allinea in alto */
+                 align-items: flex-start; 
             }
             
             .project-content { width: 70%; padding: 25px 20px; padding-left: 5px; justify-content: center; }
@@ -555,7 +545,6 @@
             .project-title { font-size: 2.5rem; }
             .intro-text { font-size: 1.1rem; }
 
-            /* SLIDER DESKTOP */
             .slide-track { width: calc(25vw * 16); }
             .slide { width: 25vw; } 
             
@@ -564,7 +553,6 @@
                 100% { transform: translateX(calc(-25vw * 8)); } 
             }
 
-            /* CONTACT DESKTOP */
             .contact-content-wrapper { flex-direction: row; padding: 0; gap: 0; border-top: var(--border-thick); }
             .contact-face-wrapper { width: 40%; padding: 40px; background-color: var(--black); border-right: var(--border-thick); margin-bottom: 0; }
             .contact-face { width: 100%; height: auto; max-width: 250px; border: 5px solid var(--bg-color); }
@@ -660,13 +648,11 @@ altri scatto foto, ogni giorno inseguo la musica.
                 <div class="filler-bar"></div>
             </div>
 
-           <div class="projects-wrapper">
-    <article class="project-item">
-        <div class="project-img-wrapper">
-            <img src="images/LOGO_Narhval_edizioni.png" alt="Narhval Edizioni Logo">
-        </div>
-    </article>
-</div>
+            <div class="projects-wrapper">
+                <article class="project-item">
+                    <div class="project-img-wrapper">
+                        <img src="images/LOGO_Narhval_edizioni.png" alt="Narhval Edizioni Logo">
+                    </div>
                     <div class="project-content">
                         <div>
                             <div class="project-title">PROJECT MANAGER</div>
@@ -681,6 +667,7 @@ altri scatto foto, ogni giorno inseguo la musica.
                         </div>
                     </div>
                 </article>
+
                 <article class="project-item">
                     <div class="project-img-wrapper">
                         <img src="images/Uragano.jpg" alt="Uragano Revue">
@@ -690,15 +677,16 @@ altri scatto foto, ogni giorno inseguo la musica.
                             <div class="project-title">CONSULENTE EVENTI CULTURALI</div>
                             <div class="project-subtitle">per MArteLive</div>
                             <p class="project-desc">
-                                 Consulenza strategica e promozione evento
+                                Consulenza strategica e promozione evento
                             </p>
-    <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-                                  <a href="https://martelive.it/" class="btn">MArteLive</a>
+                        </div>
+                        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                            <a href="https://martelive.it/" class="btn">MArteLive</a>
                             <a href="https://martelive.it/2025/10/uragano-revue/" target="_blank" class="btn">Uragano Revue</a>
-                        </div>               
+                        </div>                
                     </div>
-                    
                 </article>
+
                 <article class="project-item">
                     <div class="project-img-wrapper">
                          <video autoplay loop muted playsinline>
