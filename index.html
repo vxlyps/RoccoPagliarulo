@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -15,14 +15,14 @@
 
     <style>
         :root {
-            --bg-color: #F2F0E9; /* Beige Carta */
+            --bg-color: #F2F0E9; /* Paper Beige */
             --black: #000000;
             --white: #ffffff;
             --accent-blue: #1a3cba;
             --border-thick: 4px solid var(--black);
             --border-thin: 2px solid var(--black);
             
-            /* Tipografia */
+            /* Typography */
             --font-title: 'Archivo Black', sans-serif;
             --font-body: 'Space Mono', monospace;
         }
@@ -37,7 +37,7 @@
             padding: 0;
         }
 
-        /* EFFETTO INVECCHIATO */
+        /* NOISE TEXTURE */
         body::after {
             content: "";
             position: fixed;
@@ -152,7 +152,7 @@
             width: 100%;
         }
 
-        /* --- MENU A TENDINA (MOBILE) --- */
+        /* --- MOBILE DROPDOWN MENU --- */
         .mobile-menu {
             display: none;
             position: fixed; 
@@ -192,15 +192,15 @@
         }
         .mobile-menu a.menu-link:hover { background-color: #e0ded7; }
 
-        /* BLOCCO LINGUA MOBILE (MIGLIORATO) */
+        /* MOBILE LANGUAGE BLOCK */
         .mobile-lang-wrapper {
-            border-top: var(--border-thick); 
+            border-top: var(--border-thick);
             padding: 15px 0;
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 15px;
-            background-color: var(--bg-color); 
+            background-color: var(--bg-color);
         }
         
         .lang-link {
@@ -212,10 +212,11 @@
             opacity: 0.5;
             transition: all 0.3s;
         }
+        .lang-link:hover { opacity: 1; color: var(--accent-blue); }
         .lang-link.active { opacity: 1; text-decoration: underline; text-underline-offset: 4px; }
 
 
-        /* --- SUB-HEADER (BARRA SOTTO HEADER) --- */
+        /* --- SUB-HEADER --- */
         .sub-header {
             background-color: var(--bg-color);
             color: var(--black);
@@ -227,12 +228,11 @@
             text-transform: uppercase;
             line-height: 1.4;
             display: flex;
-            justify-content: center; 
+            justify-content: center;
             align-items: center;
             position: relative;
         }
         
-        /* Contenitore per i testi dei job */
         .sub-header-content {
             display: flex;
             flex-wrap: wrap;
@@ -243,12 +243,12 @@
         .sub-item { white-space: nowrap; letter-spacing: 1px; }
         .separator { display: none; }
 
-        /* Lingua nel sub-header (Nascosta su mobile) */
+        /* Desktop Language */
         .sub-header-lang {
             display: none; 
             font-weight: 700;
             font-size: 0.85rem;
-            margin-left: auto; 
+            margin-left: auto;
         }
 
         /* HERO IMAGE */
@@ -265,11 +265,11 @@
             object-fit: cover;
             object-position: center;
             display: block;
-            filter: contrast(1.1); 
+            filter: contrast(1.1); /* Color */
             border: 4px solid var(--black);
         }
 
-        /* --- SEZIONI --- */
+        /* --- SECTIONS --- */
         section { border-bottom: var(--border-thick); }
 
         .section-header { padding: 15px 20px; display: flex; align-items: center; gap: 15px; }
@@ -303,7 +303,7 @@
         
         .project-img-wrapper { width: 100%; padding: 15px; background-color: var(--bg-color); }
         
-        /* AGGIORNATO PER INCLUDERE IL VIDEO E RIMUOVERE IL B/N */
+        /* UPDATED FOR VIDEOS + COLOR */
         .project-img-wrapper img, 
         .project-img-wrapper video { 
             width: 100%; 
@@ -311,9 +311,11 @@
             object-fit: cover; 
             display: block; 
             border: 4px solid black; 
+            /* No Grayscale Filter */
         }
 
-        /* --- STILE SPECIFICO PER SLIDESHOW NEXT EVENTS --- */
+        /* --- STILE SPECIFICO PER SLIDESHOW NEXT EVENTS (RAPPORTO 4:5) --- */
+        
         .event-slideshow-wrapper {
             position: relative;
             padding: 15px; 
@@ -336,9 +338,9 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 100% !important;  
-            height: 100% !important; 
-            max-height: none !important; 
+            width: 100% !important;  /* Importante */
+            height: 100% !important; /* Importante per coprire il nero sotto */
+            max-height: none !important; /* Importante per disabilitare il limite 180px/220px */
             object-fit: cover !important;
             opacity: 0;
             transition: opacity 1.5s ease-in-out;
@@ -371,7 +373,7 @@
         }
         .btn:hover { background-color: var(--black); }
 
-        /* --- SLIDER LOGHI --- */
+        /* --- SLIDER LOGOS --- */
         #collaborations { 
             overflow: hidden; 
             padding: 0; 
@@ -409,7 +411,7 @@
             max-width: 80%; 
             max-height: 70px; 
             object-fit: contain; 
-            filter: none; 
+            filter: none; /* Colors */
             opacity: 1; 
         }
         
@@ -421,7 +423,7 @@
             height: 100%;
         }
 
-        /* Animazione Mobile */
+        /* Mobile Animation */
         @keyframes scroll { 
             0% { transform: translateX(0); } 
             100% { transform: translateX(calc(-50vw * 8)); } 
@@ -464,7 +466,7 @@
         .social-row a { color: var(--black); transition: transform 0.2s, color 0.3s; }
         .social-row a:hover { color: var(--accent-blue); transform: scale(1.1); }
 
-        /* --- FOOTER CREDITS --- */
+        /* --- FOOTER CREDITS (FIXED) --- */
         .footer-credits {
             border-top: var(--border-thick);
             background-color: var(--bg-color);
@@ -502,41 +504,46 @@
             
             .menu-block { width: auto; padding: 0 30px; border-bottom: var(--border-thick); }
             
+            /* DESKTOP SUB-HEADER TWEAKS */
             .sub-header { 
                 font-size: 0.85rem; 
                 letter-spacing: 1px; 
                 padding: 15px 30px; 
-                justify-content: space-between; 
+                justify-content: space-between;
             }
             
             .sub-header-content { justify-content: flex-start; }
             .separator { display: inline; margin: 0 10px; }
             
-            .sub-header-lang { display: block; } 
+            .sub-header-lang { display: block; } /* Show language on desktop */
             
             .hero-container { height: 450px; padding: 20px; }
             
             .project-item { flex-direction: row; min-height: 260px; align-items: stretch; }
             
+            /* Align text to top for Next Events */
             #next-events .project-item { align-items: flex-start; }
             
             .project-img-wrapper { width: 50%; height: auto; border-right: none; display: flex; align-items: center; justify-content: center; padding: 20px; }
             
+            /* UPDATED DESKTOP VIDEO/IMG */
             .project-img-wrapper img, 
             .project-img-wrapper video { 
                 height: 100%; 
                 max-height: 220px; 
             }
 
+            /* --- FIX FOR SLIDESHOW ON DESKTOP --- */
             .event-slideshow-wrapper .slide-img {
                 max-height: none !important;
                 height: 100% !important;
             }
 
+            /* For Next Events on Desktop: */
             .event-slideshow-wrapper {
                  width: 30%; 
                  height: auto;
-                 align-items: flex-start; 
+                 align-items: flex-start; /* Align Top */
             }
             
             .project-content { width: 70%; padding: 25px 20px; padding-left: 5px; justify-content: center; }
@@ -544,6 +551,7 @@
             .project-title { font-size: 2.5rem; }
             .intro-text { font-size: 1.1rem; }
 
+            /* SLIDER DESKTOP */
             .slide-track { width: calc(25vw * 16); }
             .slide { width: 25vw; } 
             
@@ -552,6 +560,7 @@
                 100% { transform: translateX(calc(-25vw * 8)); } 
             }
 
+            /* CONTACT DESKTOP */
             .contact-content-wrapper { flex-direction: row; padding: 0; gap: 0; border-top: var(--border-thick); }
             .contact-face-wrapper { width: 40%; padding: 40px; background-color: var(--black); border-right: var(--border-thick); margin-bottom: 0; }
             .contact-face { width: 100%; height: auto; max-width: 250px; border: 5px solid var(--bg-color); }
@@ -588,9 +597,9 @@
         </div>
         
         <div class="mobile-lang-wrapper">
-            <a href="index-en.html" class="lang-link">EN</a>
+            <a href="#" class="lang-link active">EN</a>
             <span>|</span>
-            <a href="#" class="lang-link active">IT</a>
+            <a href="index.html" class="lang-link">IT</a>
         </div>
     </div>
 
@@ -618,9 +627,9 @@
             </div>
             
             <div class="sub-header-lang">
-                <a href="index-en.html" class="lang-link">EN</a>
+                <a href="#" class="lang-link active">EN</a>
                 <span>|</span>
-                <a href="#" class="lang-link active">IT</a>
+                <a href="index.html" class="lang-link">IT</a>
             </div>
         </div>
 
@@ -642,34 +651,34 @@
                     <div class="project-content">
                         <div>
                             <div class="project-title">PROJECT MANAGER</div>
-                            <div class="project-subtitle">DI NARHVAL EDIZIONI</div>
+                            <div class="project-subtitle">OF NARHVAL EDIZIONI</div>
                             <p class="project-desc">
-                                Gestione strategica e operativa della casa editrice <br> Coordinamento di eventi cultuali del format Interspazi
+                                Strategic and operational management of the publishing house. <br> Coordination of cultural events for the Interspazi format.
                             </p>
                         </div>
                         <div style="display: flex; gap: 15px; flex-wrap: wrap;">
                             <a href="https://www.narhvaledizioni.it" class="btn">Narhval Edizioni</a>
-                            <a href="https://www.narhvaledizioni.it/interspazi-2/" class="btn">Progetto Interspazi</a>
+                            <a href="https://www.narhvaledizioni.it/interspazi-2/" class="btn">Interspazi Project</a>
                         </div>
                     </div>
                 </article>
 
                 <article class="project-item">
                     <div class="project-img-wrapper">
-                        <img src="images/Uragano.jpg" alt="Uragano Revue">
+                        <img src="images/Uragano.jpg" alt="Uragano">
                     </div>
                     <div class="project-content">
                         <div>
-                            <div class="project-title">CONSULENTE EVENTI CULTURALI</div>
-                            <div class="project-subtitle">per MArteLive</div>
+                            <div class="project-title">CULTURAL EVENTS CONSULTANT</div>
+                            <div class="project-subtitle">FOR MArteLive</div>
                             <p class="project-desc">
-                                Consulenza strategica e promozione evento
+                                Strategic consulting and event promotion.
                             </p>
                         </div>
                         <div style="display: flex; gap: 15px; flex-wrap: wrap;">
                             <a href="https://martelive.it/" class="btn">MArteLive</a>
                             <a href="https://martelive.it/2025/10/uragano-revue/" target="_blank" class="btn">Uragano Revue</a>
-                        </div>                
+                        </div>
                     </div>
                 </article>
 
@@ -682,10 +691,10 @@
                     </div>
                     <div class="project-content">
                         <div>
-                            <div class="project-title">Talent Agent and Manager</div>
-                            <div class="project-subtitle">DI REGISTI E VIDEOMAKER INDIPENDENTI</div>
+                            <div class="project-title">AGENT AND MANAGER</div>
+                            <div class="project-subtitle">OF INDEPENDENT DIRECTORS AND VIDEOMAKERS</div>
                             <p class="project-desc">
-                                Supporto la crescita di carriere per registi e videomaker indipendenti, gestendo rappresentanza, negoziazione contratti e strategie su misura, con un'attenzione costante alla loro piena libertà creativa
+                                Supporting the career growth of independent directors and videomakers, managing representation, contract negotiation, and tailored strategies, with constant attention to their full creative freedom.
                             </p>
                         </div>
                         <div style="display: flex; gap: 15px; flex-wrap: wrap;">
@@ -707,22 +716,22 @@
                 <article class="project-item">
                     <div class="project-img-wrapper event-slideshow-wrapper">
                          <div class="slideshow-container" id="eventSlideshow">
-                             <img src="images/interspazi_confluenze_7_2_2026_1.jpeg" class="slide-img active" alt="Evento 1">
-                             <img src="images/interspazi_confluenze_7_2_2026_2.jpeg" class="slide-img" alt="Evento 2">
-                             <img src="images/interspazi_confluenze_7_2_2026_3.jpeg" class="slide-img" alt="Evento 3">
-                             <img src="images/interspazi_confluenze_7_2_2026_4.jpeg" class="slide-img" alt="Evento 4">
-                             <img src="images/interspazi_confluenze_7_2_2026_5.jpeg" class="slide-img" alt="Evento 5">
-                             <img src="images/interspazi_confluenze_7_2_2026_6.jpeg" class="slide-img" alt="Evento 6">
-                             <img src="images/interspazi_confluenze_7_2_2026_7.jpeg" class="slide-img" alt="Evento 7">
+                             <img src="images/interspazi_confluenze_7_2_2026_1.jpeg" class="slide-img active" alt="Event 1">
+                             <img src="images/interspazi_confluenze_7_2_2026_2.jpeg" class="slide-img" alt="Event 2">
+                             <img src="images/interspazi_confluenze_7_2_2026_3.jpeg" class="slide-img" alt="Event 3">
+                             <img src="images/interspazi_confluenze_7_2_2026_4.jpeg" class="slide-img" alt="Event 4">
+                             <img src="images/interspazi_confluenze_7_2_2026_5.jpeg" class="slide-img" alt="Event 5">
+                             <img src="images/interspazi_confluenze_7_2_2026_6.jpeg" class="slide-img" alt="Event 6">
+                             <img src="images/interspazi_confluenze_7_2_2026_7.jpeg" class="slide-img" alt="Event 7">
                          </div>
                     </div>
                     <div class="project-content">
                         <div>
                             <div class="project-title">Interspazi | Confluenze</div>
-                            <div class="project-subtitle">7 FEBBRAIO 2026</div>
+                            <div class="project-subtitle">FEBRUARY 7, 2026</div>
                             <p class="project-desc">
                                 <a href="https://www.instagram.com/archivio.atena/" target="_blank" style="color: var(--accent-blue); text-decoration: underline;">Archivio Atena</a><br>
-                                Interspazi | Confluenze è un luogo di possibilità, un luogo da attraversare, in cui sostare e, per un attimo, fuggire dall'ordinario.
+                                Interspazi | Confluenze is a place of possibility, a place to traverse, in which to pause and, for a moment, escape the ordinary.
                             </p>
                         </div>
                     </div>
@@ -761,14 +770,13 @@
 
         <section id="intro">
             <div class="section-header">
-                <h2>CHI SONO</h2>
+                <h2>INTRODUCTION</h2>
             </div>
             <div class="intro-text">
-Attivo nel mondo associativo e nella promozione di iniziative ad impatto locale, per studio e vocazione. 
-Progettista e coordinatore di eventi culturali.
-Come agente e manager supporto registri e videomaker Indipendenti.
-Alcuni giorni salgo in cattedra come docente di statistica, 
-altri scatto foto, ogni giorno inseguo la musica.
+                Active in the associative world and in promoting local impact initiatives, by study and vocation. 
+                Designer and coordinator of cultural events.
+                Always ready as an agent and manager for independent directors and videomakers.
+                Some days I take the chair as a statistics teacher, others I take photos; every day I chase music.
             </div>
         </section>
 
@@ -809,7 +817,7 @@ altri scatto foto, ogni giorno inseguo la musica.
             menu.classList.toggle("active");
         }
 
-        // Anno automatico
+        // Auto Year
         document.getElementById("year").textContent = new Date().getFullYear();
 
         // SMART STICKY HEADER
@@ -820,22 +828,22 @@ altri scatto foto, ogni giorno inseguo la musica.
             let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             
             if (scrollTop > lastScrollTop && scrollTop > 70) {
-                // Scendi -> Nascondi
+                // Scroll Down -> Hide
                 header.classList.add('hide');
             } else {
-                // Sali -> Mostra
+                // Scroll Up -> Show
                 header.classList.remove('hide');
             }
             
             lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; 
         });
 
-        // CHIUDI MENU AL CLICK FUORI
+        // CLOSE MENU ON CLICK OUTSIDE
         document.addEventListener('click', function(event) {
             var menu = document.getElementById("mobileMenu");
             var hamburger = document.querySelector(".hamburger");
 
-            // Se il menu è aperto E il click NON è sul menu E NON è sul burger
+            // If menu is open AND click is NOT on menu AND NOT on burger
             if (menu.classList.contains('active') && !menu.contains(event.target) && !hamburger.contains(event.target)) {
                 menu.classList.remove("active");
             }
@@ -845,17 +853,17 @@ altri scatto foto, ogni giorno inseguo la musica.
         document.addEventListener("DOMContentLoaded", function() {
             const slides = document.querySelectorAll('#eventSlideshow .slide-img');
             let currentSlide = 0;
-            const slideInterval = 3000; // Tempo in millisecondi (3 secondi)
+            const slideInterval = 3000; // Time in milliseconds (3 seconds)
 
             if(slides.length > 0) {
                 setInterval(() => {
-                    // Rimuovi active dall'attuale
+                    // Remove active from current
                     slides[currentSlide].classList.remove('active');
                     
-                    // Incrementa indice
+                    // Increment index
                     currentSlide = (currentSlide + 1) % slides.length;
                     
-                    // Aggiungi active al nuovo
+                    // Add active to new
                     slides[currentSlide].classList.add('active');
                 }, slideInterval);
             }
