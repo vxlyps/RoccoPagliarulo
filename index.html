@@ -313,7 +313,7 @@
 
         .upcoming-text span {
             font-family: var(--font-body);
-            font-size: 0.65rem;
+            font-size: 0.8rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -327,12 +327,12 @@
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            width: 55px;
+            width: 70px;
         }
 
         .upcoming-logo img {
-            max-width: 55px;
-            max-height: 50px;
+            max-width: 70px;
+            max-height: 60px;
             object-fit: contain;
         }
 
@@ -586,8 +586,10 @@
             
             .hero-container { height: 450px; padding: 20px; }
 
-            .slide-upcoming { width: 35vw; }
-            .upcoming-text span { font-size: 0.85rem; }
+            .slide-upcoming { width: auto; min-width: min-content; }
+            .upcoming-text span { font-size: 1rem; }
+            .upcoming-logo { width: 80px; }
+            .upcoming-logo img { max-width: 80px; max-height: 70px; }
             
             .project-item { flex-direction: row; min-height: 260px; align-items: stretch; }
             
