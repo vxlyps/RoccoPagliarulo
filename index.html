@@ -274,6 +274,16 @@
             padding: 0;
         }
 
+        #upcoming-events .section-header {
+            border-bottom: var(--border-thick);
+            white-space: nowrap;
+        }
+
+        #upcoming-events h2 {
+            white-space: nowrap;
+            font-size: clamp(1.8rem, 6vw, 3.5rem);
+        }
+
         .slide-track-upcoming {
             animation: scroll-upcoming 30s linear infinite;
             display: flex;
@@ -281,14 +291,15 @@
         }
 
         .slide-upcoming {
-            height: 140px;
-            width: 50vw;
+            height: 120px;
+            width: auto;
+            min-width: min-content;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: flex-start;
             padding: 0 25px;
             border-right: var(--border-thin);
-            gap: 15px;
+            gap: 20px;
             flex-shrink: 0;
         }
 
@@ -297,17 +308,18 @@
             flex-direction: column;
             justify-content: center;
             gap: 2px;
-            flex: 1;
+            flex-shrink: 0;
         }
 
         .upcoming-text span {
             font-family: var(--font-body);
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            line-height: 1.4;
+            line-height: 1.5;
             color: var(--black);
+            white-space: nowrap;
         }
 
         .upcoming-logo {
@@ -315,11 +327,12 @@
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            width: 55px;
         }
 
         .upcoming-logo img {
-            max-width: 70px;
-            max-height: 60px;
+            max-width: 55px;
+            max-height: 50px;
             object-fit: contain;
         }
 
@@ -573,8 +586,8 @@
             
             .hero-container { height: 450px; padding: 20px; }
 
-            .slide-upcoming { width: 25vw; }
-            .upcoming-text span { font-size: 0.9rem; }
+            .slide-upcoming { width: 35vw; }
+            .upcoming-text span { font-size: 0.85rem; }
             
             .project-item { flex-direction: row; min-height: 260px; align-items: stretch; }
             
@@ -779,8 +792,38 @@
                         </div>
                     </div>
                     <div class="slide-upcoming">
+                        <a href="https://santedicola.com/" target="_blank" class="upcoming-logo">
+                            <img src="images/logo_santedicola.jpeg" alt="Logo Santedicola">
+                        </a>
+                        <div class="upcoming-text">
+                            <span>4 giugno</span>
+                            <span>Interspazi | design e fotografia</span>
+                            <span>Narhval Edizioni</span>
+                        </div>
+                    </div>
+                    <div class="slide-upcoming">
+                        <a href="https://www.narhvaledizioni.it/prodotto/i-mangiapatate/" target="_blank" class="upcoming-logo">
+                            <img src="images/mangiapatate.png" alt="Logo I Mangiapatate">
+                        </a>
+                        <div class="upcoming-text">
+                            <span>17 giugno</span>
+                            <span>Presentazione "I Mangiapatate"</span>
+                            <span>Narhval Edizioni</span>
+                        </div>
+                    </div>
+                    <div class="slide-upcoming">
+                        <a href="https://www.narhvaledizioni.it/prodotto/la-fata-delle-briciole/" target="_blank" class="upcoming-logo">
+                            <img src="images/fatedellebriciole.png" alt="Logo La Fata delle Briciole">
+                        </a>
+                        <div class="upcoming-text">
+                            <span>23 giugno</span>
+                            <span>Presentazione "La fata delle briciole"</span>
+                            <span>Narhval Edizioni</span>
+                        </div>
+                    </div>
+                    <div class="slide-upcoming">
                         <a href="https://www.instagram.com/rebisroma/" target="_blank" class="upcoming-logo">
-                            <img src="images/rebis_logo.jpeg" alt="Logo Rebis">
+                            <img src="images/logo_rebis.jpeg" alt="Logo Rebis">
                         </a>
                         <div class="upcoming-text">
                             <span>28 maggio</span>
@@ -789,23 +832,33 @@
                         </div>
                     </div>
                     <div class="slide-upcoming">
-                        <a href="https://www.instagram.com/rebisroma/" target="_blank" class="upcoming-logo">
-                            <img src="images/rebis_logo.jpeg" alt="Logo Rebis">
+                        <a href="https://santedicola.com/" target="_blank" class="upcoming-logo">
+                            <img src="images/logo_santedicola.jpeg" alt="Logo Santedicola">
                         </a>
                         <div class="upcoming-text">
-                            <span>28 maggio</span>
-                            <span>"Un palco per tutti"</span>
-                            <span>Martelive</span>
+                            <span>4 giugno</span>
+                            <span>Interspazi | design e fotografia</span>
+                            <span>Narhval Edizioni</span>
                         </div>
                     </div>
                     <div class="slide-upcoming">
-                        <a href="https://www.instagram.com/rebisroma/" target="_blank" class="upcoming-logo">
-                            <img src="images/rebis_logo.jpeg" alt="Logo Rebis">
+                        <a href="https://www.narhvaledizioni.it/prodotto/i-mangiapatate/" target="_blank" class="upcoming-logo">
+                            <img src="images/mangiapatate.png" alt="Logo I Mangiapatate">
                         </a>
                         <div class="upcoming-text">
-                            <span>28 maggio</span>
-                            <span>"Un palco per tutti"</span>
-                            <span>Martelive</span>
+                            <span>17 giugno</span>
+                            <span>Presentazione "I Mangiapatate"</span>
+                            <span>Narhval Edizioni</span>
+                        </div>
+                    </div>
+                    <div class="slide-upcoming">
+                        <a href="https://www.narhvaledizioni.it/prodotto/la-fata-delle-briciole/" target="_blank" class="upcoming-logo">
+                            <img src="images/fatedellebriciole.png" alt="Logo La Fata delle Briciole">
+                        </a>
+                        <div class="upcoming-text">
+                            <span>23 giugno</span>
+                            <span>Presentazione "La fata delle briciole"</span>
+                            <span>Narhval Edizioni</span>
                         </div>
                     </div>
                 </div>
