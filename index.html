@@ -192,7 +192,7 @@
         }
         .mobile-menu a.menu-link:hover { background-color: #e0ded7; }
 
-        /* BLOCCO LINGUA MOBILE (MIGLIORATO) */
+        /* BLOCCO LINGUA MOBILE */
         .mobile-lang-wrapper {
             border-top: var(--border-thick); 
             padding: 15px 0;
@@ -215,7 +215,7 @@
         .lang-link.active { opacity: 1; text-decoration: underline; text-underline-offset: 4px; }
 
 
-        /* --- SUB-HEADER (BARRA SOTTO HEADER) --- */
+        /* --- SUB-HEADER --- */
         .sub-header {
             background-color: var(--bg-color);
             color: var(--black);
@@ -232,7 +232,6 @@
             position: relative;
         }
         
-        /* Contenitore per i testi dei job */
         .sub-header-content {
             display: flex;
             flex-wrap: wrap;
@@ -243,7 +242,6 @@
         .sub-item { white-space: nowrap; letter-spacing: 1px; }
         .separator { display: none; }
 
-        /* Lingua nel sub-header (Nascosta su mobile) */
         .sub-header-lang {
             display: none; 
             font-weight: 700;
@@ -258,6 +256,7 @@
             overflow: hidden;
             padding: 15px; 
             background: var(--bg-color);
+            position: relative;
         }
         .hero-container img {
             width: 100%;
@@ -267,6 +266,38 @@
             display: block;
             filter: contrast(1.1); 
             border: 4px solid var(--black);
+        }
+
+        /* SLIDER EVENTI IN SOVRAIMPRESSIONE SULL'HERO */
+        .hero-events-slider {
+            position: absolute;
+            bottom: 30px;
+            left: 19px;
+            right: 19px;
+            overflow: hidden;
+            background-color: rgba(242, 240, 233, 0.85);
+            padding: 12px 0;
+        }
+
+        .slide-track-events {
+            display: flex;
+            width: max-content;
+            animation: scroll-events 20s linear infinite;
+        }
+
+        .slide-event {
+            font-family: var(--font-title);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            white-space: nowrap;
+            padding: 0 50px;
+            color: var(--accent-blue);
+            border-right: 2px solid var(--accent-blue);
+        }
+
+        @keyframes scroll-events {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
         /* --- SEZIONI --- */
@@ -303,7 +334,6 @@
         
         .project-img-wrapper { width: 100%; padding: 15px; background-color: var(--bg-color); }
         
-        /* AGGIORNATO PER INCLUDERE IL VIDEO E RIMUOVERE IL B/N */
         .project-img-wrapper img, 
         .project-img-wrapper video { 
             width: 100%; 
@@ -421,7 +451,6 @@
             height: 100%;
         }
 
-        /* Animazione Mobile */
         @keyframes scroll { 
             0% { transform: translateX(0); } 
             100% { transform: translateX(calc(-50vw * 8)); } 
@@ -515,6 +544,14 @@
             .sub-header-lang { display: block; } 
             
             .hero-container { height: 450px; padding: 20px; }
+
+            .hero-events-slider {
+                bottom: 35px;
+                left: 24px;
+                right: 24px;
+            }
+
+            .slide-event { font-size: 1.1rem; }
             
             .project-item { flex-direction: row; min-height: 260px; align-items: stretch; }
             
@@ -626,6 +663,18 @@
 
         <div class="hero-container">
             <img src="images/hero.jpg" alt="Abstract Texture">
+            <div class="hero-events-slider">
+                <div class="slide-track-events">
+                    <div class="slide-event">18 MAGGIO — "Un palco per tutti" di MArteLive</div>
+                    <div class="slide-event">4 GIUGNO — Interspazi | Design e Fotografia</div>
+                    <div class="slide-event">17 GIUGNO — Presentazione "I Mangiapatate"</div>
+                    <div class="slide-event">23 GIUGNO — Presentazione "La Fata delle Briciole"</div>
+                    <div class="slide-event">18 MAGGIO — "Un palco per tutti" di MArteLive</div>
+                    <div class="slide-event">4 GIUGNO — Interspazi | Design e Fotografia</div>
+                    <div class="slide-event">17 GIUGNO — Presentazione "I Mangiapatate"</div>
+                    <div class="slide-event">23 GIUGNO — Presentazione "La Fata delle Briciole"</div>
+                </div>
+            </div>
         </div>
 
         <section id="projects">
@@ -740,7 +789,7 @@
             </div>
             
             <div class="slider">
-             <div class="slide-track">
+                <div class="slide-track">
                     <div class="slide"><a href="https://www.narhvaledizioni.it/" target="_blank"><img src="images/logo_Narhval.png" alt="Logo Narhval"></a></div>
                     <div class="slide"><a href="https://www.monkroma.it/" target="_blank"><img src="images/logo_Monk.png" alt="Logo Monk"></a></div>
                     <div class="slide"><a href="https://www.instagram.com/bar.volo/" target="_blank"><img src="images/logo_barVolo.jpg" alt="Logo BarVolo"></a></div>
@@ -751,7 +800,6 @@
                     <div class="slide"><a href="https://www.exitwell.com/" target="_blank"><img src="images/logo_exitWell.jpeg" alt="Logo ExitWell"></a></div>
                     <div class="slide"><a href="https://archivioatena.com/" target="_blank"><img src="images/logo_ARCHIVIO_ATENA.png" alt="Logo Archivio Atena"></a></div>
                     <div class="slide"><img src="images/logo_Comune di Atena Lucana.svg" alt="Logo Comune di Atena Lucana"></div>
-                 
                     <div class="slide"><a href="https://www.narhvaledizioni.it/" target="_blank"><img src="images/logo_Narhval.png" alt="Logo Narhval"></a></div>
                     <div class="slide"><a href="https://www.monkroma.it/" target="_blank"><img src="images/logo_Monk.png" alt="Logo Monk"></a></div>
                     <div class="slide"><a href="https://www.instagram.com/bar.volo/" target="_blank"><img src="images/logo_barVolo.jpg" alt="Logo BarVolo"></a></div>
@@ -827,10 +875,8 @@ altri scatto foto, ogni giorno inseguo la musica.
             let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             
             if (scrollTop > lastScrollTop && scrollTop > 70) {
-                // Scendi -> Nascondi
                 header.classList.add('hide');
             } else {
-                // Sali -> Mostra
                 header.classList.remove('hide');
             }
             
@@ -842,7 +888,6 @@ altri scatto foto, ogni giorno inseguo la musica.
             var menu = document.getElementById("mobileMenu");
             var hamburger = document.querySelector(".hamburger");
 
-            // Se il menu è aperto E il click NON è sul menu E NON è sul burger
             if (menu.classList.contains('active') && !menu.contains(event.target) && !hamburger.contains(event.target)) {
                 menu.classList.remove("active");
             }
@@ -852,17 +897,12 @@ altri scatto foto, ogni giorno inseguo la musica.
         document.addEventListener("DOMContentLoaded", function() {
             const slides = document.querySelectorAll('#eventSlideshow .slide-img');
             let currentSlide = 0;
-            const slideInterval = 3000; // Tempo in millisecondi (3 secondi)
+            const slideInterval = 3000;
 
             if(slides.length > 0) {
                 setInterval(() => {
-                    // Rimuovi active dall'attuale
                     slides[currentSlide].classList.remove('active');
-                    
-                    // Incrementa indice
                     currentSlide = (currentSlide + 1) % slides.length;
-                    
-                    // Aggiungi active al nuovo
                     slides[currentSlide].classList.add('active');
                 }, slideInterval);
             }
