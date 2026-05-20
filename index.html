@@ -673,6 +673,20 @@
             
             .footer-credits { flex-direction: row; justify-content: center; gap: 15px; padding: 25px; }
         }
+
+        #about-contact-row .section-header:hover h2 {
+            color: var(--accent-blue) !important;
+        }
+
+        @media (max-width: 899px) {
+            #about-contact-row > div {
+                flex-direction: column !important;
+            }
+            #about-contact-row > div > div:first-child {
+                border-right: none !important;
+                border-bottom: 2px solid var(--black);
+            }
+        }
     </style>
 </head>
 <body>
@@ -873,7 +887,7 @@
                     </div>
                     <div class="slide-upcoming">
                         <a href="https://www.narhvaledizioni.it/prodotto/i-mangiapatate/" target="_blank" class="upcoming-logo">
-                            <img src="images/mangiapatate.png" alt="Logo I Mangiapatate">
+                            <img src="images/mangiapatate.jpg" alt="Logo I Mangiapatate">
                         </a>
                         <div class="upcoming-text">
                             <span>17 giugno</span>
@@ -883,7 +897,7 @@
                     </div>
                     <div class="slide-upcoming">
                         <a href="https://www.narhvaledizioni.it/prodotto/la-fata-delle-briciole/" target="_blank" class="upcoming-logo">
-                            <img src="images/fatedellebriciole.png" alt="Logo La Fata delle Briciole">
+                            <img src="images/fatedellebriciole.jpg" alt="Logo La Fata delle Briciole">
                         </a>
                         <div class="upcoming-text">
                             <span>23 giugno</span>
@@ -960,39 +974,41 @@
             </div>
         </section>
 
-        <section id="intro">
-            <div class="section-header" onclick="toggleIntro()" style="cursor: pointer;">
-                <h2>CHI SONO</h2>
-                <div class="filler-bar" id="intro-bar"></div>
-            </div>
-            <div class="intro-text" id="introText" style="display: none;">
+                <section id="about-contact-row" style="border-bottom: var(--border-thick);">
+            <div style="display: flex; width: 100%;">
+                <!-- ABOUT BLOCK -->
+                <div style="flex: 1; border-right: 2px solid var(--black);">
+                    <div class="section-header" onclick="toggleAbout()" style="cursor: pointer; background-color: var(--black); padding: 15px 20px;">
+                        <h2 style="color: var(--white); transition: color 0.3s;" id="about-title">ABOUT</h2>
+                        <div class="filler-bar" id="about-bar" style="background-color: var(--white);"></div>
+                    </div>
+                    <div class="intro-text" id="aboutText" style="display: none;">
 Attivo nel mondo associativo e nella promozione di iniziative ad impatto locale, per studio e vocazione. 
 Progettista e coordinatore di eventi culturali.
 Come agente e manager supporto registri e videomaker Indipendenti.
 Alcuni giorni salgo in cattedra come docente di statistica, 
 altri scatto foto, ogni giorno inseguo la musica.
-            </div>
-        </section>
-
-        <section id="contact">
-            <div class="section-header" onclick="toggleContact()" style="cursor: pointer;">
-                <h2>CONTACT</h2>
-                <div class="filler-bar" id="contact-bar"></div>
-            </div>
-
-            <div id="contactContent" style="display: none;">
-                <div class="contact-content-wrapper">
-                    <div class="contact-face-wrapper">
-                        <img src="images/rocco_face.jpg" alt="Rocco Pagliarulo" class="contact-face">
                     </div>
-
-                    <div class="contact-info-wrapper">
-                        <div class="contact-row">EMAIL: <a href="mailto:info@roccopagliarulo.it">INFO@ROCCOPAGLIARULO.IT</a></div>
-                        <div class="contact-row">PHONE: <a href="tel:+393207060913">+39 3207060913</a></div>
-                        <div class="contact-row"> BASED IN ROME</div>
-                        
-                        <div class="social-row">
-                            <a href="https://instagram.com/rocc.mann" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+                <!-- CONTACT BLOCK -->
+                <div style="flex: 1;">
+                    <div class="section-header" onclick="toggleContact()" style="cursor: pointer; background-color: var(--black); padding: 15px 20px;">
+                        <h2 style="color: var(--white); transition: color 0.3s;" id="contact-title">CONTACT</h2>
+                        <div class="filler-bar" id="contact-bar" style="background-color: var(--white);"></div>
+                    </div>
+                    <div id="contactContent" style="display: none;">
+                        <div class="contact-content-wrapper">
+                            <div class="contact-face-wrapper">
+                                <img src="images/rocco_face.jpg" alt="Rocco Pagliarulo" class="contact-face">
+                            </div>
+                            <div class="contact-info-wrapper">
+                                <div class="contact-row">EMAIL: <a href="mailto:info@roccopagliarulo.it">INFO@ROCCOPAGLIARULO.IT</a></div>
+                                <div class="contact-row">PHONE: <a href="tel:+3.93207060913e+11">+39 3.207060913e+09</a></div>
+                                <div class="contact-row"> BASED IN ROME</div>
+                                <div class="social-row">
+                                    <a href="https://instagram.com/rocc.mann" target="_blank"><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1008,9 +1024,9 @@ altri scatto foto, ogni giorno inseguo la musica.
     </div>
 
     <script>
-        function toggleIntro() {
-            var text = document.getElementById("introText");
-            var bar = document.getElementById("intro-bar");
+        function toggleAbout() {
+            var text = document.getElementById("aboutText");
+            var bar = document.getElementById("about-bar");
             if (text.style.display === "none") {
                 text.style.display = "block";
                 bar.style.backgroundColor = "var(--accent-blue)";
