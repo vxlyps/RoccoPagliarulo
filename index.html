@@ -214,7 +214,6 @@
         }
         .lang-link.active { opacity: 1; text-decoration: underline; text-underline-offset: 4px; }
 
-
         /* --- SUB-HEADER --- */
         .sub-header {
             background-color: var(--bg-color);
@@ -375,6 +374,12 @@
         
         .project-img-wrapper { width: 100%; padding: 15px; background-color: var(--bg-color); }
         
+        .project-img-wrapper a {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        
         .project-img-wrapper img, 
         .project-img-wrapper video { 
             width: 100%; 
@@ -496,7 +501,6 @@
             0% { transform: translateX(0); } 
             100% { transform: translateX(calc(-50vw * 8)); } 
         }
-
 
         /* ABOUT / CONTACT tabs */
         .about-contact-tabs {
@@ -629,7 +633,7 @@
             .sub-header-lang { display: block; } 
             
             .hero-container { height: 450px; padding: 20px; }
-
+            
             .slide-upcoming { width: auto; min-width: min-content; }
             .upcoming-text span { font-size: 1rem; }
             .upcoming-logo { width: 80px; }
@@ -757,10 +761,12 @@
             <div class="projects-wrapper">
                 <article class="project-item">
                     <div class="project-img-wrapper">
-                         <video autoplay loop muted playsinline>
-                            <source src="images/Video_sito_narhval.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
+                         <a href="https://www.instagram.com/narhvaledizioni/">
+                            <video autoplay loop muted playsinline>
+                                <source src="images/Video_sito_narhval.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </a>
                     </div>
                     <div class="project-content">
                         <div>
@@ -779,7 +785,9 @@
 
                 <article class="project-item">
                     <div class="project-img-wrapper">
-                        <img src="images/Uragano.jpg" alt="Uragano Revue">
+                        <a href="https://www.instagram.com/martelive__/">
+                            <img src="images/Uragano.jpg" alt="Uragano Revue">
+                        </a>
                     </div>
                     <div class="project-content">
                         <div>
@@ -798,10 +806,12 @@
 
                 <article class="project-item">
                     <div class="project-img-wrapper">
-                         <video autoplay loop muted playsinline>
-                            <source src="images/MASKARA.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
+                         <a href="https://www.youtube.com/watch?v=Jr6r6PKVDSw">
+                            <video autoplay loop muted playsinline>
+                                <source src="images/MASKARA.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </a>
                     </div>
                     <div class="project-content">
                         <div>
@@ -985,7 +995,6 @@
 
             <div class="about-contact-body">
                 <div class="intro-text" id="aboutContent" style="display: none;">Attivo nel mondo associativo e nella promozione di iniziative ad impatto locale, per studio e vocazione. Progettista e coordinatore di eventi culturali. Come agente e manager supporto registri e videomaker Indipendenti. Alcuni giorni salgo in cattedra come docente di statistica, altri scatto foto, ogni giorno inseguo la musica.</div>
-
                 <div id="contactContent" style="display: none;">
                     <div class="contact-content-wrapper">
                         <div class="contact-face-wrapper">
