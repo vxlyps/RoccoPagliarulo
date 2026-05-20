@@ -336,6 +336,28 @@
             object-fit: contain;
         }
 
+        #intro .section-header,
+        #contact .section-header {
+            background-color: var(--black);
+            padding: 15px 20px;
+        }
+
+        #intro .section-header h2,
+        #contact .section-header h2 {
+            color: var(--white);
+            transition: color 0.3s;
+        }
+
+        #intro .section-header:hover h2,
+        #contact .section-header:hover h2 {
+            color: var(--accent-blue);
+        }
+
+        #intro .section-header .filler-bar,
+        #contact .section-header .filler-bar {
+            background-color: var(--white);
+        }
+
         @keyframes scroll-upcoming {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
@@ -539,7 +561,7 @@
             border-top: var(--border-thick);
             background-color: var(--bg-color);
             color: var(--black);
-            padding: 30px 20px;
+            padding: 15px 20px;
             text-align: center;
             font-family: var(--font-body);
             font-weight: 400;
@@ -548,7 +570,7 @@
             letter-spacing: 1px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 5px;
             line-height: 1.5;
             opacity: 0.7;
         }
@@ -712,10 +734,12 @@
             <div class="projects-wrapper">
                 <article class="project-item">
                     <div class="project-img-wrapper">
+                        <a href="https://www.instagram.com/narhvaledizioni/" target="_blank">
                          <video autoplay loop muted playsinline>
                             <source src="images/Video_sito_narhval.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
+                        </a>
                     </div>
                     <div class="project-content">
                         <div>
@@ -734,7 +758,9 @@
 
                 <article class="project-item">
                     <div class="project-img-wrapper">
-                        <img src="images/Uragano.jpg" alt="Uragano Revue">
+                        <a href="https://www.instagram.com/martelive__/" target="_blank">
+                            <img src="images/Uragano.jpg" alt="Uragano Revue">
+                        </a>
                     </div>
                     <div class="project-content">
                         <div>
@@ -753,10 +779,12 @@
 
                 <article class="project-item">
                     <div class="project-img-wrapper">
+                        <a href="https://www.youtube.com/watch?v=Jr6r6PKVDSw" target="_blank">
                          <video autoplay loop muted playsinline>
                             <source src="images/MASKARA.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
+                        </a>
                     </div>
                     <div class="project-content">
                         <div>
@@ -805,17 +833,17 @@
                     </div>
                     <div class="slide-upcoming">
                         <a href="https://www.narhvaledizioni.it/prodotto/i-mangiapatate/" target="_blank" class="upcoming-logo">
-                            <img src="images/mangiapatate.jpg" alt="Logo I Mangiapatate">
+                            <img src="images/mangiapatate.png" alt="Logo I Mangiapatate">
                         </a>
                         <div class="upcoming-text">
-                            <span>12 giugno</span>
+                            <span>17 giugno</span>
                             <span>Presentazione "I Mangiapatate"</span>
                             <span>Narhval Edizioni</span>
                         </div>
                     </div>
                     <div class="slide-upcoming">
                         <a href="https://www.narhvaledizioni.it/prodotto/la-fata-delle-briciole/" target="_blank" class="upcoming-logo">
-                            <img src="images/fatadellebriciole.jpg" alt="Logo La Fata delle Briciole">
+                            <img src="images/fatedellebriciole.png" alt="Logo La Fata delle Briciole">
                         </a>
                         <div class="upcoming-text">
                             <span>23 giugno</span>
@@ -845,7 +873,7 @@
                     </div>
                     <div class="slide-upcoming">
                         <a href="https://www.narhvaledizioni.it/prodotto/i-mangiapatate/" target="_blank" class="upcoming-logo">
-                            <img src="images/mangiapatate.jpg" alt="Logo I Mangiapatate">
+                            <img src="images/mangiapatate.png" alt="Logo I Mangiapatate">
                         </a>
                         <div class="upcoming-text">
                             <span>17 giugno</span>
@@ -855,7 +883,7 @@
                     </div>
                     <div class="slide-upcoming">
                         <a href="https://www.narhvaledizioni.it/prodotto/la-fata-delle-briciole/" target="_blank" class="upcoming-logo">
-                            <img src="images/fatadellebriciole.png" alt="Logo La Fata delle Briciole">
+                            <img src="images/fatedellebriciole.png" alt="Logo La Fata delle Briciole">
                         </a>
                         <div class="upcoming-text">
                             <span>23 giugno</span>
@@ -933,10 +961,11 @@
         </section>
 
         <section id="intro">
-            <div class="section-header">
+            <div class="section-header" onclick="toggleIntro()" style="cursor: pointer;">
                 <h2>CHI SONO</h2>
+                <div class="filler-bar" id="intro-bar"></div>
             </div>
-            <div class="intro-text">
+            <div class="intro-text" id="introText" style="display: none;">
 Attivo nel mondo associativo e nella promozione di iniziative ad impatto locale, per studio e vocazione. 
 Progettista e coordinatore di eventi culturali.
 Come agente e manager supporto registri e videomaker Indipendenti.
@@ -946,23 +975,25 @@ altri scatto foto, ogni giorno inseguo la musica.
         </section>
 
         <section id="contact">
-            <div class="section-header">
+            <div class="section-header" onclick="toggleContact()" style="cursor: pointer;">
                 <h2>CONTACT</h2>
-                <div class="filler-bar"></div>
+                <div class="filler-bar" id="contact-bar"></div>
             </div>
 
-            <div class="contact-content-wrapper">
-                <div class="contact-face-wrapper">
-                    <img src="images/rocco_face.jpg" alt="Rocco Pagliarulo" class="contact-face">
-                </div>
+            <div id="contactContent" style="display: none;">
+                <div class="contact-content-wrapper">
+                    <div class="contact-face-wrapper">
+                        <img src="images/rocco_face.jpg" alt="Rocco Pagliarulo" class="contact-face">
+                    </div>
 
-                <div class="contact-info-wrapper">
-                    <div class="contact-row">EMAIL: <a href="mailto:info@roccopagliarulo.it">INFO@ROCCOPAGLIARULO.IT</a></div>
-                    <div class="contact-row">PHONE: <a href="tel:+393207060913">+39 3207060913</a></div>
-                    <div class="contact-row"> BASED IN ROME</div>
-                    
-                    <div class="social-row">
-                        <a href="https://instagram.com/rocc.mann" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <div class="contact-info-wrapper">
+                        <div class="contact-row">EMAIL: <a href="mailto:info@roccopagliarulo.it">INFO@ROCCOPAGLIARULO.IT</a></div>
+                        <div class="contact-row">PHONE: <a href="tel:+393207060913">+39 3207060913</a></div>
+                        <div class="contact-row"> BASED IN ROME</div>
+                        
+                        <div class="social-row">
+                            <a href="https://instagram.com/rocc.mann" target="_blank"><i class="fab fa-instagram"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -977,6 +1008,30 @@ altri scatto foto, ogni giorno inseguo la musica.
     </div>
 
     <script>
+        function toggleIntro() {
+            var text = document.getElementById("introText");
+            var bar = document.getElementById("intro-bar");
+            if (text.style.display === "none") {
+                text.style.display = "block";
+                bar.style.backgroundColor = "var(--accent-blue)";
+            } else {
+                text.style.display = "none";
+                bar.style.backgroundColor = "var(--black)";
+            }
+        }
+
+        function toggleContact() {
+            var content = document.getElementById("contactContent");
+            var bar = document.getElementById("contact-bar");
+            if (content.style.display === "none") {
+                content.style.display = "block";
+                bar.style.backgroundColor = "var(--accent-blue)";
+            } else {
+                content.style.display = "none";
+                bar.style.backgroundColor = "var(--black)";
+            }
+        }
+
         function toggleMenu() {
             var menu = document.getElementById("mobileMenu");
             menu.classList.toggle("active");
