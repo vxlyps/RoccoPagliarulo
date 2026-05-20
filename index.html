@@ -497,50 +497,6 @@
             100% { transform: translateX(calc(-50vw * 8)); } 
         }
 
-
-        /* ABOUT / CONTACT tabs */
-        .about-contact-tabs {
-            display: flex;
-            width: 100%;
-            border-top: var(--border-thick);
-        }
-
-        .about-contact-tab {
-            background-color: var(--black);
-            color: var(--white);
-            padding: 15px 20px;
-            font-family: var(--font-title);
-            font-size: clamp(1.8rem, 7vw, 3.5rem);
-            text-transform: uppercase;
-            line-height: 0.9;
-            cursor: pointer;
-            flex: 1;
-            transition: color 0.3s;
-            border: none;
-            outline: none;
-        }
-
-        .about-contact-tab:first-child {
-            text-align: left;
-            border-right: var(--border-thick);
-        }
-
-        .about-contact-tab:last-child {
-            text-align: right;
-        }
-
-        .about-contact-tab:hover {
-            color: var(--accent-blue);
-        }
-
-        .about-contact-tab.active {
-            color: var(--accent-blue);
-        }
-
-        .about-contact-body {
-            border-top: var(--border-thick);
-        }
-
         /* --- CONTACT MOBILE --- */
         #contact { border-bottom: none; padding-bottom: 0; }
         .contact-content-wrapper { display: flex; flex-direction: column; padding: 20px; gap: 20px; background-color: var(--bg-color); }
@@ -671,9 +627,8 @@
                 100% { transform: translateX(calc(-25vw * 8)); } 
             }
 
-            .about-contact-tab { padding: 15px 30px; }
             .contact-content-wrapper { flex-direction: row; padding: 0; gap: 0; border-top: var(--border-thick); }
-            .contact-face-wrapper { width: 40%; padding: 40px; background-color: var(--bg-color); border-right: var(--border-thick); margin-bottom: 0; }
+            .contact-face-wrapper { width: 40%; padding: 40px; background-color: var(--black); border-right: var(--border-thick); margin-bottom: 0; }
             .contact-face { width: 100%; height: auto; max-width: 250px; border: 5px solid var(--bg-color); }
             .contact-info-wrapper { width: 60%; padding: 40px; background-color: var(--bg-color); align-items: stretch; justify-content: center; }
             
@@ -808,7 +763,7 @@
                             <div class="project-title">Talent Agent and Manager</div>
                             <div class="project-subtitle">DI REGISTI E VIDEOMAKER INDIPENDENTI</div>
                             <p class="project-desc">
-                                Supporto la crescita di carriere per registi e videomaker indipendenti, gestendo rappresentanza, negoziazione contratti e strategie su misura, con un'attenzione costante alla loro piena libertà creativa
+                                Supporto la crescita di carriere per registi e videomaker indipendenti, gestendo rappresentanza, negoziazione contratti e strategie su misura, con un'attenzione costante alla loro piena libertÃ  creativa
                             </p>
                         </div>
                         <div style="display: flex; gap: 15px; flex-wrap: wrap;">
@@ -937,7 +892,7 @@
                             <div class="project-subtitle">7 FEBBRAIO 2026</div>
                             <p class="project-desc">
                                 <a href="https://www.instagram.com/archivio.atena/" target="_blank" style="color: var(--accent-blue); text-decoration: underline;">Archivio Atena</a><br>
-                                Interspazi | Confluenze è un luogo di possibilità, un luogo da attraversare, in cui sostare e, per un attimo, fuggire dall'ordinario.
+                                Interspazi | Confluenze Ã¨ un luogo di possibilitÃ , un luogo da attraversare, in cui sostare e, per un attimo, fuggire dall'ordinario.
                             </p>
                         </div>
                     </div>
@@ -977,26 +932,37 @@
             </div>
         </section>
 
-        <section id="about-contact">
-            <div class="about-contact-tabs">
-                <button class="about-contact-tab" id="tab-about" onclick="toggleTab('about')">ABOUT</button>
-                <button class="about-contact-tab" id="tab-contact" onclick="toggleTab('contact')">CONTACT</button>
+        <section id="intro">
+            <div class="section-header">
+                <h2>CHI SONO</h2>
+            </div>
+            <div class="intro-text">
+Attivo nel mondo associativo e nella promozione di iniziative ad impatto locale, per studio e vocazione. 
+Progettista e coordinatore di eventi culturali.
+Come agente e manager supporto registri e videomaker Indipendenti.
+Alcuni giorni salgo in cattedra come docente di statistica, 
+altri scatto foto, ogni giorno inseguo la musica.
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="section-header">
+                <h2>CONTACT</h2>
+                <div class="filler-bar"></div>
             </div>
 
-            <div class="about-contact-body">
-                <div class="intro-text" id="aboutContent" style="display: none;">Attivo nel mondo associativo e nella promozione di iniziative ad impatto locale, per studio e vocazione. Progettista e coordinatore di eventi culturali. Come agente e manager supporto registri e videomaker Indipendenti. Alcuni giorni salgo in cattedra come docente di statistica, altri scatto foto, ogni giorno inseguo la musica.</div>
+            <div class="contact-content-wrapper">
+                <div class="contact-face-wrapper">
+                    <img src="images/rocco_face.jpg" alt="Rocco Pagliarulo" class="contact-face">
+                </div>
 
-                <div id="contactContent" style="display: none;">
-                    <div class="contact-content-wrapper">
-                        <div class="contact-face-wrapper">
-                            <img src="images/rocco_face.jpg" alt="Rocco Pagliarulo" class="contact-face">
-                        </div>
-                        <div class="contact-info-wrapper">
-                            <div class="contact-row">EMAIL: <a href="mailto:info@roccopagliarulo.it">INFO@ROCCOPAGLIARULO.IT</a></div>
-                            <div class="contact-row">PHONE: <a href="tel:+393207060913">+39 3207060913</a></div>
-                            <div class="contact-row">BASED IN ROME</div>
-                            <div class="social-row"><a href="https://instagram.com/rocc.mann" target="_blank"><i class="fab fa-instagram"></i></a></div>
-                        </div>
+                <div class="contact-info-wrapper">
+                    <div class="contact-row">EMAIL: <a href="mailto:info@roccopagliarulo.it">INFO@ROCCOPAGLIARULO.IT</a></div>
+                    <div class="contact-row">PHONE: <a href="tel:+393207060913">+39 3207060913</a></div>
+                    <div class="contact-row"> BASED IN ROME</div>
+                    
+                    <div class="social-row">
+                        <a href="https://instagram.com/rocc.mann" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -1005,34 +971,12 @@
         <div class="footer-credits">
             <span>&copy;<span id="year"></span> ROCCO PAGLIARULO</span>
             <span class="separator">|</span>
-            <span>SITE BY <a href="https://instagram.com/vxly.ps" target="_blank">@VXLY.PS</a> ⭐️🧑🏼‍💻🦈</span>
+            <span>SITE BY <a href="https://instagram.com/vxly.ps" target="_blank">@VXLY.PS</a> â­ï¸ðŸ§‘ðŸ¼â€ðŸ’»ðŸ¦ˆ</span>
         </div>
 
     </div>
 
     <script>
-
-        function toggleTab(tab) {
-            var aboutContent = document.getElementById('aboutContent');
-            var contactContent = document.getElementById('contactContent');
-            var aboutTab = document.getElementById('tab-about');
-            var contactTab = document.getElementById('tab-contact');
-
-            if (tab === 'about') {
-                var isOpen = aboutContent.style.display === 'block';
-                aboutContent.style.display = isOpen ? 'none' : 'block';
-                contactContent.style.display = 'none';
-                aboutTab.classList.toggle('active', !isOpen);
-                contactTab.classList.remove('active');
-            } else if (tab === 'contact') {
-                var isOpen = contactContent.style.display === 'block';
-                contactContent.style.display = isOpen ? 'none' : 'block';
-                aboutContent.style.display = 'none';
-                contactTab.classList.toggle('active', !isOpen);
-                aboutTab.classList.remove('active');
-            }
-        }
-
         function toggleMenu() {
             var menu = document.getElementById("mobileMenu");
             menu.classList.toggle("active");
