@@ -678,21 +678,22 @@
             .about-contact-tab { padding: 15px 30px; }
             .contact-content-wrapper { flex-direction: row; padding: 0; gap: 0; border-top: var(--border-thick); }
             .contact-face-wrapper { width: 40%; padding: 40px; background-color: var(--bg-color); border-right: var(--border-thick); margin-bottom: 0; }
-            .contact-face { width: 100%; height: auto; max-width: 250px; border: 5px solid var(--bg-color); }
+            .contact-face { width: 100%; height: auto; max-width: 250px; border: var(--border-thick); }
             .contact-info-wrapper { width: 60%; padding: 40px; background-color: var(--bg-color); align-items: stretch; justify-content: center; }
             
             .contact-row { 
                 text-align: left; 
-                background-color: transparent; 
-                color: var(--black); 
+                background-color: var(--black); 
+                color: var(--white); 
                 border: none;
-                padding: 15px 0; 
-                border-bottom: var(--border-thin); 
+                padding: 15px; 
+                border-bottom: none; 
                 font-weight: 500; 
                 transition: color 0.3s;
+                margin-bottom: 10px;
             }
-            .contact-row:hover { background-color: transparent; color: var(--accent-blue); }
-            .contact-row a { color: var(--black); }
+            .contact-row:hover { background-color: var(--black); color: var(--accent-blue); }
+            .contact-row a { color: var(--white); }
             .contact-row:hover a { color: var(--accent-blue); }
             .contact-row:last-child { border-bottom: none; }
             
