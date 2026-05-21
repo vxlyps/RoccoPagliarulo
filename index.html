@@ -1,756 +1,1096 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Rocco Pagliarulo - Portfolio</title>
-
-<link rel="icon" type="image/png" href="images/favicon_RP.png">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:ital,wght@0,400;0,500;0,700;0,800;1,400;1,500;1,700&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-<style>
-:root {
---bg-color: #F2F0E9; /* Beige Carta */
---black: #000000;
---white: #ffffff;
---accent-blue: #1a3cba;
---border-thick: 4px solid var(--black);
---border-thin: 2px solid var(--black);
-
-/* Tipografia */
---font-title: 'Archivo Black', sans-serif;
---font-body: 'Space Mono', monospace;
-}
-
-html {
-scroll-behavior: smooth;
-}
-
-* {
-box-sizing: border-box;
-margin: 0;
-padding: 0;
-}
-
-/* EFFETTO INVECCHIATO */
-body::after {
-content: "";
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-pointer-events: none;
-z-index: 9999;
-background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E");
-backdrop-filter: blur(0.2px);
-box-shadow: inset 0 0 80px rgba(0,0,0,0.1);
-mix-blend-mode: multiply;
-transition: all 0.3s ease;
-}
-
-body {
-background-color: var(--bg-color);
-color: var(--black);
-font-family: var(--font-body);
-padding: 10px;
-display: flex;
-justify-content: center;
-min-height: 100vh;
-overflow-x: hidden;
-position: relative;
-}
-
-.container {
-width: 100%;
-max-width: 1100px;
-border: var(--border-thick);
-background-color: var(--bg-color);
-display: flex;
-flex-direction: column;
-position: relative;
-z-index: 1;
-}
-
-/* --- HEADER SECTION --- */
-header {
-display: flex;
-width: 100%;
-min-height: 70px;
-border-bottom: var(--border-thick);
-background-color: var(--bg-color);
-z-index: 1000;
-position: sticky;
-top: 0;
-transition: transform 0.4s ease-in-out;
-align-items: stretch;
-}
-
-header.hide {
-transform: translateY(-100%);
-}
-
-.title-block {
-background-color: var(--black);
-color: var(--white);
-padding: 15px;
-flex-grow: 1;
-display: flex;
-align-items: center;
-flex-wrap: wrap;
-}
-
-.menu-block {
-background-color: var(--bg-color);
-width: 70px;
-min-width: 70px;
-display: flex;
-justify-content: center;
-align-items: center;
-border-left: var(--border-thick);
-align-self: stretch;
-}
-
-h1 {
-font-family: var(--font-title);
-text-transform: uppercase;
-margin: 0;
-line-height: 0.95;
-font-size: clamp(2rem, 6vw, 4rem);
-width: 100%;
-word-wrap: break-word;
-}... h1 a {
-text-decoration: none;
-color: inherit;
-transition: color 0.3s ease;
-}
-h1 a:hover {
-color: var(--accent-blue);
-}
-
-.hamburger {
-width: 30px;
-height: 22px;
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-cursor: pointer;
-z-index: 100;
-}
-
-.hamburger span {
-display: block;
-height: 3px;
-background: var(--black);
-width: 100%;
-}
-
-/* --- MENU A TENDINA (MOBILE) --- */
-.mobile-menu {
-display: none;
-position: fixed;
-top: 70px;
-right: 10px;
-width: 200px;
-background-color: var(--bg-color);
-border: var(--border-thick);
-z-index: 990;
-flex-direction: column;
-transition: opacity 0.3s ease;
-box-shadow: 10px 10px 0px rgba(0,0,0,0.2);
-}
-
-.mobile-menu.active { display: flex; }
-
-header.hide ~ .mobile-menu {
-opacity: 0;
-pointer-events: none;
-}
-
-.mobile-menu-links {
-padding: 10px 0;
-display: flex;
-flex-direction: column;
-}
-
-.mobile-menu a.menu-link {
-font-family: var(--font-body);
-font-weight: 700;
-font-size: 0.9rem;
-color: var(--black);
-text-decoration: none;
-text-transform: uppercase;
-padding: 12px 20px;
-transition: background 0.2s;
-}
-.mobile-menu a.menu-link:hover { background-color: #e0ded7; }
-
-/* BLOCCO LINGUA MOBILE */
-.mobile-lang-wrapper {
-border-top: var(--border-thick);
-padding: 15px 0;
-display: flex;
-justify-content: center;
-align-items: center;
-gap: 15px;
-background-color: var(--bg-color);
-}
-
-.lang-link {
-font-family: var(--font-body);
-font-weight: 700;
-font-size: 0.9rem;
-text-decoration: none;
-color: var(--black);
-opacity: 0.5;
-transition: all 0.3s;
-}
-.lang-link.active { opacity: 1; text-decoration: underline; text-underline-offset: 4px; }
-
-/* --- SUB-HEADER --- */
-.sub-header {
-background-color: var(--bg-color);
-color: var(--black);
-border-bottom: var(--border-thin);
-padding: 12px 15px;
-font-family: var(--font-body);
-font-weight: 800;
-font-size: 0.7rem;
-text-transform: uppercase;
-line-height: 1.4;
-display: flex;
-justify-content: center;
-align-items: center;
-position: relative;
-}
-
-.sub-header-content {
-display: flex;
-flex-wrap: wrap;
-justify-content: center;
-gap: 5px 10px;
-}
-
-.sub-item { white-space: nowrap; letter-spacing: 1px; }
-.separator { display: none; }
-
-.sub-header-lang {
-display: none;
-font-weight: 700;
-font-size: 0.85rem;
-margin-left: auto;
-}
-
-/* HERO IMAGE */
-.hero-container {
-width: 100%;
-height: 250px;
-overflow: hidden;
-padding: 15px;
-background: var(--bg-color);
-position: relative;
-}
-.hero-container img {
-width: 100%;
-height: 100%;
-object-fit: cover;
-object-position: center;
-display: block;
-filter: contrast(1.1);
-border: 4px solid var(--black);
-}
-
-/* --- UPCOMING EVENTS SLIDER --- */
-#upcoming-events {
-overflow: hidden;
-padding: 0;
-}
-
-#upcoming-events .section-header {
-border-bottom: var(--border-thick);
-white-space: nowrap;
-}
-
-#upcoming-events h2 {
-white-space: nowrap;
-font-size: clamp(1.8rem, 6vw, 3.5rem);
-}... .slide-track-upcoming {
-animation: scroll-upcoming 30s linear infinite;
-display: flex;
-width: max-content;
-}
-
-.slide-upcoming {
-height: 120px;
-width: auto;
-min-width: min-content;
-display: flex;
-align-items: center;
-justify-content: flex-start;
-padding: 0 25px;
-border-right: var(--border-thin);
-gap: 20px;
-flex-shrink: 0;
-}
-
-.upcoming-text {
-display: flex;
-flex-direction: column;
-justify-content: center;
-gap: 2px;
-flex-shrink: 0;
-}
-
-.upcoming-text span {
-font-family: var(--font-body);
-font-size: 0.8rem;
-font-weight: 700;
-text-transform: uppercase;
-letter-spacing: 0.5px;
-line-height: 1.5;
-color: var(--black);
-white-space: nowrap;
-}
-
-.upcoming-logo {
-display: flex;
-align-items: center;
-justify-content: center;
-flex-shrink: 0;
-width: 70px;
-}
-
-.upcoming-logo img {
-max-width: 70px;
-max-height: 60px;
-object-fit: contain;
-}
-
-@keyframes scroll-upcoming {
-0% { transform: translateX(0); }
-100% { transform: translateX(-50%); }
-}
-
-/* --- SEZIONI --- */
-section { border-bottom: var(--border-thick); }
-
-.section-header { padding: 15px 20px; display: flex; align-items: center; gap: 15px; }
-
-h2 {
-font-family: var(--font-title);
-color: var(--accent-blue);
-font-size: clamp(1.8rem, 7vw, 3.5rem);
-text-transform: uppercase;
-margin: 0;
-line-height: 0.9;
-white-space: normal;
-word-break: break-word;
-}
-
-.filler-bar { flex-grow: 1; height: 30px; background-color: var(--black); }
-
-.intro-text {
-padding: 20px 20px 30px 20px;
-font-family: var(--font-body);
-font-size: 0.9rem;
-line-height: 1.6;
-text-align: left;
-font-weight: 500;
-}
-
-/* Projects */
-.projects-wrapper { border-top: var(--border-thick); }
-.project-item { display: flex; flex-direction: column; border-bottom: var(--border-thin); }
-.project-item:last-child { border-bottom: none; }
-
-.project-img-wrapper { width: 100%; padding: 15px; background-color: var(--bg-color); }
-
-.project-img-wrapper a {
-display: block;
-width: 100%;
-height: 100%;
-}
-
-.project-img-wrapper img,
-.project-img-wrapper video {
-width: 100%;
-height: 180px;
-object-fit: cover;
-display: block;
-border: 4px solid black;
-}
-
-/* --- STILE SPECIFICO PER SLIDESHOW NEXT EVENTS --- */
-.event-slideshow-wrapper {
-position: relative;
-padding: 15px;
-width: 100%;
-height: auto !important;
-display: flex;
-align-items: center;
-}
-
-.slideshow-container {
-width: 100%;
-aspect-ratio: 4 / 5;
-position: relative;
-overflow: hidden;
-border: 2px solid var(--black);
-background-color: var(--black);
-}
-
-.slide-img {
-position: absolute;
-top: 0;
-left: 0;
-width: 100% !important;
-height: 100% !important;
-max-height: none !important;
-object-fit: cover !important;
-opacity: 0;
-transition: opacity 1.5s ease-in-out;
-border: none;
-display: block;
-}
-
-.slide-img.active {
-opacity: 1;
-}
-
-.project-content { padding: 15px; padding-top: 5px; display: flex; flex-direction: column; justify-content: space-between; gap: 8px; }
-.project-title { font-family: var(--font-title); font-size: 1.8rem; text-transform: uppercase; line-height: 1; margin-bottom: 3px; }
-.project-subtitle { font-family: var(--font-body); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin-bottom: 3px; }
-.project-desc { font-family: var(--font-body); font-size: 0.85rem; margin-bottom: 12px; line-height: 1.4; font-weight: 500; }
-
-.btn {
-background-color: var(--accent-blue);
-color: white;
-padding: 10px 20px;
-text-decoration: none;
-font-family: var(--font-title);
-text-transform: uppercase;
-font-size: 1rem;
-letter-spacing: 1px;
-display: inline-block;
-width: fit-content;
-border: none;
-box-shadow: inset -2px -2px 4px rgba(0,0,0,0.3);
-}
-.btn:hover { background-color: var(--black); }... /* --- SLIDER LOGHI --- */
-#collaborations {
-overflow: hidden;
-padding: 0;
-border-top: none;
-}
-
-.slider {
-background: var(--bg-color);
-height: 140px;
-margin: auto;
-overflow: hidden;
-position: relative;
-width: 100%;
-display: flex;
-align-items: center;
-}
-
-.slide-track {
-animation: scroll 40s linear infinite;
-display: flex;
-width: calc(50vw * 16);
-}
-
-.slide {
-height: 100px;
-width: 50vw;
-display: flex;
-align-items: center;
-justify-content: center;
-padding: 0 20px;
-border-right: var(--border-thin);
-}
-
-.slide img {
-max-width: 80%;
-max-height: 70px;
-object-fit: contain;
-filter: none;
-opacity: 1;
-}
-
-.slide a {
-display: flex;
-justify-content: center;
-align-items: center;
-width: 100%;
-height: 100%;
-}
-
-@keyframes scroll {
-0% { transform: translateX(0); }
-100% { transform: translateX(calc(-50vw * 8)); }
-}
-
-/* ABOUT / CONTACT tabs */
-.about-contact-tabs {
-display: flex;
-width: 100%;
-border-top: var(--border-thick);
-}
-
-.about-contact-tab {
-background-color: var(--black);
-color: var(--white);
-padding: 15px 20px;
-font-family: var(--font-title);
-font-size: clamp(1.8rem, 7vw, 3.5rem);
-text-transform: uppercase;
-line-height: 0.9;
-cursor: pointer;
-flex: 1;
-transition: color 0.3s;
-border: none;
-outline: none;
-}
-
-.about-contact-tab:first-child {
-text-align: left;
-border-right: var(--border-thick);
-}
-
-.about-contact-tab:last-child {
-text-align: right;
-}
-
-.about-contact-tab:hover {
-color: var(--accent-blue);
-}
-
-.about-contact-tab.active {
-color: var(--accent-blue);
-}
-
-.about-contact-body {
-border-top: var(--border-thick);
-}
-
-/* --- CONTACT MOBILE --- */
-#contact { border-bottom: none; padding-bottom: 0; }
-.contact-content-wrapper { display: flex; flex-direction: column; padding: 20px; gap: 20px; background-color: var(--bg-color); }
-
-.contact-face-wrapper { display: flex; justify-content: center; align-items: center; background-color: transparent; padding: 0; margin-bottom: 10px; }
-.contact-face {
-width: 180px; height: 180px; object-fit: cover;
-border: 4px solid var(--black); filter: contrast(1.1);
-display: block;
-}
-
-.contact-info-wrapper { display: flex; flex-direction: column; gap: 15px; justify-content: center; }... .contact-row {
-background-color: var(--black);
-color: var(--white);
-border: none;
-margin: 0; padding: 15px;
-text-align: center;
-font-family: var(--font-body);
-font-weight: 700; font-size: 0.9rem;
-text-transform: uppercase; letter-spacing: 1px;
-word-wrap: break-word;
-transition: background 0.3s;
-}
-
-.contact-row:hover { background-color: var(--accent-blue); }
-.contact-row a { color: var(--white); text-decoration: none; }
-
-.social-row {
-background-color: transparent;
-display: flex; justify-content: center; gap: 25px;
-font-size: 1.8rem; padding: 10px;
-}
-.social-row a { color: var(--black); transition: transform 0.2s, color 0.3s; }
-.social-row a:hover { color: var(--accent-blue); transform: scale(1.1); }
-
-/* --- FOOTER CREDITS --- */
-.footer-credits {
-border-top: var(--border-thick);
-background-color: var(--bg-color);
-color: var(--black);
-padding: 30px 20px;
-text-align: center;
-font-family: var(--font-body);
-font-weight: 400;
-font-size: 0.7rem;
-text-transform: uppercase;
-letter-spacing: 1px;
-display: flex;
-flex-direction: column;
-gap: 10px;
-line-height: 1.5;
-opacity: 0.7;
-}
-
-.footer-credits a {
-color: var(--black);
-text-decoration: none;
-border-bottom: 1px solid rgba(0,0,0,0.3);
-transition: all 0.3s;
-}
-.footer-credits a:hover { color: var(--accent-blue); border-color: var(--accent-blue); opacity: 1; }
-
-/* --- DESKTOP MEDIA QUERY --- */
-@media (min-width: 900px) {
-body::after { backdrop-filter: blur(0.3px); box-shadow: inset 0 0 150px rgba(0,0,0,0.25); }
-
-h1 { font-size: 5rem; }
-header { border-bottom: none; }
-
-.title-block { padding: 20px 30px; border-bottom: var(--border-thick); flex-wrap: nowrap; }
-
-.menu-block { width: auto; padding: 0 30px; border-bottom: var(--border-thick); }
-
-.sub-header {
-font-size: 0.85rem;
-letter-spacing: 1px;
-padding: 15px 30px;
-justify-content: space-between;
-}
-
-.sub-header-content { justify-content: flex-start; }
-.separator { display: inline; margin: 0 10px; }
-
-.sub-header-lang { display: block; }
-
-.hero-container { height: 450px; padding: 20px; }
-
-/* <-- Modifica inserita per garantire il bordo nero sulla hero in desktop --> */
-.hero-container img { border: 4px solid var(--black); }
-
-.slide-upcoming { width: auto; min-width: min-content; }
-.upcoming-text span { font-size: 1rem; }
-.upcoming-logo { width: 80px; }
-.upcoming-logo img { max-width: 80px; max-height: 70px; }
-
-.project-item { flex-direction: row; min-height: 260px; align-items: stretch; }
-
-#next-events .project-item { align-items: flex-start; }
-
-.project-img-wrapper { width: 50%; height: auto; border-right: none; display: flex; align-items: center; justify-content: center; padding: 20px; }
-
-.project-img-wrapper img,
-.project-img-wrapper video {
-height: 100%;
-max-height: 220px;
-}
-
-.event-slideshow-wrapper .slide-img {
-max-height: none !important;
-height: 100% !important;
-}
-
-.event-slideshow-wrapper {
-width: 30%;
-height: auto;
-align-items: flex-start;
-}
-
-.project-content { width: 70%; padding: 25px 20px; padding-left: 5px; justify-content: center; }
-
-.project-title { font-size: 2.5rem; }
-.intro-text { font-size: 1.1rem; }
-
-.slide-track { width: calc(25vw * 16); }
-.slide { width: 25vw; }
-
-@keyframes scroll {
-0% { transform: translateX(0); }
-100% { transform: translateX(calc(-25vw * 8)); }
-}
-
-.about-contact-tab { padding: 15px 30px; }
-.contact-content-wrapper { flex-direction: row; padding: 0; gap: 0; border-top: var(--border-thick); }
-.contact-face-wrapper { width: 40%; padding: 40px; background-color: var(--bg-color); border-right: var(--border-thick); margin-bottom: 0; }
-.contact-face { width: 100%; height: auto; max-width: 250px; border: 5px solid var(--bg-color); }
-.contact-info-wrapper { width: 60%; padding: 40px; background-color: var(--bg-color); align-items: stretch; justify-content: center; }
-
-.contact-row {
-text-align: left;
-background-color: transparent;
-color: var(--black);
-border: none;
-padding: 15px 0;
-border-bottom: var(--border-thin);
-font-weight: 500;
-transition: color 0.3s;
-}
-.contact-row:hover { background-color: transparent; color: var(--accent-blue); }
-.contact-row a { color: var(--black); }
-.contact-row:hover a { color: var(--accent-blue); }
-.contact-row:last-child { border-bottom: none; }
-
-.social-row { justify-content: flex-start; padding: 15px 0; margin-top: 20px; }
-
-.footer-credits { flex-direction: row; justify-content: center; gap: 15px; padding: 25px; }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Rocco Pagliarulo - Portfolio</title>
+    
+    <link rel="icon" type="image/png" href="images/favicon_RP.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:ital,wght@0,400;0,500;0,700;0,800;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-color: #F2F0E9; /* Beige Carta */
+            --black: #000000;
+            --white: #ffffff;
+            --accent-blue: #1a3cba;
+            --border-thick: 4px solid var(--black);
+            --border-thin: 2px solid var(--black);
+            
+            /* Tipografia */
+            --font-title: 'Archivo Black', sans-serif;
+            --font-body: 'Space Mono', monospace;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* EFFETTO INVECCHIATO */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E");
+            backdrop-filter: blur(0.2px); 
+            box-shadow: inset 0 0 80px rgba(0,0,0,0.1);
+            mix-blend-mode: multiply;
+            transition: all 0.3s ease;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--black);
+            font-family: var(--font-body);
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            border: var(--border-thick);
+            background-color: var(--bg-color);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* --- HEADER SECTION --- */
+        header {
+            display: flex;
+            width: 100%;
+            min-height: 70px; 
+            border-bottom: var(--border-thick); 
+            background-color: var(--bg-color);
+            z-index: 1000;
+            position: sticky;
+            top: 0; 
+            transition: transform 0.4s ease-in-out;
+            align-items: stretch;
+        }
+        
+        header.hide {
+            transform: translateY(-100%);
+        }
+
+        .title-block {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 15px;
+            flex-grow: 1; 
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap; 
+        }
+
+        .menu-block {
+            background-color: var(--bg-color);
+            width: 70px;
+            min-width: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-left: var(--border-thick);
+            align-self: stretch; 
+        }
+
+        h1 {
+            font-family: var(--font-title);
+            text-transform: uppercase;
+            margin: 0;
+            line-height: 0.95;
+            font-size: clamp(2rem, 6vw, 4rem); 
+            width: 100%;
+            word-wrap: break-word; 
+        }
+
+        h1 a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+        h1 a:hover {
+            color: var(--accent-blue);
+        }
+
+        .hamburger {
+            width: 30px;
+            height: 22px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        .hamburger span {
+            display: block;
+            height: 3px;
+            background: var(--black);
+            width: 100%;
+        }
+
+        /* --- MENU A TENDINA (MOBILE) --- */
+        .mobile-menu {
+            display: none;
+            position: fixed; 
+            top: 70px;
+            right: 10px; 
+            width: 200px;
+            background-color: var(--bg-color);
+            border: var(--border-thick);
+            z-index: 990; 
+            flex-direction: column;
+            transition: opacity 0.3s ease;
+            box-shadow: 10px 10px 0px rgba(0,0,0,0.2);
+        }
+        
+        .mobile-menu.active { display: flex; }
+        
+        header.hide ~ .mobile-menu {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .mobile-menu-links {
+            padding: 10px 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-menu a.menu-link {
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--black);
+            text-decoration: none;
+            text-transform: uppercase;
+            padding: 12px 20px;
+            transition: background 0.2s;
+        }
+        .mobile-menu a.menu-link:hover { background-color: #e0ded7; }
+
+        /* BLOCCO LINGUA MOBILE */
+        .mobile-lang-wrapper {
+            border-top: var(--border-thick); 
+            padding: 15px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            background-color: var(--bg-color); 
+        }
+        
+        .lang-link {
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            color: var(--black);
+            opacity: 0.5;
+            transition: all 0.3s;
+        }
+        .lang-link.active { opacity: 1; text-decoration: underline; text-underline-offset: 4px; }
+
+        /* --- SUB-HEADER --- */
+        .sub-header {
+            background-color: var(--bg-color);
+            color: var(--black);
+            border-bottom: var(--border-thin); 
+            padding: 12px 15px;
+            font-family: var(--font-body);
+            font-weight: 800;
+            font-size: 0.7rem; 
+            text-transform: uppercase;
+            line-height: 1.4;
+            display: flex;
+            justify-content: center; 
+            align-items: center;
+            position: relative;
+        }
+        
+        .sub-header-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 5px 10px;
+        }
+
+        .sub-item { white-space: nowrap; letter-spacing: 1px; }
+        .separator { display: none; }
+
+        .sub-header-lang {
+            display: none; 
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-left: auto; 
+        }
+
+        /* HERO IMAGE */
+        .hero-container {
+            width: 100%;
+            height: 250px; 
+            overflow: hidden;
+            padding: 15px; 
+            background: var(--bg-color);
+            position: relative;
+        }
+        .hero-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            filter: contrast(1.1); 
+            border: 4px solid var(--black);
+        }
+
+        /* --- UPCOMING EVENTS SLIDER --- */
+        #upcoming-events {
+            overflow: hidden;
+            padding: 0;
+        }
+
+        #upcoming-events .section-header {
+            border-bottom: var(--border-thick);
+            white-space: nowrap;
+        }
+
+        #upcoming-events h2 {
+            white-space: nowrap;
+            font-size: clamp(1.8rem, 6vw, 3.5rem);
+        }
+
+        .slide-track-upcoming {
+            animation: scroll-upcoming 30s linear infinite;
+            display: flex;
+            width: max-content;
+        }
+
+        .slide-upcoming {
+            height: 120px;
+            width: auto;
+            min-width: min-content;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 0 25px;
+            border-right: var(--border-thin);
+            gap: 20px;
+            flex-shrink: 0;
+        }
+
+        .upcoming-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 2px;
+            flex-shrink: 0;
+        }
+
+        .upcoming-text span {
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            line-height: 1.5;
+            color: var(--black);
+            white-space: nowrap;
+        }
+
+        .upcoming-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            width: 70px;
+        }
+
+        .upcoming-logo img {
+            max-width: 70px;
+            max-height: 60px;
+            object-fit: contain;
+        }
+
+        @keyframes scroll-upcoming {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* --- SEZIONI --- */
+        section { border-bottom: var(--border-thick); }
+
+        .section-header { padding: 15px 20px; display: flex; align-items: center; gap: 15px; }
+        
+        h2 {
+            font-family: var(--font-title);
+            color: var(--accent-blue);
+            font-size: clamp(1.8rem, 7vw, 3.5rem); 
+            text-transform: uppercase;
+            margin: 0;
+            line-height: 0.9;
+            white-space: normal; 
+            word-break: break-word; 
+        }
+
+        .filler-bar { flex-grow: 1; height: 30px; background-color: var(--black); }
+        
+        .intro-text { 
+            padding: 20px 20px 30px 20px; 
+            font-family: var(--font-body); 
+            font-size: 0.9rem; 
+            line-height: 1.6; 
+            text-align: left; 
+            font-weight: 500;
+        }
+
+        /* Projects */
+        .projects-wrapper { border-top: var(--border-thick); }
+        .project-item { display: flex; flex-direction: column; border-bottom: var(--border-thin); }
+        .project-item:last-child { border-bottom: none; }
+        
+        .project-img-wrapper { width: 100%; padding: 15px; background-color: var(--bg-color); }
+        
+        .project-img-wrapper a {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .project-img-wrapper img, 
+        .project-img-wrapper video { 
+            width: 100%; 
+            height: 180px; 
+            object-fit: cover; 
+            display: block; 
+            border: 4px solid black; 
+        }
+
+        /* --- STILE SPECIFICO PER SLIDESHOW NEXT EVENTS --- */
+        .event-slideshow-wrapper {
+            position: relative;
+            padding: 15px; 
+            width: 100%;
+            height: auto !important;
+            display: flex;
+            align-items: center;
+        }
+        
+        .slideshow-container {
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid var(--black);
+            background-color: var(--black);
+        }
+
+        .slide-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100% !important;  
+            height: 100% !important; 
+            max-height: none !important; 
+            object-fit: cover !important;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            border: none;
+            display: block;
+        }
+
+        .slide-img.active {
+            opacity: 1;
+        }
+        
+        .project-content { padding: 15px; padding-top: 5px; display: flex; flex-direction: column; justify-content: space-between; gap: 8px; }
+        .project-title { font-family: var(--font-title); font-size: 1.8rem; text-transform: uppercase; line-height: 1; margin-bottom: 3px; }
+        .project-subtitle { font-family: var(--font-body); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin-bottom: 3px; }
+        .project-desc { font-family: var(--font-body); font-size: 0.85rem; margin-bottom: 12px; line-height: 1.4; font-weight: 500; }
+        
+        .btn { 
+            background-color: var(--accent-blue); 
+            color: white; 
+            padding: 10px 20px; 
+            text-decoration: none; 
+            font-family: var(--font-title); 
+            text-transform: uppercase; 
+            font-size: 1rem; 
+            letter-spacing: 1px; 
+            display: inline-block; 
+            width: fit-content; 
+            border: none;
+            box-shadow: inset -2px -2px 4px rgba(0,0,0,0.3);
+        }
+        .btn:hover { background-color: var(--black); }
+
+        /* --- SLIDER LOGHI --- */
+        #collaborations { 
+            overflow: hidden; 
+            padding: 0; 
+            border-top: none; 
+        }
+        
+        .slider { 
+            background: var(--bg-color); 
+            height: 140px; 
+            margin: auto; 
+            overflow: hidden; 
+            position: relative; 
+            width: 100%; 
+            display: flex; 
+            align-items: center; 
+        }
+
+        .slide-track { 
+            animation: scroll 40s linear infinite; 
+            display: flex; 
+            width: calc(50vw * 16); 
+        }
+
+        .slide { 
+            height: 100px; 
+            width: 50vw; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            padding: 0 20px; 
+            border-right: var(--border-thin); 
+        }
+
+        .slide img { 
+            max-width: 80%; 
+            max-height: 70px; 
+            object-fit: contain; 
+            filter: none; 
+            opacity: 1; 
+        }
+        
+        .slide a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        @keyframes scroll { 
+            0% { transform: translateX(0); } 
+            100% { transform: translateX(calc(-50vw * 8)); } 
+        }
+
+        /* ABOUT / CONTACT tabs */
+        .about-contact-tabs {
+            display: flex;
+            width: 100%;
+            border-top: var(--border-thick);
+        }
+
+        .about-contact-tab {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 15px 20px;
+            font-family: var(--font-title);
+            font-size: clamp(1.8rem, 7vw, 3.5rem);
+            text-transform: uppercase;
+            line-height: 0.9;
+            cursor: pointer;
+            flex: 1;
+            transition: color 0.3s;
+            border: none;
+            outline: none;
+        }
+
+        .about-contact-tab:first-child {
+            text-align: left;
+            border-right: var(--border-thick);
+        }
+
+        .about-contact-tab:last-child {
+            text-align: right;
+        }
+
+        .about-contact-tab:hover {
+            color: var(--accent-blue);
+        }
+
+        .about-contact-tab.active {
+            color: var(--accent-blue);
+        }
+
+        .about-contact-body {
+            border-top: var(--border-thick);
+        }
+
+        /* --- CONTACT MOBILE --- */
+        #contact { border-bottom: none; padding-bottom: 0; }
+        .contact-content-wrapper { display: flex; flex-direction: column; padding: 20px; gap: 20px; background-color: var(--bg-color); }
+
+        .contact-face-wrapper { display: flex; justify-content: center; align-items: center; background-color: transparent; padding: 0; margin-bottom: 10px; }
+        .contact-face {
+            width: 180px; height: 180px; object-fit: cover;
+            border: 4px solid var(--black); filter: contrast(1.1);
+            display: block;
+        }
+
+        .contact-info-wrapper { display: flex; flex-direction: column; gap: 15px; justify-content: center; }
+
+        .contact-row { 
+            background-color: var(--black); 
+            color: var(--white); 
+            border: none;
+            margin: 0; padding: 15px; 
+            text-align: center; 
+            font-family: var(--font-body); 
+            font-weight: 700; font-size: 0.9rem; 
+            text-transform: uppercase; letter-spacing: 1px; 
+            word-wrap: break-word; 
+            transition: background 0.3s;
+        }
+        
+        .contact-row:hover { background-color: var(--accent-blue); }
+        .contact-row a { color: var(--white); text-decoration: none; }
+        
+        .social-row { 
+            background-color: transparent;
+            display: flex; justify-content: center; gap: 25px; 
+            font-size: 1.8rem; padding: 10px;
+        }
+        .social-row a { color: var(--black); transition: transform 0.2s, color 0.3s; }
+        .social-row a:hover { color: var(--accent-blue); transform: scale(1.1); }
+
+        /* --- FOOTER CREDITS --- */
+        .footer-credits {
+            border-top: var(--border-thick);
+            background-color: var(--bg-color);
+            color: var(--black);
+            padding: 30px 20px;
+            text-align: center;
+            font-family: var(--font-body);
+            font-weight: 400;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            line-height: 1.5;
+            opacity: 0.7;
+        }
+        
+        .footer-credits a {
+            color: var(--black);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(0,0,0,0.3);
+            transition: all 0.3s;
+        }
+        .footer-credits a:hover { color: var(--accent-blue); border-color: var(--accent-blue); opacity: 1; }
+
+        /* --- DESKTOP MEDIA QUERY --- */
+        @media (min-width: 900px) {
+            body::after { backdrop-filter: blur(0.3px); box-shadow: inset 0 0 150px rgba(0,0,0,0.25); }
+
+            h1 { font-size: 5rem; }
+            header { border-bottom: none; } 
+            
+            .title-block { padding: 20px 30px; border-bottom: var(--border-thick); flex-wrap: nowrap; }
+            
+            .menu-block { width: auto; padding: 0 30px; border-bottom: var(--border-thick); }
+            
+            .sub-header { 
+                font-size: 0.85rem; 
+                letter-spacing: 1px; 
+                padding: 15px 30px; 
+                justify-content: space-between; 
+            }
+            
+            .sub-header-content { justify-content: flex-start; }
+            .separator { display: inline; margin: 0 10px; }
+            
+            .sub-header-lang { display: block; } 
+            
+            .hero-container { height: 450px; padding: 20px; }
+            
+            .slide-upcoming { width: auto; min-width: min-content; }
+            .upcoming-text span { font-size: 1rem; }
+            .upcoming-logo { width: 80px; }
+            .upcoming-logo img { max-width: 80px; max-height: 70px; }
+            
+            .project-item { flex-direction: row; min-height: 260px; align-items: stretch; }
+            
+            #next-events .project-item { align-items: flex-start; }
+            
+            .project-img-wrapper { width: 50%; height: auto; border-right: none; display: flex; align-items: center; justify-content: center; padding: 20px; }
+            
+            .project-img-wrapper img, 
+            .project-img-wrapper video { 
+                height: 100%; 
+                max-height: 220px; 
+            }
+
+            .event-slideshow-wrapper .slide-img {
+                max-height: none !important;
+                height: 100% !important;
+            }
+
+            .event-slideshow-wrapper {
+                 width: 30%; 
+                 height: auto;
+                 align-items: flex-start; 
+            }
+            
+            .project-content { width: 70%; padding: 25px 20px; padding-left: 5px; justify-content: center; }
+            
+            .project-title { font-size: 2.5rem; }
+            .intro-text { font-size: 1.1rem; }
+
+            .slide-track { width: calc(25vw * 16); }
+            .slide { width: 25vw; } 
+            
+            @keyframes scroll { 
+                0% { transform: translateX(0); } 
+                100% { transform: translateX(calc(-25vw * 8)); } 
+            }
+
+            .about-contact-tab { padding: 15px 30px; }
+            .contact-content-wrapper { flex-direction: row; padding: 0; gap: 0; border-top: var(--border-thick); }
+            .contact-face-wrapper { width: 40%; padding: 40px; background-color: var(--bg-color); border-right: var(--border-thick); margin-bottom: 0; }
+            .contact-face { width: 100%; height: auto; max-width: 250px; border: 5px solid var(--bg-color); }
+            .contact-info-wrapper { width: 60%; padding: 40px; background-color: var(--bg-color); align-items: stretch; justify-content: center; }
+            
+            .contact-row { 
+                text-align: left; 
+                background-color: transparent; 
+                color: var(--black); 
+                border: none;
+                padding: 15px 0; 
+                border-bottom: var(--border-thin); 
+                font-weight: 500; 
+                transition: color 0.3s;
+            }
+            .contact-row:hover { background-color: transparent; color: var(--accent-blue); }
+            .contact-row a { color: var(--black); }
+            .contact-row:hover a { color: var(--accent-blue); }
+            .contact-row:last-child { border-bottom: none; }
+            
+            .social-row { justify-content: flex-start; padding: 15px 0; margin-top: 20px; }
+            
+            .footer-credits { flex-direction: row; justify-content: center; gap: 15px; padding: 25px; }
+        }
+    </style>
 </head>
 <body>
 
-<div class="mobile-menu" id="mobileMenu">
-<div class="mobile-menu-links">
-<a href="#projects" class="menu-link" onclick="toggleMenu()">Projects</a>
-<a href="#upcoming-events" class="menu-link" onclick="toggleMenu()">Events</a>
-<a href="#contact" class="menu-link" onclick="toggleMenu()">Contact</a>
-</div>
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-links">
+            <a href="#projects" class="menu-link" onclick="toggleMenu()">Projects</a>
+            <a href="#upcoming-events" class="menu-link" onclick="toggleMenu()">Events</a>
+            <a href="#contact" class="menu-link" onclick="toggleMenu()">Contact</a>
+        </div>
+        
+        <div class="mobile-lang-wrapper">
+            <a href="index-en.html" class="lang-link">EN</a>
+            <span>|</span>
+            <a href="#" class="lang-link active">IT</a>
+        </div>
+    </div>
 
-<div class="mobile-lang-wrapper">
-<a href="index-en.html" class="lang-link">EN</a>
-<span>|</span>
-<a href="#" class="lang-link active">IT</a>
-</div>
-</div>
+    <div class="container">
+        
+        <header id="mainHeader">
+            <div class="title-block">
+                <h1><a href="#">ROCCO PAGLIARULO</a></h1>
+            </div>
+            
+            <div class="menu-block">
+                <div class="hamburger" onclick="toggleMenu()">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </header>
 
-<div class="container">
+        <div class="sub-header">
+            <div class="sub-header-content">
+                <span class="sub-item">Arts Project Manager</span>
+                <span class="separator">|</span>
+                <span class="sub-item">Cultural Events</span>
+                <span class="separator">|</span>
+                <span class="sub-item">Talent Agent and Manager</span>
+            </div>
+            
+            <div class="sub-header-lang">
+                <a href="index-en.html" class="lang-link">EN</a>
+                <span>|</span>
+                <a href="#" class="lang-link active">IT</a>
+            </div>
+        </div>
 
-<header id="mainHeader">
-<div class="title-block">
-<h1><a href="#">ROCCO PAGLIARULO</a></h1>
-</div>
+        <div class="hero-container">
+            <img src="images/hero.jpg" alt="Abstract Texture">
+        </div>
 
-<div class="menu-block">
-<div class="hamburger" onclick="toggleMenu()">
-<span></span><span></span><span></span>
-</div>
-</div>
-</header>
+        <section id="projects">
+            <div class="section-header">
+                <h2>PROJECTS</h2>
+                <div class="filler-bar"></div>
+            </div>
 
-<div class="sub-header">
-<div class="sub-header-content">
-<span class="sub-item">Arts Project Manager</span>
-<span class="separator">|</span>
-<span class="sub-item">Cultural Events</span>
-<span class="separator">|</span>
-<span class="sub-item">Talent Agent and Manager</span>
-</div>
+            <div class="projects-wrapper">
+                <article class="project-item">
+                    <div class="project-img-wrapper">
+                         <a href="https://www.instagram.com/narhvaledizioni/">
+                            <video autoplay loop muted playsinline>
+                                <source src="images/Video_sito_narhval.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </a>
+                    </div>
+                    <div class="project-content">
+                        <div>
+                            <div class="project-title">PROJECT MANAGER</div>
+                            <div class="project-subtitle">DI NARHVAL EDIZIONI</div>
+                            <p class="project-desc">
+                                Gestione strategica e operativa della casa editrice <br> Coordinamento di eventi cultuali del format Interspazi
+                            </p>
+                        </div>
+                        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                            <a href="https://www.narhvaledizioni.it" class="btn">Narhval Edizioni</a>
+                            <a href="https://www.narhvaledizioni.it/interspazi-2/" class="btn">Progetto Interspazi</a>
+                        </div>
+                    </div>
+                </article>
 
-<div class="sub-header-lang">
-<a href="index-en.html" class="lang-link">EN</a>
-<span>|</span>
-<a href="#" class="lang-link active">IT</a>
-</div>
-</div>
+                <article class="project-item">
+                    <div class="project-img-wrapper">
+                        <a href="https://www.instagram.com/martelive__/">
+                            <img src="images/Uragano.jpg" alt="Uragano Revue">
+                        </a>
+                    </div>
+                    <div class="project-content">
+                        <div>
+                            <div class="project-title">CONSULENTE EVENTI CULTURALI</div>
+                            <div class="project-subtitle">per MArteLive</div>
+                            <p class="project-desc">
+                                Consulenza strategica e promozione evento
+                            </p>
+                        </div>
+                        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                            <a href="https://martelive.it/" class="btn">MArteLive</a>
+                            <a href="https://martelive.it/2025/10/uragano-revue/" target="_blank" class="btn">Uragano Revue</a>
+                        </div>                
+                    </div>
+                </article>
 
-<div class="hero-container">
-<img src="images/hero.jpg" alt="Abstract Texture">
-</div>
+                <article class="project-item">
+                    <div class="project-img-wrapper">
+                         <a href="https://www.youtube.com/watch?v=Jr6r6PKVDSw">
+                            <video autoplay loop muted playsinline>
+                                <source src="images/MASKARA.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </a>
+                    </div>
+                    <div class="project-content">
+                        <div>
+                            <div class="project-title">Talent Agent and Manager</div>
+                            <div class="project-subtitle">DI REGISTI E VIDEOMAKER INDIPENDENTI</div>
+                            <p class="project-desc">
+                                Supporto la crescita di carriere per registi e videomaker indipendenti, gestendo rappresentanza, negoziazione contratti e strategie su misura, con un'attenzione costante alla loro piena libertà creativa
+                            </p>
+                        </div>
+                        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                            <a href="https://valeriofrancini.it/" target="_blank" class="btn">Valerio Francini</a>
+                            <a href="https://instagram.com/x.ella.12" target="_blank" class="btn">Gabriella Ripamonti</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
 
-<section id="projects">
-<div class="section-header">
-<h2>PROJECTS</h2>
-<div class="filler-bar"></div>
-</div>... (rest of file identical to original)
+        <section id="upcoming-events">
+            <div class="section-header">
+                <h2>UPCOMING EVENTS</h2>
+                <div class="filler-bar"></div>
+            </div>
+            
+            <div class="slider">
+                <div class="slide-track-upcoming">
+                    <div class="slide-upcoming">
+                        <a href="https://www.instagram.com/rebisroma/" target="_blank" class="upcoming-logo">
+                            <img src="images/logo_rebis.jpeg" alt="Logo Rebis">
+                        </a>
+                        <div class="upcoming-text">
+                            <span>28 maggio</span>
+                            <span>"Un palco per tutti"</span>
+                            <span>Martelive</span>
+                        </div>
+                    </div>
+                    <div class="slide-upcoming">
+                        <a href="https://santedicola.com/" target="_blank" class="upcoming-logo">
+                            <img src="images/logo_santedicola.jpeg" alt="Logo Santedicola">
+                        </a>
+                        <div class="upcoming-text">
+                            <span>4 giugno</span>
+                            <span>Interspazi | design e fotografia</span>
+                            <span>Narhval Edizioni</span>
+                        </div>
+                    </div>
+                    <div class="slide-upcoming">
+                        <a href="https://www.narhvaledizioni.it/prodotto/i-mangiapatate/" target="_blank" class="upcoming-logo">
+                            <img src="images/mangiapatate.jpg" alt="Logo I Mangiapatate">
+                        </a>
+                        <div class="upcoming-text">
+                            <span>12 giugno</span>
+                            <span>Presentazione "I Mangiapatate"</span>
+                            <span>Narhval Edizioni</span>
+                        </div>
+                    </div>
+                    <div class="slide-upcoming">
+                        <a href="https://www.narhvaledizioni.it/prodotto/la-fata-delle-briciole/" target="_blank" class="upcoming-logo">
+                            <img src="images/fatadellebriciole.jpg" alt="Logo La Fata delle Briciole">
+                        </a>
+                        <div class="upcoming-text">
+                            <span>23 giugno</span>
+                            <span>Presentazione "La fata delle briciole"</span>
+                            <span>Narhval Edizioni</span>
+                        </div>
+                    </div>
+                    <div class="slide-upcoming">
+                        <a href="https://www.instagram.com/rebisroma/" target="_blank" class="upcoming-logo">
+                            <img src="images/logo_rebis.jpeg" alt="Logo Rebis">
+                        </a>
+                        <div class="upcoming-text">
+                            <span>28 maggio</span>
+                            <span>"Un palco per tutti"</span>
+                            <span>Martelive</span>
+                        </div>
+                    </div>
+                    <div class="slide-upcoming">
+                        <a href="https://santedicola.com/" target="_blank" class="upcoming-logo">
+                            <img src="images/logo_santedicola.jpeg" alt="Logo Santedicola">
+                        </a>
+                        <div class="upcoming-text">
+                            <span>4 giugno</span>
+                            <span>Interspazi | design e fotografia</span>
+                            <span>Narhval Edizioni</span>
+                        </div>
+                    </div>
+                    <div class="slide-upcoming">
+                        <a href="https://www.narhvaledizioni.it/prodotto/i-mangiapatate/" target="_blank" class="upcoming-logo">
+                            <img src="images/mangiapatate.jpg" alt="Logo I Mangiapatate">
+                        </a>
+                        <div class="upcoming-text">
+                            <span>17 giugno</span>
+                            <span>Presentazione "I Mangiapatate"</span>
+                            <span>Narhval Edizioni</span>
+                        </div>
+                    </div>
+                    <div class="slide-upcoming">
+                        <a href="https://www.narhvaledizioni.it/prodotto/la-fata-delle-briciole/" target="_blank" class="upcoming-logo">
+                            <img src="images/fatadellebriciole.png" alt="Logo La Fata delle Briciole">
+                        </a>
+                        <div class="upcoming-text">
+                            <span>23 giugno</span>
+                            <span>Presentazione "La fata delle briciole"</span>
+                            <span>Narhval Edizioni</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="next-events">
+            <div class="section-header">
+                <h2>LAST EVENT</h2>
+                <div class="filler-bar"></div>
+            </div>
+            
+            <div class="projects-wrapper"> 
+                <article class="project-item">
+                    <div class="project-img-wrapper event-slideshow-wrapper">
+                         <div class="slideshow-container" id="eventSlideshow">
+                             <img src="images/interspazi_confluenze_7_2_2026_1.jpeg" class="slide-img active" alt="Evento 1">
+                             <img src="images/interspazi_confluenze_7_2_2026_2.jpeg" class="slide-img" alt="Evento 2">
+                             <img src="images/interspazi_confluenze_7_2_2026_3.jpeg" class="slide-img" alt="Evento 3">
+                             <img src="images/interspazi_confluenze_7_2_2026_4.jpeg" class="slide-img" alt="Evento 4">
+                             <img src="images/interspazi_confluenze_7_2_2026_5.jpeg" class="slide-img" alt="Evento 5">
+                             <img src="images/interspazi_confluenze_7_2_2026_6.jpeg" class="slide-img" alt="Evento 6">
+                             <img src="images/interspazi_confluenze_7_2_2026_7.jpeg" class="slide-img" alt="Evento 7">
+                         </div>
+                    </div>
+                    <div class="project-content">
+                        <div>
+                            <div class="project-title">Interspazi | Confluenze</div>
+                            <div class="project-subtitle">7 FEBBRAIO 2026</div>
+                            <p class="project-desc">
+                                <a href="https://www.instagram.com/archivio.atena/" target="_blank" style="color: var(--accent-blue); text-decoration: underline;">Archivio Atena</a><br>
+                                Interspazi | Confluenze è un luogo di possibilità, un luogo da attraversare, in cui sostare e, per un attimo, fuggire dall'ordinario.
+                            </p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="collaborations">
+            <div class="section-header">
+                <h2>COLLABS & PARTNERS</h2>
+                <div class="filler-bar"></div>
+            </div>
+            
+            <div class="slider">
+                <div class="slide-track">
+                    <div class="slide"><a href="https://www.narhvaledizioni.it/" target="_blank"><img src="images/logo_Narhval.png" alt="Logo Narhval"></a></div>
+                    <div class="slide"><a href="https://www.monkroma.it/" target="_blank"><img src="images/logo_Monk.png" alt="Logo Monk"></a></div>
+                    <div class="slide"><a href="https://www.instagram.com/bar.volo/" target="_blank"><img src="images/logo_barVolo.jpg" alt="Logo BarVolo"></a></div>
+                    <div class="slide"><a href="https://martelive.it/" target="_blank"><img src="images/logo_martelive.png" alt="Logo MarteLive"></a></div>
+                    <div class="slide"><a href="https://zero.eu/it/luoghi/212701-tomo-libreria-caffe,roma/" target="_blank"><img src="images/logo_tomo.jpg" alt="Logo Tomo"></a></div>
+                    <div class="slide"><a href="https://www.angelomai.org/" target="_blank"><img src="images/logo_AngeloMai.jpg" alt="Logo AngeloMai"></a></div>
+                    <div class="slide"><a href="https://www.rhizomerm.com/" target="_blank"><img src="images/logo_Rhizome.png" alt="Logo Rhizome"></a></div>
+                    <div class="slide"><a href="https://www.exitwell.com/" target="_blank"><img src="images/logo_exitWell.jpeg" alt="Logo ExitWell"></a></div>
+                    <div class="slide"><a href="https://archivioatena.com/" target="_blank"><img src="images/logo_ARCHIVIO_ATENA.png" alt="Logo Archivio Atena"></a></div>
+                    <div class="slide"><img src="images/logo_Comune di Atena Lucana.svg" alt="Logo Comune di Atena Lucana"></div>
+                    <div class="slide"><a href="https://www.narhvaledizioni.it/" target="_blank"><img src="images/logo_Narhval.png" alt="Logo Narhval"></a></div>
+                    <div class="slide"><a href="https://www.monkroma.it/" target="_blank"><img src="images/logo_Monk.png" alt="Logo Monk"></a></div>
+                    <div class="slide"><a href="https://www.instagram.com/bar.volo/" target="_blank"><img src="images/logo_barVolo.jpg" alt="Logo BarVolo"></a></div>
+                    <div class="slide"><a href="https://martelive.it/" target="_blank"><img src="images/logo_martelive.png" alt="Logo MarteLive"></a></div>
+                    <div class="slide"><a href="https://zero.eu/it/luoghi/212701-tomo-libreria-caffe,roma/" target="_blank"><img src="images/logo_tomo.jpg" alt="Logo Tomo"></a></div>
+                    <div class="slide"><a href="https://www.angelomai.org/" target="_blank"><img src="images/logo_AngeloMai.jpg" alt="Logo AngeloMai"></a></div>
+                    <div class="slide"><a href="https://www.rhizomerm.com/" target="_blank"><img src="images/logo_Rhizome.png" alt="Logo Rhizome"></a></div>
+                    <div class="slide"><a href="https://www.exitwell.com/" target="_blank"><img src="images/logo_exitWell.jpeg" alt="Logo ExitWell"></a></div>
+                    <div class="slide"><a href="https://archivioatena.com/" target="_blank"><img src="images/logo_ARCHIVIO_ATENA.png" alt="Logo Archivio Atena"></a></div>
+                    <div class="slide"><img src="images/logo_Comune di Atena Lucana.svg" alt="Logo Comune di Atena Lucana"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about-contact">
+            <div class="about-contact-tabs">
+                <button class="about-contact-tab" id="tab-about" onclick="toggleTab('about')">ABOUT</button>
+                <button class="about-contact-tab" id="tab-contact" onclick="toggleTab('contact')">CONTACT</button>
+            </div>
+
+            <div class="about-contact-body">
+                <div class="intro-text" id="aboutContent" style="display: none;">Attivo nel mondo associativo e nella promozione di iniziative ad impatto locale, per studio e vocazione. Progettista e coordinatore di eventi culturali. Come agente e manager supporto registri e videomaker Indipendenti. Alcuni giorni salgo in cattedra come docente di statistica, altri scatto foto, ogni giorno inseguo la musica.</div>
+                <div id="contactContent" style="display: none;">
+                    <div class="contact-content-wrapper">
+                        <div class="contact-face-wrapper">
+                            <img src="images/rocco_face.jpg" alt="Rocco Pagliarulo" class="contact-face">
+                        </div>
+                        <div class="contact-info-wrapper">
+                            <div class="contact-row">EMAIL: <a href="mailto:info@roccopagliarulo.it">INFO@ROCCOPAGLIARULO.IT</a></div>
+                            <div class="contact-row">PHONE: <a href="tel:+393207060913">+39 3207060913</a></div>
+                            <div class="contact-row">BASED IN ROME</div>
+                            <div class="social-row"><a href="https://instagram.com/rocc.mann" target="_blank"><i class="fab fa-instagram"></i></a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="footer-credits">
+            <span>&copy;<span id="year"></span> ROCCO PAGLIARULO</span>
+            <span class="separator">|</span>
+            <span>SITE BY <a href="https://instagram.com/vxly.ps" target="_blank">@VXLY.PS</a> ⭐️🧑🏼‍💻🦈</span>
+        </div>
+
+    </div>
+
+    <script>
+
+        function toggleTab(tab) {
+            var aboutContent = document.getElementById('aboutContent');
+            var contactContent = document.getElementById('contactContent');
+            var aboutTab = document.getElementById('tab-about');
+            var contactTab = document.getElementById('tab-contact');
+
+            if (tab === 'about') {
+                var isOpen = aboutContent.style.display === 'block';
+                aboutContent.style.display = isOpen ? 'none' : 'block';
+                contactContent.style.display = 'none';
+                aboutTab.classList.toggle('active', !isOpen);
+                contactTab.classList.remove('active');
+            } else if (tab === 'contact') {
+                var isOpen = contactContent.style.display === 'block';
+                contactContent.style.display = isOpen ? 'none' : 'block';
+                aboutContent.style.display = 'none';
+                contactTab.classList.toggle('active', !isOpen);
+                aboutTab.classList.remove('active');
+            }
+        }
+
+        function toggleMenu() {
+            var menu = document.getElementById("mobileMenu");
+            menu.classList.toggle("active");
+        }
+
+        // Anno automatico
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // SMART STICKY HEADER
+        let lastScrollTop = 0;
+        const header = document.getElementById('mainHeader');
+
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop && scrollTop > 70) {
+                header.classList.add('hide');
+            } else {
+                header.classList.remove('hide');
+            }
+            
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; 
+        });
+
+        // CHIUDI MENU AL CLICK FUORI
+        document.addEventListener('click', function(event) {
+            var menu = document.getElementById("mobileMenu");
+            var hamburger = document.querySelector(".hamburger");
+
+            if (menu.classList.contains('active') && !menu.contains(event.target) && !hamburger.contains(event.target)) {
+                menu.classList.remove("active");
+            }
+        });
+
+        // SCRIPT SLIDESHOW NEXT EVENTS
+        document.addEventListener("DOMContentLoaded", function() {
+            const slides = document.querySelectorAll('#eventSlideshow .slide-img');
+            let currentSlide = 0;
+            const slideInterval = 3000;
+
+            if(slides.length > 0) {
+                setInterval(() => {
+                    slides[currentSlide].classList.remove('active');
+                    currentSlide = (currentSlide + 1) % slides.length;
+                    slides[currentSlide].classList.add('active');
+                }, slideInterval);
+            }
+        });
+    </script>
+
 </body>
 </html>
