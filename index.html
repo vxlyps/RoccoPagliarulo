@@ -1210,8 +1210,7 @@
                         data-link="https://www.instagram.com/p/DaxbQi_DTNT/?utm_source=ig_web_copy_link&amp;igsh=MzRlODBiNWFlZA=="
                         data-link-label="Guarda il post su Instagram">
                     <div class="tile-media">
-                        <video autoplay loop muted playsinline>
-                        <video src="images/2anni_narhval_barvolo.m4v" muted loop playsinline preload="metadata"></video>
+                        <video src="images/2anni_narhval_barvolo.m4v" autoplay loop muted playsinline preload="metadata"></video>
                     </div>
                     <span class="tile-badge"><i class="fas fa-play"></i></span>
                     <div class="tile-overlay">
@@ -1222,7 +1221,7 @@
                 
 
                 <!-- 2 - FANZINE INTERSPAZI -->
-                <button class="tile tall"
+                <button class="tile"
                         data-type="png"
                         data-src="images/fanzine_interspazi.png"
                         data-title="Fanzine Interspazi"
@@ -1248,7 +1247,7 @@
                         data-link="https://www.instagram.com/p/DY48i2wN00M/?utm_source=ig_web_copy_link&amp;igsh=MzRlODBiNWFlZA=="
                         data-link-label="Guarda il post su Instagram">
                     <div class="tile-media">
-                        <video src="images/progetto grafico - narhval x santedicola.m4v" muted loop playsinline preload="metadata"></video>
+                        <video src="images/progetto grafico - narhval x santedicola.m4v" autoplay loop muted playsinline preload="metadata"></video>
                     </div>
                     <span class="tile-badge"><i class="fas fa-play"></i></span>
                     <div class="tile-overlay">
@@ -1258,7 +1257,7 @@
                 </button>
 
                 <!-- 4 - CAPA LIVE (audio SoundCloud) --> video_capa_live.mp4
-                <button class="tile wide"
+                <button class="tile"
                      data-type="video"
                         data-src="images/video_capa_live.mp4"
                         data-title="capa live x Narhval Edizioni"
@@ -1329,7 +1328,25 @@
                     </div>
                 </button>
 
-                <!-- 8 - INTERSPAZI | CONFLUENZE (galleria) -->
+                <!-- 8 - INTERSPAZI | MUSICA -->
+                <button class="tile wide"
+                        data-type="embed"
+                        data-src="https://open.spotify.com/embed/playlist/7wq6ilgQihHQtuF1XWqtpO?utm_source=generator&amp;theme=0&amp;si=59f010c512de4548,https://open.spotify.com/embed/playlist/7qWdKX1pkeipvEc0sxWrbO?utm_source=generator&amp;theme=0&amp;si=aff3998b299b4b45"
+                        data-fixed-height="152"
+                        data-title="Interspazi | Musica"
+                        data-subtitle="Playlist Spotify">
+                    <div class="tile-media tile-slideshow">
+                        <img src="images/cartolina_interspazi_1.png" alt="Interspazi Musica 1" class="active">
+                        <img src="images/cartolina_interspazi_2.png" alt="Interspazi Musica 2">
+                    </div>
+                    <span class="tile-badge"><i class="fab fa-spotify"></i></span>
+                    <div class="tile-overlay">
+                        <span class="tile-label">Interspazi | Musica</span>
+                        <span class="tile-sub">Playlist Spotify</span>
+                    </div>
+                </button>
+
+                <!-- 9 - INTERSPAZI | CONFLUENZE (galleria) -->
                 <button class="tile wide"
                         data-type="gallery"
                         data-src="images/interspazi_confluenze_7_2_2026_1.jpeg,images/interspazi_confluenze_7_2_2026_2.jpeg,images/interspazi_confluenze_7_2_2026_3.jpeg,images/interspazi_confluenze_7_2_2026_4.jpeg,images/interspazi_confluenze_7_2_2026_5.jpeg,images/interspazi_confluenze_7_2_2026_6.jpeg,images/interspazi_confluenze_7_2_2026_7.jpeg"
@@ -1530,22 +1547,6 @@
                 }, 3000);
             });
 
-            // Anteprima video al passaggio del mouse (solo desktop)
-            if (window.matchMedia('(hover: hover)').matches) {
-                tiles.forEach(function (tile) {
-                    var v = tile.querySelector('.tile-media video');
-                    if (!v) return;
-                    tile.addEventListener('mouseenter', function () {
-                        var p = v.play();
-                        if (p && p.catch) p.catch(function () {});
-                    });
-                    tile.addEventListener('mouseleave', function () {
-                        v.pause();
-                        v.currentTime = 0;
-                    });
-                });
-            }
-
             function buildStage(tile) {
                 stage.innerHTML = '';
                 var type = tile.dataset.type;
@@ -1564,18 +1565,23 @@
                 } else if (type === 'embed') {
                     var wrap = document.createElement('div');
                     wrap.className = 'lightbox-frame';
-                    var iframe = document.createElement('iframe');
-                    iframe.src = srcs[0];
-                    iframe.setAttribute('allow', 'autoplay; encrypted-media; clipboard-write; picture-in-picture; fullscreen');
-                    iframe.setAttribute('allowfullscreen', '');
-                    iframe.setAttribute('scrolling', 'no');
-                    if (tile.dataset.fixedHeight) {
-                        iframe.style.height = tile.dataset.fixedHeight + 'px';
-                    } else {
-                        iframe.style.aspectRatio = tile.dataset.ratio || '16 / 9';
-                        iframe.style.maxHeight = '70vh';
-                    }
-                    wrap.appendChild(iframe);
+                    wrap.style.maxHeight = '80vh';
+                    wrap.style.overflowY = 'auto';
+                    srcs.forEach(function (s, idx) {
+                        var iframe = document.createElement('iframe');
+                        iframe.src = s;
+                        iframe.setAttribute('allow', 'autoplay; encrypted-media; clipboard-write; picture-in-picture; fullscreen');
+                        iframe.setAttribute('allowfullscreen', '');
+                        iframe.setAttribute('scrolling', 'no');
+                        if (tile.dataset.fixedHeight) {
+                            iframe.style.height = tile.dataset.fixedHeight + 'px';
+                        } else {
+                            iframe.style.aspectRatio = tile.dataset.ratio || '16 / 9';
+                            iframe.style.maxHeight = '70vh';
+                        }
+                        if (idx > 0) iframe.style.marginTop = '10px';
+                        wrap.appendChild(iframe);
+                    });
                     stage.appendChild(wrap);
 
                 } else if (type === 'pdf') {
