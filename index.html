@@ -465,31 +465,50 @@
             align-items: center; 
         }
 
-        .slide-track { 
-            animation: scroll 40s linear infinite; 
-            display: flex; 
-            width: calc(50vw * 16); 
+        /* Marquee loghi su due righe (drag manuale + autoplay) */
+        .logo-marquee {
+            width: 100%;
+            background: var(--bg-color);
+            display: flex;
+            flex-direction: column;
         }
 
-        .slide { 
-            height: 100px; 
-            width: 50vw; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            padding: 0 20px; 
-            border-right: var(--border-thin); 
+        .logo-row {
+            position: relative;
+            width: 100%;
+            height: 90px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            cursor: grab;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: pan-y;
         }
 
-        .slide img { 
-            max-width: 80%; 
-            max-height: 70px; 
-            object-fit: contain; 
-            filter: none; 
-            opacity: 1; 
+        .logo-row + .logo-row { border-top: var(--border-thin); }
+        .logo-row.dragging { cursor: grabbing; }
+
+        .logo-track {
+            display: flex;
+            align-items: center;
+            flex: 0 0 auto;
+            will-change: transform;
         }
-        
-        .slide a {
+
+        .logo-slide {
+            width: 150px;
+            min-width: 150px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+            border-right: var(--border-thin);
+            flex-shrink: 0;
+        }
+
+        .logo-slide a {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -497,9 +516,12 @@
             height: 100%;
         }
 
-        @keyframes scroll { 
-            0% { transform: translateX(0); } 
-            100% { transform: translateX(calc(-50vw * 8)); } 
+        .logo-slide img {
+            max-width: 100%;
+            max-height: 60px;
+            object-fit: contain;
+            pointer-events: none;
+            -webkit-user-drag: none;
         }
 
         /* ABOUT / CONTACT tabs */
@@ -667,13 +689,9 @@
             .project-title { font-size: 2.5rem; }
             .intro-text { font-size: 1.1rem; }
 
-            .slide-track { width: calc(25vw * 16); }
-            .slide { width: 25vw; } 
-            
-            @keyframes scroll { 
-                0% { transform: translateX(0); } 
-                100% { transform: translateX(calc(-25vw * 8)); } 
-            }
+            .logo-row { height: 110px; }
+            .logo-slide { width: 200px; min-width: 200px; height: 85px; padding: 0 25px; }
+            .logo-slide img { max-height: 75px; }
 
             .about-contact-tab { padding: 15px 30px; }
             .contact-content-wrapper { flex-direction: row; padding: 0; gap: 0; border-top: var(--border-thick); }
@@ -958,36 +976,45 @@
 
         <section id="collaborations">
             <div class="section-header">
-                <h2>COLLABS & PARTNERS</h2>
+                <h2>COLLABS &amp; PARTNERS</h2>
                 <div class="filler-bar"></div>
             </div>
-            
-            <div class="slider">
-                <div class="slide-track">
-                    <div class="slide"><a href="https://www.narhvaledizioni.it/" target="_blank"><img src="images/logo_Narhval.png" alt="Logo Narhval"></a></div>
-                    <div class="slide"><a href="https://www.monkroma.it/" target="_blank"><img src="images/logo_Monk.png" alt="Logo Monk"></a></div>
-                    <div class="slide"><a href="https://romaeuropa.net/" target="_blank"><img src="images/Logo_REF26.png" alt="Logo REF26"></a></div>
-                    <div class="slide"><a href="https://www.instagram.com/yes_we_lab/" target="_blank"><img src="images/Logo_YWL.png" alt="Logo YWL"></a></div>
-                    <div class="slide"><a href="https://www.instagram.com/bar.volo/" target="_blank"><img src="images/logo_barVolo.jpg" alt="Logo BarVolo"></a></div>
-                    <div class="slide"><a href="https://martelive.it/" target="_blank"><img src="images/logo_martelive.png" alt="Logo MarteLive"></a></div>
-                    <div class="slide"><a href="https://zero.eu/it/luoghi/212701-tomo-libreria-caffe,roma/" target="_blank"><img src="images/logo_tomo.jpg" alt="Logo Tomo"></a></div>
-                    <div class="slide"><a href="https://www.angelomai.org/" target="_blank"><img src="images/logo_AngeloMai.jpg" alt="Logo AngeloMai"></a></div>
-                    <div class="slide"><a href="https://www.rhizomerm.com/" target="_blank"><img src="images/logo_Rhizome.png" alt="Logo Rhizome"></a></div>
-                    <div class="slide"><a href="https://www.exitwell.com/" target="_blank"><img src="images/logo_exitWell.jpeg" alt="Logo ExitWell"></a></div>
-                    <div class="slide"><a href="https://archivioatena.com/" target="_blank"><img src="images/logo_ARCHIVIO_ATENA.png" alt="Logo Archivio Atena"></a></div>
-                    <div class="slide"><img src="images/logo_Comune di Atena Lucana.svg" alt="Logo Comune di Atena Lucana"></div>
-                    <div class="slide"><a href="https://www.narhvaledizioni.it/" target="_blank"><img src="images/logo_Narhval.png" alt="Logo Narhval"></a></div>
-                    <div class="slide"><a href="https://www.monkroma.it/" target="_blank"><img src="images/logo_Monk.png" alt="Logo Monk"></a></div>
-                    <div class="slide"><a href="https://romaeuropa.net/" target="_blank"><img src="images/Logo_REF26.png" alt="Logo REF26"></a></div>
-                    <div class="slide"><a href="https://www.instagram.com/yes_we_lab/" target="_blank"><img src="images/Logo_YWL.png" alt="Logo YWL"></a></div>
-                    <div class="slide"><a href="https://www.instagram.com/bar.volo/" target="_blank"><img src="images/logo_barVolo.jpg" alt="Logo BarVolo"></a></div>
-                    <div class="slide"><a href="https://martelive.it/" target="_blank"><img src="images/logo_martelive.png" alt="Logo MarteLive"></a></div>
-                    <div class="slide"><a href="https://zero.eu/it/luoghi/212701-tomo-libreria-caffe,roma/" target="_blank"><img src="images/logo_tomo.jpg" alt="Logo Tomo"></a></div>
-                    <div class="slide"><a href="https://www.angelomai.org/" target="_blank"><img src="images/logo_AngeloMai.jpg" alt="Logo AngeloMai"></a></div>
-                    <div class="slide"><a href="https://www.rhizomerm.com/" target="_blank"><img src="images/logo_Rhizome.png" alt="Logo Rhizome"></a></div>
-                    <div class="slide"><a href="https://www.exitwell.com/" target="_blank"><img src="images/logo_exitWell.jpeg" alt="Logo ExitWell"></a></div>
-                    <div class="slide"><a href="https://archivioatena.com/" target="_blank"><img src="images/logo_ARCHIVIO_ATENA.png" alt="Logo Archivio Atena"></a></div>
-                    <div class="slide"><img src="images/logo_Comune di Atena Lucana.svg" alt="Logo Comune di Atena Lucana"></div>
+
+            <div class="logo-marquee">
+                <!-- Riga 1: scorrimento verso destra -->
+                <div class="logo-row" data-direction="1" data-speed="0.5">
+                    <div class="logo-track">
+                    <div class="logo-slide"><a href="https://www.narhvaledizioni.it/" target="_blank"><img src="images/logo_Narhval.png" alt="Logo Narhval" draggable="false"></a></div>
+                    <div class="logo-slide"><a href="https://www.monkroma.it/" target="_blank"><img src="images/logo_Monk.png" alt="Logo Monk" draggable="false"></a></div>
+                    <div class="logo-slide"><a href="https://romaeuropa.net/" target="_blank"><img src="images/Logo_REF26.png" alt="Logo REF26" draggable="false"></a></div>
+                    <div class="logo-slide"><a href="https://www.instagram.com/yes_we_lab/" target="_blank"><img src="images/Logo_YWL.png" alt="Logo YWL" draggable="false"></a></div>
+                    <div class="logo-slide"><a href="https://www.instagram.com/bar.volo/" target="_blank"><img src="images/logo_barVolo.jpg" alt="Logo BarVolo" draggable="false"></a></div>
+                    <div class="logo-slide"><a href="https://martelive.it/" target="_blank"><img src="images/logo_martelive.png" alt="Logo MarteLive" draggable="false"></a></div>
+                    <div class="logo-slide"><a href="https://zero.eu/it/luoghi/212701-tomo-libreria-caffe,roma/" target="_blank"><img src="images/logo_tomo.jpg" alt="Logo Tomo" draggable="false"></a></div>
+                    <div class="logo-slide"><a href="https://www.angelomai.org/" target="_blank"><img src="images/logo_AngeloMai.jpg" alt="Logo AngeloMai" draggable="false"></a></div>
+                    <div class="logo-slide"><a href="https://www.rhizomerm.com/" target="_blank"><img src="images/logo_Rhizome.png" alt="Logo Rhizome" draggable="false"></a></div>
+                    <div class="logo-slide"><a href="https://www.exitwell.com/" target="_blank"><img src="images/logo_exitWell.jpeg" alt="Logo ExitWell" draggable="false"></a></div>
+                    <div class="logo-slide"><a href="https://archivioatena.com/" target="_blank"><img src="images/logo_ARCHIVIO_ATENA.png" alt="Logo Archivio Atena" draggable="false"></a></div>
+                    <div class="logo-slide"><img src="images/logo_Comune di Atena Lucana.svg" alt="Logo Comune di Atena Lucana" draggable="false"></div>
+                    </div>
+                </div>
+
+                <!-- Riga 2: scorrimento verso sinistra, loghi in ordine invertito -->
+                <div class="logo-row" data-direction="-1" data-speed="0.5">
+                    <div class="logo-track">
+                    <div class="logo-slide"><img src="images/logo_Comune di Atena Lucana.svg" alt="Logo Comune di Atena Lucana" draggable="false"></div>
+                    <div class="logo-slide"><a href="https://archivioatena.com/" target="_blank"><img src="images/logo_ARCHIVIO_ATENA.png" alt="Logo Archivio Atena" draggable="false"></a></div>
+                    <div class="logo-slide"><a href="https://www.exitwell.com/" target="_blank"><img src="images/logo_exitWell.jpeg" alt="Logo ExitWell" draggable="false"></a></div>
+                    <div class="logo-slide"><a href="https://www.rhizomerm.com/" target="_blank"><img src="images/logo_Rhizome.png" alt="Logo Rhizome" draggable="false"></a></div>
+                    <div class="logo-slide"><a href="https://www.angelomai.org/" target="_blank"><img src="images/logo_AngeloMai.jpg" alt="Logo AngeloMai" draggable="false"></a></div>
+                    <div class="logo-slide"><a href="https://zero.eu/it/luoghi/212701-tomo-libreria-caffe,roma/" target="_blank"><img src="images/logo_tomo.jpg" alt="Logo Tomo" draggable="false"></a></div>
+                    <div class="logo-slide"><a href="https://martelive.it/" target="_blank"><img src="images/logo_martelive.png" alt="Logo MarteLive" draggable="false"></a></div>
+                    <div class="logo-slide"><a href="https://www.instagram.com/bar.volo/" target="_blank"><img src="images/logo_barVolo.jpg" alt="Logo BarVolo" draggable="false"></a></div>
+                    <div class="logo-slide"><a href="https://www.instagram.com/yes_we_lab/" target="_blank"><img src="images/Logo_YWL.png" alt="Logo YWL" draggable="false"></a></div>
+                    <div class="logo-slide"><a href="https://romaeuropa.net/" target="_blank"><img src="images/Logo_REF26.png" alt="Logo REF26" draggable="false"></a></div>
+                    <div class="logo-slide"><a href="https://www.monkroma.it/" target="_blank"><img src="images/logo_Monk.png" alt="Logo Monk" draggable="false"></a></div>
+                    <div class="logo-slide"><a href="https://www.narhvaledizioni.it/" target="_blank"><img src="images/logo_Narhval.png" alt="Logo Narhval" draggable="false"></a></div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1095,6 +1122,137 @@
                 }, slideInterval);
             }
         });
+
+        // --- MARQUEE LOGHI: due righe, direzioni opposte, drag manuale ---
+        (function () {
+            var rows = document.querySelectorAll('.logo-row');
+            if (!rows.length) return;
+
+            var instances = [];
+
+            rows.forEach(function (row) {
+                var track = row.querySelector('.logo-track');
+                if (!track) return;
+
+                var inst = {
+                    row: row,
+                    track: track,
+                    originalHTML: track.innerHTML,
+                    direction: parseFloat(row.dataset.direction) || 1, // 1 = destra, -1 = sinistra
+                    speed: parseFloat(row.dataset.speed) || 0.5,       // px per frame a 60fps
+                    baseWidth: 0,
+                    offset: 0,
+                    dragging: false,
+                    moved: false,
+                    startX: 0,
+                    startOffset: 0
+                };
+
+                // Duplica i loghi finché il nastro non è abbastanza lungo da coprire il loop
+                function build() {
+                    track.innerHTML = inst.originalHTML;
+                    inst.baseWidth = track.scrollWidth;
+                    if (!inst.baseWidth) return;
+
+                    var target = inst.baseWidth + row.clientWidth;
+                    var guard = 0;
+                    while (track.scrollWidth < target && guard < 20) {
+                        track.insertAdjacentHTML('beforeend', inst.originalHTML);
+                        guard++;
+                    }
+                    inst.offset = ((inst.offset % inst.baseWidth) + inst.baseWidth) % inst.baseWidth;
+                    apply();
+                }
+
+                function apply() {
+                    track.style.transform = 'translate3d(' + (-inst.offset) + 'px, 0, 0)';
+                }
+
+                inst.build = build;
+                inst.apply = apply;
+
+                // --- Drag / swipe ---
+                row.addEventListener('pointerdown', function (e) {
+                    inst.dragging = true;
+                    inst.moved = false;
+                    inst.startX = e.clientX;
+                    inst.startOffset = inst.offset;
+                    row.classList.add('dragging');
+                    row.setPointerCapture(e.pointerId);
+                });
+
+                row.addEventListener('pointermove', function (e) {
+                    if (!inst.dragging) return;
+                    var dx = e.clientX - inst.startX;
+                    if (Math.abs(dx) > 4) inst.moved = true;
+                    inst.offset = inst.startOffset - dx;
+                    if (inst.baseWidth) {
+                        inst.offset = ((inst.offset % inst.baseWidth) + inst.baseWidth) % inst.baseWidth;
+                    }
+                    apply();
+                });
+
+                function endDrag(e) {
+                    if (!inst.dragging) return;
+                    inst.dragging = false;
+                    row.classList.remove('dragging');
+                    if (e && e.pointerId !== undefined && row.hasPointerCapture && row.hasPointerCapture(e.pointerId)) {
+                        row.releasePointerCapture(e.pointerId);
+                    }
+                }
+
+                row.addEventListener('pointerup', endDrag);
+                row.addEventListener('pointercancel', endDrag);
+                row.addEventListener('pointerleave', endDrag);
+
+                // Evita che il trascinamento faccia scattare il link
+                row.addEventListener('click', function (e) {
+                    if (inst.moved) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        inst.moved = false;
+                    }
+                }, true);
+
+                row.addEventListener('dragstart', function (e) { e.preventDefault(); });
+
+                instances.push(inst);
+                build();
+            });
+
+            // --- Loop di animazione ---
+            var lastTime = null;
+            function tick(now) {
+                var delta = lastTime === null ? 16.67 : Math.min(now - lastTime, 50);
+                lastTime = now;
+                var frames = delta / 16.67;
+
+                instances.forEach(function (inst) {
+                    if (!inst.baseWidth) return;
+                    if (!inst.dragging) {
+                        inst.offset -= inst.direction * inst.speed * frames;
+                        inst.offset = ((inst.offset % inst.baseWidth) + inst.baseWidth) % inst.baseWidth;
+                        inst.apply();
+                    }
+                });
+
+                requestAnimationFrame(tick);
+            }
+            requestAnimationFrame(tick);
+
+            // Ricalcola dopo il caricamento delle immagini e al resize
+            window.addEventListener('load', function () {
+                instances.forEach(function (inst) { inst.build(); });
+            });
+
+            var resizeTimer;
+            window.addEventListener('resize', function () {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(function () {
+                    instances.forEach(function (inst) { inst.build(); });
+                }, 200);
+            });
+        })();
     </script>
 
 </body>
