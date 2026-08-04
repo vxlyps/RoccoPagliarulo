@@ -389,43 +389,248 @@
             border: 4px solid black; 
         }
 
-        /* --- STILE SPECIFICO PER SLIDESHOW NEXT EVENTS --- */
-        .event-slideshow-wrapper {
-            position: relative;
-            padding: 15px; 
-            width: 100%;
-            height: auto !important;
-            display: flex;
-            align-items: center;
-        }
-        
-        .slideshow-container {
-            width: 100%;
-            aspect-ratio: 4 / 5;
-            position: relative;
-            overflow: hidden;
-            border: 2px solid var(--black);
+        /* --- MOSAICO LAST UPDATES --- */
+        #last-updates { padding: 0; }
+
+        .mosaic {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-auto-flow: dense;
+            gap: 4px;
             background-color: var(--black);
+            border-top: var(--border-thick);
+            padding: 4px;
         }
 
-        .slide-img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100% !important;  
-            height: 100% !important; 
-            max-height: none !important; 
-            object-fit: cover !important;
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out;
+        .tile {
+            position: relative;
+            overflow: hidden;
+            background-color: var(--black);
+            aspect-ratio: 1;
+            cursor: pointer;
             border: none;
+            padding: 0;
+            display: block;
+            width: 100%;
+        }
+
+        .tile.big  { grid-column: span 2; grid-row: span 2; aspect-ratio: 1; }
+        .tile.wide { grid-column: span 2; grid-row: span 1; aspect-ratio: 2; }
+        .tile.tall { grid-column: span 1; grid-row: span 2; aspect-ratio: 0.5; }
+
+        .tile-media {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .tile-media img,
+        .tile-media video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             display: block;
         }
 
-        .slide-img.active {
-            opacity: 1;
+        /* Slideshow interno alla tessera */
+        .tile-slideshow img {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
         }
-        
+        .tile-slideshow img.active { opacity: 1; }
+
+        /* Icona tipo contenuto, in alto a destra come su Instagram */
+        .tile-badge {
+            position: absolute;
+            top: 8px;
+            right: 10px;
+            color: var(--white);
+            font-size: 1rem;
+            z-index: 3;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.7);
+            pointer-events: none;
+        }
+
+        /* Velo con titolo */
+        .tile-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 12px;
+            background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0) 55%);
+            opacity: 1;
+            transition: opacity 0.3s ease, background 0.3s ease;
+            pointer-events: none;
+        }
+
+        .tile-label {
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--white);
+            line-height: 1.3;
+        }
+
+        .tile.big .tile-label { font-size: 0.85rem; }
+
+        .tile:hover .tile-overlay { background: rgba(26,60,186,0.55); justify-content: center; }
+        .tile:focus-visible { outline: 3px solid var(--accent-blue); outline-offset: -3px; }
+
+        /* --- LIGHTBOX --- */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            background: rgba(0,0,0,0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+        .lightbox.open { display: flex; }
+
+        .lightbox-inner {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            max-height: 92vh;
+            background: var(--bg-color);
+            border: var(--border-thick);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .lightbox-stage {
+            width: 100%;
+            background: var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex: 1 1 auto;
+            min-height: 0;
+        }
+
+        .lightbox-stage img,
+        .lightbox-stage video {
+            max-width: 100%;
+            max-height: 70vh;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .lightbox-stage iframe {
+            width: 100%;
+            border: 0;
+            display: block;
+        }
+
+        .lightbox-frame {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .lightbox-info {
+            padding: 15px;
+            border-top: var(--border-thick);
+            background: var(--bg-color);
+            flex: 0 0 auto;
+        }
+
+        .lightbox-title {
+            font-family: var(--font-title);
+            text-transform: uppercase;
+            font-size: 1.3rem;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .lightbox-desc {
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        .lightbox-link {
+            display: inline-block;
+            margin-top: 10px;
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-blue);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .lightbox-btn {
+            position: absolute;
+            background: var(--bg-color);
+            border: var(--border-thin);
+            color: var(--black);
+            font-family: var(--font-body);
+            font-weight: 700;
+            cursor: pointer;
+            z-index: 5;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            padding: 0;
+        }
+        .lightbox-btn:hover { background: var(--accent-blue); color: var(--white); }
+
+        .lightbox-close { top: 8px; right: 8px; }
+        .lightbox-prev  { top: 50%; left: 8px; transform: translateY(-50%); }
+        .lightbox-next  { top: 50%; right: 8px; transform: translateY(-50%); }
+
+        body.lightbox-open { overflow: hidden; }
+
+        .lightbox-gallery {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            width: 100%;
+            scrollbar-width: none;
+        }
+        .lightbox-gallery::-webkit-scrollbar { display: none; }
+
+        .lightbox-gallery img {
+            flex: 0 0 100%;
+            scroll-snap-align: center;
+            max-height: 70vh;
+            object-fit: contain;
+        }
+
+        .lightbox-counter {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            z-index: 5;
+            background: var(--black);
+            color: var(--white);
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 0.7rem;
+            padding: 6px 10px;
+            letter-spacing: 1px;
+        }
+
         .project-content { padding: 15px; padding-top: 5px; display: flex; flex-direction: column; justify-content: space-between; gap: 8px; }
         .project-title { font-family: var(--font-title); font-size: 1.8rem; text-transform: uppercase; line-height: 1; margin-bottom: 3px; }
         .project-subtitle { font-family: var(--font-body); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin-bottom: 3px; }
@@ -663,8 +868,6 @@
             
             .project-item { flex-direction: row; min-height: 260px; align-items: stretch; }
             
-            #next-events .project-item { align-items: flex-start; }
-            
             .project-img-wrapper { width: 50%; height: auto; border-right: none; display: flex; align-items: center; justify-content: center; padding: 20px; }
             
             .project-img-wrapper img, 
@@ -673,16 +876,20 @@
                 max-height: 220px; 
             }
 
-            .event-slideshow-wrapper .slide-img {
-                max-height: none !important;
-                height: 100% !important;
-            }
+            /* Mosaico a 4 colonne su desktop */
+            .mosaic { grid-template-columns: repeat(4, 1fr); }
+            .tile-label { font-size: 0.75rem; }
+            .tile.big .tile-label { font-size: 1.1rem; }
+            .tile-badge { font-size: 1.2rem; top: 12px; right: 14px; }
 
-            .event-slideshow-wrapper {
-                 width: 30%; 
-                 height: auto;
-                 align-items: flex-start; 
-            }
+            .lightbox { padding: 40px; }
+            .lightbox-title { font-size: 2rem; }
+            .lightbox-desc { font-size: 0.9rem; }
+            .lightbox-info { padding: 25px; }
+            .lightbox-btn { width: 48px; height: 48px; font-size: 1.2rem; }
+            .lightbox-prev { left: -60px; }
+            .lightbox-next { right: -60px; }
+            .lightbox-close { top: 10px; right: 10px; }
             
             .project-content { width: 70%; padding: 25px 20px; padding-left: 5px; justify-content: center; }
             
@@ -941,36 +1148,139 @@
             </div>
         </section>
 
-        <section id="next-events">
+        <section id="last-updates">
             <div class="section-header">
-                <h2>LAST EVENT</h2>
+                <h2>LAST UPDATES</h2>
                 <div class="filler-bar"></div>
             </div>
-            
-            <div class="projects-wrapper"> 
-                <article class="project-item">
-                    <div class="project-img-wrapper event-slideshow-wrapper">
-                         <div class="slideshow-container" id="eventSlideshow">
-                             <img src="images/interspazi_confluenze_7_2_2026_1.jpeg" class="slide-img active" alt="Evento 1">
-                             <img src="images/interspazi_confluenze_7_2_2026_2.jpeg" class="slide-img" alt="Evento 2">
-                             <img src="images/interspazi_confluenze_7_2_2026_3.jpeg" class="slide-img" alt="Evento 3">
-                             <img src="images/interspazi_confluenze_7_2_2026_4.jpeg" class="slide-img" alt="Evento 4">
-                             <img src="images/interspazi_confluenze_7_2_2026_5.jpeg" class="slide-img" alt="Evento 5">
-                             <img src="images/interspazi_confluenze_7_2_2026_6.jpeg" class="slide-img" alt="Evento 6">
-                             <img src="images/interspazi_confluenze_7_2_2026_7.jpeg" class="slide-img" alt="Evento 7">
-                         </div>
+
+            <!--
+              ========= COME AGGIUNGERE UNA TESSERA =========
+              Classi dimensione:  (nessuna) = 1x1   |   big = 2x2   |   wide = 2x1   |   tall = 1x2
+              data-type:
+                gallery -> data-src = elenco immagini separate da virgola
+                video   -> data-src = file .mp4 locale (parte in automatico, in muto)
+                image   -> data-src = una sola immagine
+                embed   -> data-src = URL dell'iframe (Instagram, SoundCloud, YouTube, Vimeo...)
+                           data-ratio        = proporzione dell'iframe, es. "4/5" "16/9" "1/1"
+                           data-fixed-height = altezza in px, per i player audio (SoundCloud: 180)
+              data-title / data-desc  = testo mostrato sotto il contenuto
+              data-link / data-link-label = link esterno facoltativo, in fondo alla scheda
+            -->
+
+            <div class="mosaic" id="mosaic">
+
+                <!-- TESSERA GRANDE: slideshow Interspazi -->
+                <button class="tile big"
+                        data-type="gallery"
+                        data-src="images/interspazi_confluenze_7_2_2026_1.jpeg,images/interspazi_confluenze_7_2_2026_2.jpeg,images/interspazi_confluenze_7_2_2026_3.jpeg,images/interspazi_confluenze_7_2_2026_4.jpeg,images/interspazi_confluenze_7_2_2026_5.jpeg,images/interspazi_confluenze_7_2_2026_6.jpeg,images/interspazi_confluenze_7_2_2026_7.jpeg"
+                        data-title="Interspazi | Confluenze"
+                        data-desc="7 febbraio 2026 &mdash; Archivio Atena. Interspazi | Confluenze &egrave; un luogo di possibilit&agrave;, un luogo da attraversare, in cui sostare e, per un attimo, fuggire dall&rsquo;ordinario."
+                        data-link="https://www.instagram.com/archivio.atena/"
+                        data-link-label="Archivio Atena su Instagram">
+                    <div class="tile-media tile-slideshow">
+                        <img src="images/interspazi_confluenze_7_2_2026_1.jpeg" alt="Interspazi Confluenze 1" class="active">
+                        <img src="images/interspazi_confluenze_7_2_2026_2.jpeg" alt="Interspazi Confluenze 2">
+                        <img src="images/interspazi_confluenze_7_2_2026_3.jpeg" alt="Interspazi Confluenze 3">
+                        <img src="images/interspazi_confluenze_7_2_2026_4.jpeg" alt="Interspazi Confluenze 4">
                     </div>
-                    <div class="project-content">
-                        <div>
-                            <div class="project-title">Interspazi | Confluenze</div>
-                            <div class="project-subtitle">7 FEBBRAIO 2026</div>
-                            <p class="project-desc">
-                                <a href="https://www.instagram.com/archivio.atena/" target="_blank" style="color: var(--accent-blue); text-decoration: underline;">Archivio Atena</a><br>
-                                Interspazi | Confluenze è un luogo di possibilità, un luogo da attraversare, in cui sostare e, per un attimo, fuggire dall'ordinario.
-                            </p>
-                        </div>
+                    <span class="tile-badge"><i class="fas fa-clone"></i></span>
+                    <div class="tile-overlay"><span class="tile-label">Interspazi | Confluenze</span></div>
+                </button>
+
+                <!-- VIDEO LOCALE: parte in automatico nella finestra -->
+                <button class="tile tall"
+                        data-type="video"
+                        data-src="images/MASKARA.mp4"
+                        data-title="Maskara"
+                        data-desc="Videoclip diretto da un regista rappresentato in agenzia."
+                        data-link="https://www.youtube.com/watch?v=Jr6r6PKVDSw"
+                        data-link-label="Guarda su YouTube">
+                    <div class="tile-media">
+                        <video src="images/MASKARA.mp4" muted loop playsinline preload="metadata"></video>
                     </div>
-                </article>
+                    <span class="tile-badge"><i class="fas fa-play"></i></span>
+                    <div class="tile-overlay"><span class="tile-label">Maskara</span></div>
+                </button>
+
+                <!-- EMBED INSTAGRAM: resta dentro il sito, ma il play va premuto -->
+                <button class="tile"
+                        data-type="embed"
+                        data-src="https://www.instagram.com/p/DaxbQi_DTNT/embed/"
+                        data-ratio="4/5"
+                        data-title="2 anni di Narhval"
+                        data-desc="Letture, live e mostre al Bar Volo per il secondo compleanno della casa editrice."
+                        data-link="https://www.instagram.com/p/DaxbQi_DTNT/"
+                        data-link-label="Apri il post su Instagram">
+                    <div class="tile-media">
+                        <img src="images/2anni_narhval_barvolo.jpg" alt="2 anni di Narhval">
+                    </div>
+                    <span class="tile-badge"><i class="fab fa-instagram"></i></span>
+                    <div class="tile-overlay"><span class="tile-label">2 anni di Narhval</span></div>
+                </button>
+
+                <!-- VIDEO LOCALE -->
+                <button class="tile"
+                        data-type="video"
+                        data-src="images/Video_sito_narhval.mp4"
+                        data-title="Narhval Edizioni"
+                        data-desc="Gestione strategica e operativa della casa editrice.">
+                    <div class="tile-media">
+                        <video src="images/Video_sito_narhval.mp4" muted loop playsinline preload="metadata"></video>
+                    </div>
+                    <span class="tile-badge"><i class="fas fa-play"></i></span>
+                    <div class="tile-overlay"><span class="tile-label">Narhval Edizioni</span></div>
+                </button>
+
+                <!-- IMMAGINE SEMPLICE, formato largo -->
+                <button class="tile wide"
+                        data-type="image"
+                        data-src="images/Uragano.jpg"
+                        data-title="Uragano Revue"
+                        data-desc="Consulenza strategica e promozione evento per MArteLive."
+                        data-link="https://martelive.it/2025/10/uragano-revue/"
+                        data-link-label="Leggi su MArteLive">
+                    <div class="tile-media">
+                        <img src="images/Uragano.jpg" alt="Uragano Revue">
+                    </div>
+                    <span class="tile-badge"><i class="fas fa-image"></i></span>
+                    <div class="tile-overlay"><span class="tile-label">Uragano Revue</span></div>
+                </button>
+
+                <!--
+                  EMBED SOUNDCLOUD (esempio: sostituisci l'URL del brano dentro url=).
+                  auto_play=true funziona perch&eacute; l'iframe riceve il permesso dal click.
+                -->
+                <button class="tile"
+                        data-type="embed"
+                        data-src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/INSERISCI-QUI-IL-BRANO&amp;auto_play=true&amp;hide_related=true&amp;show_comments=false&amp;show_reposts=false&amp;visual=false&amp;color=%231a3cba"
+                        data-fixed-height="180"
+                        data-title="Titolo del brano"
+                        data-desc="Descrizione del contenuto audio."
+                        data-link="https://soundcloud.com/"
+                        data-link-label="Ascolta su SoundCloud">
+                    <div class="tile-media">
+                        <img src="images/fatadellebriciole.jpg" alt="Copertina audio">
+                    </div>
+                    <span class="tile-badge"><i class="fas fa-music"></i></span>
+                    <div class="tile-overlay"><span class="tile-label">Titolo del brano</span></div>
+                </button>
+
+                <!-- IMMAGINE SEMPLICE -->
+                <button class="tile"
+                        data-type="image"
+                        data-src="images/mangiapatate.jpg"
+                        data-title="I Mangiapatate"
+                        data-desc="Presentazione del volume edito da Narhval Edizioni."
+                        data-link="https://www.narhvaledizioni.it/prodotto/i-mangiapatate/"
+                        data-link-label="Scopri il libro">
+                    <div class="tile-media">
+                        <img src="images/mangiapatate.jpg" alt="I Mangiapatate">
+                    </div>
+                    <span class="tile-badge"><i class="fas fa-image"></i></span>
+                    <div class="tile-overlay"><span class="tile-label">I Mangiapatate</span></div>
+                </button>
+
             </div>
         </section>
 
@@ -1108,20 +1418,163 @@
             }
         });
 
-        // SCRIPT SLIDESHOW NEXT EVENTS
-        document.addEventListener("DOMContentLoaded", function() {
-            const slides = document.querySelectorAll('#eventSlideshow .slide-img');
-            let currentSlide = 0;
-            const slideInterval = 3000;
+        // --- MOSAICO LAST UPDATES + FINESTRA CONTENUTI ---
+        (function () {
+            var mosaic = document.getElementById('mosaic');
+            var lightbox = document.getElementById('lightbox');
+            if (!mosaic || !lightbox) return;
 
-            if(slides.length > 0) {
-                setInterval(() => {
-                    slides[currentSlide].classList.remove('active');
-                    currentSlide = (currentSlide + 1) % slides.length;
-                    slides[currentSlide].classList.add('active');
-                }, slideInterval);
+            var stage = document.getElementById('lightboxStage');
+            var elTitle = document.getElementById('lightboxTitle');
+            var elDesc = document.getElementById('lightboxDesc');
+            var elLink = document.getElementById('lightboxLink');
+            var tiles = Array.prototype.slice.call(mosaic.querySelectorAll('.tile'));
+            var current = -1;
+
+            // Slideshow dentro le tessere
+            mosaic.querySelectorAll('.tile-slideshow').forEach(function (box) {
+                var imgs = box.querySelectorAll('img');
+                if (imgs.length < 2) return;
+                var i = 0;
+                setInterval(function () {
+                    imgs[i].classList.remove('active');
+                    i = (i + 1) % imgs.length;
+                    imgs[i].classList.add('active');
+                }, 3000);
+            });
+
+            // Anteprima video al passaggio del mouse (solo desktop)
+            if (window.matchMedia('(hover: hover)').matches) {
+                tiles.forEach(function (tile) {
+                    var v = tile.querySelector('.tile-media video');
+                    if (!v) return;
+                    tile.addEventListener('mouseenter', function () {
+                        var p = v.play();
+                        if (p && p.catch) p.catch(function () {});
+                    });
+                    tile.addEventListener('mouseleave', function () {
+                        v.pause();
+                        v.currentTime = 0;
+                    });
+                });
             }
-        });
+
+            function buildStage(tile) {
+                stage.innerHTML = '';
+                var type = tile.dataset.type;
+                var srcs = (tile.dataset.src || '').split(',').map(function (s) { return s.trim(); }).filter(Boolean);
+
+                if (type === 'video') {
+                    var video = document.createElement('video');
+                    video.src = srcs[0];
+                    video.controls = true;
+                    video.autoplay = true;
+                    video.muted = true;      // obbligatorio: senza muto i browser bloccano l'autoplay
+                    video.loop = true;
+                    video.playsInline = true;
+                    stage.appendChild(video);
+
+                } else if (type === 'embed') {
+                    var wrap = document.createElement('div');
+                    wrap.className = 'lightbox-frame';
+                    var iframe = document.createElement('iframe');
+                    iframe.src = srcs[0];
+                    iframe.setAttribute('allow', 'autoplay; encrypted-media; clipboard-write; picture-in-picture; fullscreen');
+                    iframe.setAttribute('allowfullscreen', '');
+                    iframe.setAttribute('scrolling', 'no');
+                    if (tile.dataset.fixedHeight) {
+                        iframe.style.height = tile.dataset.fixedHeight + 'px';
+                    } else {
+                        iframe.style.aspectRatio = tile.dataset.ratio || '16 / 9';
+                        iframe.style.maxHeight = '70vh';
+                    }
+                    wrap.appendChild(iframe);
+                    stage.appendChild(wrap);
+
+                } else if (type === 'gallery' && srcs.length > 1) {
+                    var strip = document.createElement('div');
+                    strip.className = 'lightbox-gallery';
+                    srcs.forEach(function (s, idx) {
+                        var im = document.createElement('img');
+                        im.src = s;
+                        im.alt = (tile.dataset.title || '') + ' ' + (idx + 1);
+                        strip.appendChild(im);
+                    });
+                    stage.appendChild(strip);
+
+                    var counter = document.createElement('div');
+                    counter.className = 'lightbox-counter';
+                    counter.textContent = '1 / ' + srcs.length;
+                    stage.appendChild(counter);
+
+                    strip.addEventListener('scroll', function () {
+                        var idx = Math.round(strip.scrollLeft / strip.clientWidth) + 1;
+                        counter.textContent = Math.min(idx, srcs.length) + ' / ' + srcs.length;
+                    });
+
+                } else {
+                    var img = document.createElement('img');
+                    img.src = srcs[0];
+                    img.alt = tile.dataset.title || '';
+                    stage.appendChild(img);
+                }
+            }
+
+            function open(index) {
+                var tile = tiles[index];
+                if (!tile) return;
+                current = index;
+
+                buildStage(tile);
+                elTitle.textContent = tile.dataset.title || '';
+                elDesc.innerHTML = tile.dataset.desc || '';
+
+                if (tile.dataset.link) {
+                    elLink.href = tile.dataset.link;
+                    elLink.textContent = (tile.dataset.linkLabel || 'Apri il link') + ' \u2192';
+                    elLink.style.display = 'inline-block';
+                } else {
+                    elLink.style.display = 'none';
+                }
+
+                lightbox.classList.add('open');
+                lightbox.setAttribute('aria-hidden', 'false');
+                document.body.classList.add('lightbox-open');
+            }
+
+            function close() {
+                lightbox.classList.remove('open');
+                lightbox.setAttribute('aria-hidden', 'true');
+                document.body.classList.remove('lightbox-open');
+                stage.innerHTML = ''; // ferma video e iframe in riproduzione
+                if (tiles[current]) tiles[current].focus();
+                current = -1;
+            }
+
+            function step(dir) {
+                if (current < 0) return;
+                open((current + dir + tiles.length) % tiles.length);
+            }
+
+            tiles.forEach(function (tile, i) {
+                tile.addEventListener('click', function () { open(i); });
+            });
+
+            document.getElementById('lightboxClose').addEventListener('click', close);
+            document.getElementById('lightboxPrev').addEventListener('click', function () { step(-1); });
+            document.getElementById('lightboxNext').addEventListener('click', function () { step(1); });
+
+            lightbox.addEventListener('click', function (e) {
+                if (e.target === lightbox) close();
+            });
+
+            document.addEventListener('keydown', function (e) {
+                if (!lightbox.classList.contains('open')) return;
+                if (e.key === 'Escape') close();
+                else if (e.key === 'ArrowRight') step(1);
+                else if (e.key === 'ArrowLeft') step(-1);
+            });
+        })();
 
         // --- MARQUEE LOGHI: due righe, direzioni opposte, drag manuale ---
         (function () {
@@ -1254,6 +1707,21 @@
             });
         })();
     </script>
+
+    <!-- ========= FINESTRA CONTENUTI (LIGHTBOX) ========= -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="lightbox-inner">
+            <button class="lightbox-btn lightbox-close" id="lightboxClose" aria-label="Chiudi">&#10005;</button>
+            <button class="lightbox-btn lightbox-prev" id="lightboxPrev" aria-label="Precedente">&#10094;</button>
+            <button class="lightbox-btn lightbox-next" id="lightboxNext" aria-label="Successivo">&#10095;</button>
+            <div class="lightbox-stage" id="lightboxStage"></div>
+            <div class="lightbox-info">
+                <div class="lightbox-title" id="lightboxTitle"></div>
+                <div class="lightbox-desc" id="lightboxDesc"></div>
+                <a class="lightbox-link" id="lightboxLink" target="_blank" rel="noopener"></a>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>
