@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Rocco Pagliarulo - Portfolio</title>
-    
+
     <link rel="icon" type="image/png" href="images/favicon_RP.png">
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:ital,wght@0,400;0,500;0,700;0,800;1,400;1,500;1,700&display=swap" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -21,7 +21,7 @@
             --accent-blue: #1a3cba;
             --border-thick: 4px solid var(--black);
             --border-thin: 2px solid var(--black);
-            
+
             /* Tipografia */
             --font-title: 'Archivo Black', sans-serif;
             --font-body: 'Space Mono', monospace;
@@ -48,7 +48,7 @@
             pointer-events: none;
             z-index: 9999;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E");
-            backdrop-filter: blur(0.2px); 
+            backdrop-filter: blur(0.2px);
             box-shadow: inset 0 0 80px rgba(0,0,0,0.1);
             mix-blend-mode: multiply;
             transition: all 0.3s ease;
@@ -81,16 +81,16 @@
         header {
             display: flex;
             width: 100%;
-            min-height: 70px; 
-            border-bottom: var(--border-thick); 
+            min-height: 70px;
+            border-bottom: var(--border-thick);
             background-color: var(--bg-color);
             z-index: 1000;
             position: sticky;
-            top: 0; 
+            top: 0;
             transition: transform 0.4s ease-in-out;
             align-items: stretch;
         }
-        
+
         header.hide {
             transform: translateY(-100%);
         }
@@ -99,10 +99,10 @@
             background-color: var(--black);
             color: var(--white);
             padding: 15px;
-            flex-grow: 1; 
+            flex-grow: 1;
             display: flex;
             align-items: center;
-            flex-wrap: wrap; 
+            flex-wrap: wrap;
         }
 
         .menu-block {
@@ -113,7 +113,7 @@
             justify-content: center;
             align-items: center;
             border-left: var(--border-thick);
-            align-self: stretch; 
+            align-self: stretch;
         }
 
         h1 {
@@ -121,9 +121,9 @@
             text-transform: uppercase;
             margin: 0;
             line-height: 0.95;
-            font-size: clamp(2rem, 6vw, 4rem); 
+            font-size: clamp(2rem, 6vw, 4rem);
             width: 100%;
-            word-wrap: break-word; 
+            word-wrap: break-word;
         }
 
         h1 a {
@@ -155,20 +155,20 @@
         /* --- MENU A TENDINA (MOBILE) --- */
         .mobile-menu {
             display: none;
-            position: fixed; 
+            position: fixed;
             top: 70px;
-            right: 10px; 
+            right: 10px;
             width: 200px;
             background-color: var(--bg-color);
             border: var(--border-thick);
-            z-index: 990; 
+            z-index: 990;
             flex-direction: column;
             transition: opacity 0.3s ease;
             box-shadow: 10px 10px 0px rgba(0,0,0,0.2);
         }
-        
+
         .mobile-menu.active { display: flex; }
-        
+
         header.hide ~ .mobile-menu {
             opacity: 0;
             pointer-events: none;
@@ -194,15 +194,15 @@
 
         /* BLOCCO LINGUA MOBILE */
         .mobile-lang-wrapper {
-            border-top: var(--border-thick); 
+            border-top: var(--border-thick);
             padding: 15px 0;
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 15px;
-            background-color: var(--bg-color); 
+            background-color: var(--bg-color);
         }
-        
+
         .lang-link {
             font-family: var(--font-body);
             font-weight: 700;
@@ -218,19 +218,19 @@
         .sub-header {
             background-color: var(--bg-color);
             color: var(--black);
-            border-bottom: var(--border-thin); 
+            border-bottom: var(--border-thin);
             padding: 12px 15px;
             font-family: var(--font-body);
             font-weight: 800;
-            font-size: 0.7rem; 
+            font-size: 0.7rem;
             text-transform: uppercase;
             line-height: 1.4;
             display: flex;
-            justify-content: center; 
+            justify-content: center;
             align-items: center;
             position: relative;
         }
-        
+
         .sub-header-content {
             display: flex;
             flex-wrap: wrap;
@@ -242,18 +242,18 @@
         .separator { display: none; }
 
         .sub-header-lang {
-            display: none; 
+            display: none;
             font-weight: 700;
             font-size: 0.85rem;
-            margin-left: auto; 
+            margin-left: auto;
         }
 
         /* HERO IMAGE */
         .hero-container {
             width: 100%;
-            height: 250px; 
+            height: 250px;
             overflow: hidden;
-            padding: 15px; 
+            padding: 15px;
             background: var(--bg-color);
             position: relative;
         }
@@ -263,107 +263,37 @@
             object-fit: cover;
             object-position: center;
             display: block;
-            filter: contrast(1.1); 
+            filter: contrast(1.1);
             border: 4px solid var(--black);
         }
 
-        /* --- UPCOMING EVENTS SLIDER --- */
-        #upcoming-events {
-            overflow: hidden;
-            padding: 0;
-        }
-
-        #upcoming-events .section-header {
-            border-bottom: var(--border-thick);
-            white-space: nowrap;
-        }
-
-        #upcoming-events h2 {
-            white-space: nowrap;
-            font-size: clamp(1.8rem, 6vw, 3.5rem);
-        }
-
-        .slide-track-upcoming {
-            animation: scroll-upcoming 30s linear infinite;
-            display: flex;
-            width: max-content;
-        }
-
-        .slide-upcoming {
-            height: 120px;
-            width: auto;
-            min-width: min-content;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            padding: 0 25px;
-            border-right: var(--border-thin);
-            gap: 20px;
-            flex-shrink: 0;
-        }
-
-        .upcoming-text {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 2px;
-            flex-shrink: 0;
-        }
-
-        .upcoming-text span {
-            font-family: var(--font-body);
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            line-height: 1.5;
-            color: var(--black);
-            white-space: nowrap;
-        }
-
-        .upcoming-logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            width: 70px;
-        }
-
-        .upcoming-logo img {
-            max-width: 70px;
-            max-height: 60px;
-            object-fit: contain;
-        }
-
-        @keyframes scroll-upcoming {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
         /* --- SEZIONI --- */
-        section { border-bottom: var(--border-thick); }
+        section {
+            border-bottom: var(--border-thick);
+            scroll-margin-top: 80px; /* evita che l'header sticky copra il titolo */
+        }
 
         .section-header { padding: 15px 20px; display: flex; align-items: center; gap: 15px; }
-        
+
         h2 {
             font-family: var(--font-title);
             color: var(--accent-blue);
-            font-size: clamp(1.8rem, 7vw, 3.5rem); 
+            font-size: clamp(1.8rem, 7vw, 3.5rem);
             text-transform: uppercase;
             margin: 0;
             line-height: 0.9;
-            white-space: normal; 
-            word-break: break-word; 
+            white-space: normal;
+            word-break: break-word;
         }
 
         .filler-bar { flex-grow: 1; height: 30px; background-color: var(--black); }
-        
-        .intro-text { 
-            padding: 20px 20px 30px 20px; 
-            font-family: var(--font-body); 
-            font-size: 0.9rem; 
-            line-height: 1.6; 
-            text-align: left; 
+
+        .intro-text {
+            padding: 20px 20px 30px 20px;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            text-align: left;
             font-weight: 500;
         }
 
@@ -371,22 +301,22 @@
         .projects-wrapper { border-top: var(--border-thick); }
         .project-item { display: flex; flex-direction: column; border-bottom: var(--border-thin); }
         .project-item:last-child { border-bottom: none; }
-        
+
         .project-img-wrapper { width: 100%; padding: 15px; background-color: var(--bg-color); }
-        
+
         .project-img-wrapper a {
             display: block;
             width: 100%;
             height: 100%;
         }
-        
-        .project-img-wrapper img, 
-        .project-img-wrapper video { 
-            width: 100%; 
-            height: 180px; 
-            object-fit: cover; 
-            display: block; 
-            border: 4px solid black; 
+
+        .project-img-wrapper img,
+        .project-img-wrapper video {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+            border: 4px solid black;
         }
 
         /* --- MOSAICO LAST UPDATES --- */
@@ -662,39 +592,28 @@
         .project-title { font-family: var(--font-title); font-size: 1.8rem; text-transform: uppercase; line-height: 1; margin-bottom: 3px; }
         .project-subtitle { font-family: var(--font-body); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin-bottom: 3px; }
         .project-desc { font-family: var(--font-body); font-size: 0.85rem; margin-bottom: 12px; line-height: 1.4; font-weight: 500; }
-        
-        .btn { 
-            background-color: var(--accent-blue); 
-            color: white; 
-            padding: 10px 20px; 
-            text-decoration: none; 
-            font-family: var(--font-title); 
-            text-transform: uppercase; 
-            font-size: 1rem; 
-            letter-spacing: 1px; 
-            display: inline-block; 
-            width: fit-content; 
+
+        .btn {
+            background-color: var(--accent-blue);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-family: var(--font-title);
+            text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            display: inline-block;
+            width: fit-content;
             border: none;
             box-shadow: inset -2px -2px 4px rgba(0,0,0,0.3);
         }
         .btn:hover { background-color: var(--black); }
 
         /* --- SLIDER LOGHI --- */
-        #collaborations { 
-            overflow: hidden; 
-            padding: 0; 
-            border-top: none; 
-        }
-        
-        .slider { 
-            background: var(--bg-color); 
-            height: 140px; 
-            margin: auto; 
-            overflow: hidden; 
-            position: relative; 
-            width: 100%; 
-            display: flex; 
-            align-items: center; 
+        #collaborations {
+            overflow: hidden;
+            padding: 0;
+            border-top: none;
         }
 
         /* Marquee loghi su due righe (drag manuale + autoplay) */
@@ -812,25 +731,25 @@
 
         .contact-info-wrapper { display: flex; flex-direction: column; gap: 15px; justify-content: center; }
 
-        .contact-row { 
-            background-color: var(--black); 
-            color: var(--white); 
+        .contact-row {
+            background-color: var(--black);
+            color: var(--white);
             border: none;
-            margin: 0; padding: 15px; 
-            text-align: center; 
-            font-family: var(--font-body); 
-            font-weight: 700; font-size: 0.9rem; 
-            text-transform: uppercase; letter-spacing: 1px; 
-            word-wrap: break-word; 
+            margin: 0; padding: 15px;
+            text-align: center;
+            font-family: var(--font-body);
+            font-weight: 700; font-size: 0.9rem;
+            text-transform: uppercase; letter-spacing: 1px;
+            word-wrap: break-word;
             transition: background 0.3s;
         }
-        
+
         .contact-row:hover { background-color: var(--accent-blue); }
         .contact-row a { color: var(--white); text-decoration: none; }
-        
-        .social-row { 
+
+        .social-row {
             background-color: transparent;
-            display: flex; justify-content: center; gap: 25px; 
+            display: flex; justify-content: center; gap: 25px;
             font-size: 1.8rem; padding: 10px;
         }
         .social-row a { color: var(--black); transition: transform 0.2s, color 0.3s; }
@@ -854,7 +773,7 @@
             line-height: 1.5;
             opacity: 0.7;
         }
-        
+
         .footer-credits a {
             color: var(--black);
             text-decoration: none;
@@ -868,39 +787,34 @@
             body::after { backdrop-filter: blur(0.3px); box-shadow: inset 0 0 150px rgba(0,0,0,0.25); }
 
             h1 { font-size: 5rem; }
-            header { border-bottom: none; } 
-            
+            header { border-bottom: none; }
+
             .title-block { padding: 20px 30px; border-bottom: var(--border-thick); flex-wrap: nowrap; }
-            
+
             .menu-block { width: auto; padding: 0 30px; border-bottom: var(--border-thick); }
-            
-            .sub-header { 
-                font-size: 0.85rem; 
-                letter-spacing: 1px; 
-                padding: 15px 30px; 
-                justify-content: space-between; 
+
+            .sub-header {
+                font-size: 0.85rem;
+                letter-spacing: 1px;
+                padding: 15px 30px;
+                justify-content: space-between;
             }
-            
+
             .sub-header-content { justify-content: flex-start; }
             .separator { display: inline; margin: 0 10px; }
-            
-            .sub-header-lang { display: block; } 
-            
+
+            .sub-header-lang { display: block; }
+
             .hero-container { height: 450px; padding: 20px; }
-            
-            .slide-upcoming { width: auto; min-width: min-content; }
-            .upcoming-text span { font-size: 1rem; }
-            .upcoming-logo { width: 80px; }
-            .upcoming-logo img { max-width: 80px; max-height: 70px; }
-            
+
             .project-item { flex-direction: row; min-height: 260px; align-items: stretch; }
-            
+
             .project-img-wrapper { width: 50%; height: auto; border-right: none; display: flex; align-items: center; justify-content: center; padding: 20px; }
-            
-            .project-img-wrapper img, 
-            .project-img-wrapper video { 
-                height: 100%; 
-                max-height: 220px; 
+
+            .project-img-wrapper img,
+            .project-img-wrapper video {
+                height: 100%;
+                max-height: 220px;
             }
 
             /* Mosaico a 4 colonne su desktop */
@@ -919,9 +833,9 @@
             .lightbox-prev { left: -60px; }
             .lightbox-next { right: -60px; }
             .lightbox-close { top: 10px; right: 10px; }
-            
+
             .project-content { width: 70%; padding: 25px 20px; padding-left: 5px; justify-content: center; }
-            
+
             .project-title { font-size: 2.5rem; }
             .intro-text { font-size: 1.1rem; }
 
@@ -934,15 +848,15 @@
             .contact-face-wrapper { width: 40%; padding: 40px; background-color: var(--bg-color); border-right: var(--border-thick); margin-bottom: 0; }
             .contact-face { width: 100%; height: auto; max-width: 250px; border: var(--border-thick); }
             .contact-info-wrapper { width: 60%; padding: 40px; background-color: var(--bg-color); align-items: stretch; justify-content: center; }
-            
-            .contact-row { 
-                text-align: left; 
-                background-color: var(--black); 
-                color: var(--white); 
+
+            .contact-row {
+                text-align: left;
+                background-color: var(--black);
+                color: var(--white);
                 border: none;
-                padding: 15px; 
-                border-bottom: none; 
-                font-weight: 500; 
+                padding: 15px;
+                border-bottom: none;
+                font-weight: 500;
                 transition: color 0.3s;
                 margin-bottom: 10px;
             }
@@ -950,9 +864,9 @@
             .contact-row a { color: var(--white); }
             .contact-row:hover a { color: var(--accent-blue); }
             .contact-row:last-child { border-bottom: none; }
-            
+
             .social-row { justify-content: flex-start; padding: 15px 0; margin-top: 20px; }
-            
+
             .footer-credits { flex-direction: row; justify-content: center; gap: 15px; padding: 25px; }
         }
     </style>
@@ -962,10 +876,10 @@
     <div class="mobile-menu" id="mobileMenu">
         <div class="mobile-menu-links">
             <a href="#projects" class="menu-link" onclick="toggleMenu()">Projects</a>
-            <a href="#upcoming-events" class="menu-link" onclick="toggleMenu()">Events</a>
-            <a href="#contact" class="menu-link" onclick="toggleMenu()">Contact</a>
+            <a href="#last-updates" class="menu-link" onclick="toggleMenu()">Events</a>
+            <a href="#about-contact" class="menu-link" onclick="openContactSection(); toggleMenu();">Contact</a>
         </div>
-        
+
         <div class="mobile-lang-wrapper">
             <a href="index-en.html" class="lang-link">EN</a>
             <span>|</span>
@@ -974,12 +888,12 @@
     </div>
 
     <div class="container">
-        
+
         <header id="mainHeader">
             <div class="title-block">
                 <h1><a href="#">ROCCO PAGLIARULO</a></h1>
             </div>
-            
+
             <div class="menu-block">
                 <div class="hamburger" onclick="toggleMenu()">
                     <span></span><span></span><span></span>
@@ -995,7 +909,7 @@
                 <span class="separator">|</span>
                 <span class="sub-item">Talent Agent and Manager</span>
             </div>
-            
+
             <div class="sub-header-lang">
                 <a href="index-en.html" class="lang-link">EN</a>
                 <span>|</span>
@@ -1055,7 +969,7 @@
                         <div style="display: flex; gap: 15px; flex-wrap: wrap;">
                             <a href="https://martelive.it/" class="btn">MArteLive</a>
                             <a href="https://martelive.it/2025/10/uragano-revue/" target="_blank" class="btn">Uragano Revue</a>
-                        </div>                
+                        </div>
                     </div>
                 </article>
 
@@ -1082,98 +996,6 @@
                         </div>
                     </div>
                 </article>
-            </div>
-        </section>
-
-        <section id="upcoming-events">
-            <div class="section-header">
-                <h2>UPCOMING EVENTS</h2>
-                <div class="filler-bar"></div>
-            </div>
-            
-            <div class="slider">
-                <div class="slide-track-upcoming">
-                    <div class="slide-upcoming">
-                        <a href="https://www.instagram.com/rebisroma/" target="_blank" class="upcoming-logo">
-                            <img src="images/logo_rebis.jpeg" alt="Logo Rebis">
-                        </a>
-                        <div class="upcoming-text">
-                            <span>28 maggio</span>
-                            <span>"Un palco per tutti"</span>
-                            <span>Martelive</span>
-                        </div>
-                    </div>
-                    <div class="slide-upcoming">
-                        <a href="https://santedicola.com/" target="_blank" class="upcoming-logo">
-                            <img src="images/logo_santedicola.jpeg" alt="Logo Santedicola">
-                        </a>
-                        <div class="upcoming-text">
-                            <span>4 giugno</span>
-                            <span>Interspazi | design e fotografia</span>
-                            <span>Narhval Edizioni</span>
-                        </div>
-                    </div>
-                    <div class="slide-upcoming">
-                        <a href="https://www.narhvaledizioni.it/prodotto/i-mangiapatate/" target="_blank" class="upcoming-logo">
-                            <img src="images/mangiapatate.jpg" alt="Logo I Mangiapatate">
-                        </a>
-                        <div class="upcoming-text">
-                            <span>12 giugno</span>
-                            <span>Presentazione "I Mangiapatate"</span>
-                            <span>Narhval Edizioni</span>
-                        </div>
-                    </div>
-                    <div class="slide-upcoming">
-                        <a href="https://www.narhvaledizioni.it/prodotto/la-fata-delle-briciole/" target="_blank" class="upcoming-logo">
-                            <img src="images/fatadellebriciole.jpg" alt="Logo La Fata delle Briciole">
-                        </a>
-                        <div class="upcoming-text">
-                            <span>23 giugno</span>
-                            <span>Presentazione "La fata delle briciole"</span>
-                            <span>Narhval Edizioni</span>
-                        </div>
-                    </div>
-                    <div class="slide-upcoming">
-                        <a href="https://www.instagram.com/rebisroma/" target="_blank" class="upcoming-logo">
-                            <img src="images/logo_rebis.jpeg" alt="Logo Rebis">
-                        </a>
-                        <div class="upcoming-text">
-                            <span>28 maggio</span>
-                            <span>"Un palco per tutti"</span>
-                            <span>Martelive</span>
-                        </div>
-                    </div>
-                    <div class="slide-upcoming">
-                        <a href="https://santedicola.com/" target="_blank" class="upcoming-logo">
-                            <img src="images/logo_santedicola.jpeg" alt="Logo Santedicola">
-                        </a>
-                        <div class="upcoming-text">
-                            <span>4 giugno</span>
-                            <span>Interspazi | design e fotografia</span>
-                            <span>Narhval Edizioni</span>
-                        </div>
-                    </div>
-                    <div class="slide-upcoming">
-                        <a href="https://www.instagram.com/p/DaxbQi_DTNT/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" class="upcoming-logo">
-                            <img src="images/2anni_narhval_barvolo.jpg" alt="Logo 2 anni narhval bar volo">
-                        </a>
-                        <div class="upcoming-text">
-                            <span>18 luglio</span>
-                            <span> 2 anni di Narhval | letture+live+mostre</span>
-                            <span>Narhval Edizioni</span>
-                        </div>
-                    </div>
-                    <div class="slide-upcoming">
-                        <a href="https://www.narhvaledizioni.it/prodotto/la-fata-delle-briciole/" target="_blank" class="upcoming-logo">
-                            <img src="images/fatadellebriciole.png" alt="Logo La Fata delle Briciole">
-                        </a>
-                        <div class="upcoming-text">
-                            <span>23 giugno</span>
-                            <span>Presentazione "La fata delle briciole"</span>
-                            <span>Narhval Edizioni</span>
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -1218,7 +1040,7 @@
                         <span class="tile-sub">Letture, Capa live, mostra di Marco Waldis</span>
                     </div>
                 </button>
-                
+
 
                 <!-- 2 - FANZINE INTERSPAZI -->
                 <button class="tile"
@@ -1502,6 +1324,20 @@
             }
         }
 
+        // Apre sempre (mai chiude) la scheda CONTACT: usata dal menu a tendina
+        function openContactSection() {
+            var aboutContent = document.getElementById('aboutContent');
+            var contactContent = document.getElementById('contactContent');
+            var aboutTab = document.getElementById('tab-about');
+            var contactTab = document.getElementById('tab-contact');
+
+            aboutContent.style.display = 'none';
+            aboutTab.classList.remove('active');
+
+            contactContent.style.display = 'block';
+            contactTab.classList.add('active');
+        }
+
         function toggleMenu() {
             var menu = document.getElementById("mobileMenu");
             menu.classList.toggle("active");
@@ -1516,14 +1352,14 @@
 
         window.addEventListener('scroll', function() {
             let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            
+
             if (scrollTop > lastScrollTop && scrollTop > 70) {
                 header.classList.add('hide');
             } else {
                 header.classList.remove('hide');
             }
-            
-            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; 
+
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
         });
 
         // CHIUDI MENU AL CLICK FUORI
@@ -1652,7 +1488,7 @@
 
                 if (tile.dataset.link) {
                     elLink.href = tile.dataset.link;
-                    elLink.textContent = (tile.dataset.linkLabel || 'Apri il link') + ' \u2192';
+                    elLink.textContent = (tile.dataset.linkLabel || 'Apri il link') + ' →';
                     elLink.style.display = 'inline-block';
                 } else {
                     elLink.style.display = 'none';
